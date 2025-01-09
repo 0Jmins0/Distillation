@@ -1,22 +1,19 @@
-# python src/Feature_Extraction.py 
 import torch
 from PIL import Image
 import os
 from tqdm import tqdm
 import numpy as np
-from segment_anything import sam_model_registry
-
-# 图像预处理函数
-from PIL import Image
 import torchvision.transforms as transforms
+import timm
+
 
 def preprocess_image(image_path):
-    image = Image.open(image_path).convert("RGB")
     # 定义预处理步骤
     transform = transforms.Compose([
-        transforms.Resize((1024, 1024)),  # 调整图像大小
-        transforms.ToTensor(),  # 转换为张量
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # 标准化
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
     input_image = transform(image).unsqueeze(0).to(device="cuda")
     return input_image
@@ -59,18 +56,20 @@ def get_features(model, path, batch_size = 10):
         features[label] = images
     return features
 
+device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
 
+# model = timm.create_model('vit_base_patch8_224.dino', pretrained=True, num_classes=0)
+# model.eval()  # 切换到评估模式
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+# # 加载DINO模型
+# model_path = '../models/DINO/dino_deitsmall8_pretrain.pth'
+# model.load_state_dict(torch.load(model_path))
 
-# 加载预训练的 SAM 模型
-sam = sam_model_registry["vit_l"](checkpoint="../models/SAM/sam_vit_l_0b3195.pth")
-sam.to(device="cuda")  # 如果使用 GPU
-
+dinov2_vits14 = torch.hub.load('facebookresearch/dinov2', 'dinov2_vits14')
 
 path = '../data/ModelNet40_180_tmp'
 
-features_SAM = get_features(sam, path)
+features_DINO = get_features(dinov2_vits14, path)
 
-print(features_SAM)
-print(np.array(features_SAM['airplane']).shape)
+print(features_DINO)
+print(np.array(features_DINO['airplane']).shape)
