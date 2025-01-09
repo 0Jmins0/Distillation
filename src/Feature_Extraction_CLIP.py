@@ -44,7 +44,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # 加载CLIP模型
 model, preprocess = clip.load("ViT-B/32", device=device)
-path = '../Distillation/data/ModelNet40_180_tmp'
+path = '../data/ModelNet40_180_tmp'
 
 features_CLIP = get_features(model, preprocess, path)
 
