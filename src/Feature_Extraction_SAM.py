@@ -47,14 +47,17 @@ def get_features(model, path, batch_size = 10):
             input_images = [preprocess_image(picture_path) for picture_path in pictures_path]
             batches = [torch.cat(input_images[i:i + batch_size], dim=0) for i in range(0, len(input_images), batch_size)]
             
-        image_features = []
-        with torch.no_grad():
-            for batch in batches:
-                image_features.append(model.image_encoder(batch).cpu().numpy())
-                torch.cuda.empty_cache()  # 清理缓存
+            image_features = []
+            with torch.no_grad():
+                for batch in batches:
+                    image_features.append(model.image_encoder(batch).cpu().numpy())
+                    torch.cuda.empty_cache()  # 清理缓存
 
-        image_features = np.concatenate(image_features, axis=0)
-        images.append(image_features)
+            image_features = np.concatenate(image_features, axis=0)
+            print(image_features.shape)
+            image_features = np.mean(image_features, axis=0, keepdims=True).flatten() 
+            print(image_features.shape)
+            images.append(image_features)
         
         features[label] = images
     return features

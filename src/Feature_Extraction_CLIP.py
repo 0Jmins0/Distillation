@@ -33,9 +33,10 @@ def get_features(model, preprocess, path):
             image = torch.cat(image, dim=0)
             with torch.no_grad():
                 image_features = model.encode_image(image)
-            images.append(image_features.cpu().numpy())
+            images.append(image_features.mean(dim=0, keepdim=True).cpu().numpy().flatten())
         
         features[label] = images
+        
     return features
 
 
