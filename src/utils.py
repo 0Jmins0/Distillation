@@ -71,7 +71,7 @@ def retrieve_images(query_image, features, image_paths, model, top_k = 5, transf
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     query_image = transform(query_image).unsqueeze(0).to(device) # 因为model是4维带有批次的，所以要加一个维度
-    query_features = model(query_image).cpu().numpy()
+    query_features = model(query_image).detach().cpu().numpy()
 
     #[(1,D) + (N,D) -> (1,N) -> (N,)]
     similarities = cosine_similarity(query_features, features).flatten()
