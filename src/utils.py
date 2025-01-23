@@ -41,7 +41,7 @@ def extract_features(model, data_loader, device):
     image_paths = []
     
     with torch.no_grad():# 关闭梯度计算
-        for images, paths in data_loader: # 遍历数据加载器的每个批次
+        for images, paths, _ in data_loader: # 遍历数据加载器的每个批次
             images = images.to(device)
             batch_features = model(images).cpu().numpy() # 提取特征
             features.append(batch_features)

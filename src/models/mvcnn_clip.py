@@ -19,16 +19,15 @@ class MVCNN_CLIP(nn.Module):
     def forward(self, x):
         # x: (batch_size * num_views, C, H, W)
 
-        N, C, H, W = x.size()
+        N, C, H, W = x.size()   
         x = x.view(-1, self.num_views,C, H, W)
         # 调整维度顺序，将视图维度（num_views）移到通道维度（C）之后，然后将张量重新整形为(N * num_views, C, H, W)。
         # 这样，每个视图都被视为一个独立的图像样本。?????????
-        x = x.permute(0,2,1,3,4).contigugous().view(-1, C, H, W)
+        x = x.permute(0,2,1,3,4).contiguous().view(-1, C, H, W)
         
-        inputs = self.clip_processor(images=x, return_tensors="pt")
         # pooler_output是CLIP模型的输出特征，形状为(N * num_views, hidden_size)
         # (N * num_views, hidden_size)
-        features = self.net_1(**inputs).pooler_output 
+        features = self.net_1(x).pooler_output 
 
         # 视角池化
         features = features.view(-1, self.num_views, features.size(-1))

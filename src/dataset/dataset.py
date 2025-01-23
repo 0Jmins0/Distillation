@@ -8,7 +8,7 @@ class MultiViewDataset(Dataset):
     def __init__(self, root_dir, transform = None):
         self.root_dir = root_dir
         self.transform = transform
-        self.instances = self._load_instance()
+        self.instances = self._load_instances()
 
     def _load_instances(self): # 读取数据集到一个列表，每个元素是（类别名、实例名、实例地址）
         instances = []
@@ -35,10 +35,10 @@ class MultiViewDataset(Dataset):
         anchor_image = Image.open(anchor_path).convert("RGB")
         positive_image = Image.open(positive_path).convert("RGB")
 
-        negative_instance = random.choice(self.instance)
+        negative_instance = random.choice(self.instances)
         # 保证不同类或者同类但不同实例
         while negative_instance[0] == cls and negative_instance[1] == instance:
-            negative_instance = random.choice(self.instance)
+            negative_instance = random.choice(self.instances)
         
         negative_dir = negative_instance[2]
         negative_view = random.choice(os.listdir(negative_dir))
@@ -51,11 +51,11 @@ class MultiViewDataset(Dataset):
             negative_image = self.transform(negative_image)
         return anchor_image, positive_image, negative_image
     
-transform = transforms.Compose([
-    transforms.Resize((224,224)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean = [0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-])
+# transform = transforms.Compose([
+#     transforms.Resize((224,224)),
+#     transforms.ToTensor(),
+#     transforms.Normalize(mean = [0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+# ])
 
-train_dataset = MultiViewDataset(root_dir = '../../data/ModelNet_random_30_final/DS/train', transform=transform)
-train_loader = DataLoader(train_dataset,batch_size=16,shuffle=True)
+# train_dataset = MultiViewDataset(root_dir = '../../data/ModelNet_random_30_final/DS/train', transform=transform)
+# train_loader = DataLoader(train_dataset,batch_size=16,shuffle=True)

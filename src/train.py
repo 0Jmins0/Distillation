@@ -17,7 +17,7 @@ transform = transforms.Compose([
 train_dataset = MultiViewDataset(root_dir="../data/ModelNet_random_30_final/DS/train",transform=transform)
 train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
 
-model = MVCNN_CLIP(num_views=12).to(device)
+model = MVCNN_CLIP(num_views=1).to(device)
 criterion = TripletLoss(margin = 1.0)
 optimizer = optim.Adam(model.parameters(),lr = 0.001)
 
