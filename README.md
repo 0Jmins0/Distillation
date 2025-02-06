@@ -2,64 +2,43 @@
 [Github仓库](https://github.com/0Jmins0/Distillation)
 
 # 问题设定
-多视图的特征学习（AlexNet->蒸馏到AlexNet/CLIP里）+ 图像检索
+多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
 
-# 前期准备
-## 数据集
-  * 180多，随机/选取 30个
-  * 压缩17G，解压后1.57T，想办法传上去
-  * 切分数据集为已知类别 (``DS``) 和未知类别 (``DU``)各20类，再分别切分成训练集(``DtSr/DtUr``)和检索集(``DrSe/DrUe``),使用``DtSr``训练，分别在``DrSe/DrUe``上测试
-  * 标签
-    * ```
-      图像A（类别1，实例1，视图1）与图像B（类别1，实例1，视图2）：标签为1。
-      图像A（类别1，实例1，视图1）与图像C（类别1，实例2，视图1）：标签为0。
-      ```
-```
-数据集/
-    类别1/
-        实例1/
-            视图1.jpg
-            视图2.jpg
-            ...
-        实例2/
-            视图1.jpg
-            视图2.jpg
-            ...
-    类别2/
-        实例1/
-            视图1.jpg
-            视图2.jpg
-            ...
-        实例2/
-            视图1.jpg
-            视图2.jpg
-            ...
-```
+# TODO LIST
+* 【已完成】数据集重构代码
+* 【已完成】数据集类定义代码
+* 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
+* 训练脚本
+* 评估脚本
+* 【已完成】其他（utils）
 
-
-## 工作流程
+# Q & A
 1. 搭建baseline
    * 多视图特征学习
-     * 现在是如何提取和融合多视图的特征的，怎么操作？用的什么网络？
-       * 多视图分类，其中输入数据包含多个视图或来源，旨在基于这些多个视图对样本的标签进行分类或预测。
-       * 使用 ``MVCNN`` 的结构，将其中的 ``CNN1`` 替换成 ``CLIP``,后接视图池化层，再接一个 ``CNN2`` 输出最终的特征
+     * Q: 现在是如何提取和融合多视图的特征的，怎么操作？用的什么网络？
+       * A: 多视图分类，其中输入数据包含多个视图或来源，旨在基于这些多个视图对样本的标签进行分类或预测。
+       * A: **使用 ``MVCNN`` 的结构，将其中的 ``CNN1`` 替换成 ``CLIP``,后接视图池化层，再接一个 ``CNN2`` 输出最终的特征**
+    * Q: 前向传播维度的更改，前后没有改变，为什么要这样操作？？？？
+        ```python
+        x = x.view(-1, self.num_views,C, H, W)
+        # 调整维度顺序，将视图维度（num_views）移到通道维度（C）之后，然后将张量重新整形为(N * num_views, C, H, W)。
+        # 这样，每个视图都被视为一个独立的图像样本。?????????
+        x = x.permute(0,2,1,3,4).contigugous().view(-1, C, H, W)
+        ```
+
    * 图像检索
-     * 输入：单张图片？一组多视图？
-       * 单张图片
-     * 分类的目标是输出label判别对错，检索的目标是什么？如何求loss？
-       * 分为：实例级别、种类级别
-       * 还是分类任务，多使用 **三元组损失** 
-     * 如何同时考虑实例和分类的
-       * 考虑 LOSS = label loss + instance loss（并赋予 label loss 稍大的占比）
+     * Q: 输入：单张图片？一组多视图？
+       * A:单张图片
+     * Q: 分类的目标是输出label判别对错，检索的目标是什么？如何求loss？
+       * A: 分为：实例级别、种类级别，这次使用**实例级别**
+       * A: 还是分类任务，多使用 **三元组损失** 
+     * Q: 如何同时考虑实例和分类的
+       * A: 考虑 LOSS = label loss + instance loss（并赋予 label loss 稍大的占比）
 2. 替换蒸馏模型
 
 
-## TODO LIST
-* 【已完成】数据集重构代码
-* 数据集预处理和构建代码
 
-
-## 使用介绍
+# 使用
 1. 调用 `remain_30` 函数，将 $180$ 张视图随机保留 $30$ 张
 2. 运行 `rebuild_dataset.py`，将原本数据集重构成如下结构
     ```
@@ -99,7 +78,107 @@
                     instance4/
                 ...
     ```
-3. 
+3. 打包环境,生成 `requirements.txt`
+    ```
+    (Distillation) root@34760283bb8e:/workspace/Distillation# pipreqs --force
+    ```
+4. 创建环境 `conda env create -f environment.yml`
+
+
+## 服务器
+### 配置
+* 型号
+    GeForce RTX 3090 (24G)
+* 系统镜像
+    ```
+    No LSB modules are available.
+    Distributor ID: Ubuntu
+    Description:    Ubuntu 20.04.6 LTS
+    Release:        20.04
+    Codename:       focal
+    ```
+* 带宽
+    * 32 50kb/s
+    * 100 2Mb/s 0.2/h
+    * 200 22.8Mb/S 0.5/h  15min 17G
+### 快捷搭建
+```
+git clone https://github.com/0Jmins0/Distillation.git
+cd Distillation/
+conda env create -f environment.yml
+
+### 40min
+sudo apt-get install aria2
+aria2c -x 16 -s 16 http://pan.blockelite.cn:15021/web/client/pubshares/rCc6ewhu3MJw4aDFDwhe5E -o /data
+
+
+wget -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/kA2TCzPGecYakeRkDARsBP?compress=false"
+
+### 48min
+nohup wget -O /root/workspace/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false" &
+### 下载中断，可继续
+wget -c -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false"
+### 查看是否下载完成
+tail -n 10 nohup.out
+
+mkdir -p /root/Distillation/data/model40_180
+unzip /root/Distillation/data -d /root/Distillation/data/model40_180
+unzip /root/Distillation/data/data_model40_180/ModelNet40-Images-180.zip -d /root/Distillation/data/data_model40_180
+
+conda activate Distillation
+cd src
+
+python rebuild_dataset.py
+python train.py
+
+git add src
+git commit -m 'first'
+git push
+```
+
+### 训练
+```
+nohup python train.py > train_output.log 2>&1 &
+
+tmux new -s train_session
+
+tmux attach -t train_session
+```
+
+
+
+# 无用的东西
+## 数据集
+  * 180多，随机/选取 30个
+  * 压缩17G，解压后1.57T，想办法传上去
+  * 切分数据集为已知类别 (``DS``) 和未知类别 (``DU``)各20类，再分别切分成训练集(``DtSr/DtUr``)和检索集(``DrSe/DrUe``),使用``DtSr``训练，分别在``DrSe/DrUe``上测试
+  * 标签
+    * ```
+      图像A（类别1，实例1，视图1）与图像B（类别1，实例1，视图2）：标签为1。
+      图像A（类别1，实例1，视图1）与图像C（类别1，实例2，视图1）：标签为0。
+      ```
+```
+数据集/
+    类别1/
+        实例1/
+            视图1.jpg
+            视图2.jpg
+            ...
+        实例2/
+            视图1.jpg
+            视图2.jpg
+            ...
+    类别2/
+        实例1/
+            视图1.jpg
+            视图2.jpg
+            ...
+        实例2/
+            视图1.jpg
+            视图2.jpg
+            ...
+```
+
 
 
 
