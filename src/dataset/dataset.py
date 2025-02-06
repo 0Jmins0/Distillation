@@ -50,7 +50,35 @@ class MultiViewDataset(Dataset):
             positive_image = self.transform(positive_image)
             negative_image = self.transform(negative_image)
         return anchor_image, positive_image, negative_image
-    
+
+
+class TestDataset(Dataset):
+    def __init__(self, root_dir, transform=None):
+        self.root_dir = root_dir
+        self.transform = transform
+        self.image_paths = self._load_image_paths()
+
+    def _load_image_paths(self):
+        image_paths = []
+        for cls in os.listdir(self.root_dir):
+            cls_dir = os.path.join(self.root_dir, cls)
+            for instance in os.listdir(cls_dir):
+                instance_dir = os.path.join(cls_dir, instance)
+                if os.path.isdir(instance_dir):
+                    for view in os.listdir(instance_dir):
+                        image_path = os.path.join(instance_dir, view)
+                        image_paths.append(image_path)
+        return image_paths
+
+    def __len__(self):
+        return len(self.image_paths)
+
+    def __getitem__(self, idx):
+        image_path = self.image_paths[idx]
+        image = Image.open(image_path).convert("RGB")
+        if self.transform:
+            image = self.transform(image)
+        return image, image_path
 # transform = transforms.Compose([
 #     transforms.Resize((224,224)),
 #     transforms.ToTensor(),

@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from torchvision import transforms
 from PIL import Image
+from tqdm import tqdm
 
 class TripletLoss(nn.Module):
     """
@@ -41,13 +42,13 @@ def extract_features(model, data_loader, device):
     image_paths = []
     
     with torch.no_grad():# 关闭梯度计算
-        for images, paths, _ in data_loader: # 遍历数据加载器的每个批次
+        for images, paths in tqdm(data_loader, desc="Extracting features", unit="batch"): # 遍历数据加载器的每个批次
             images = images.to(device)
             batch_features = model(images).cpu().numpy() # 提取特征
             features.append(batch_features)
             image_paths.extend(paths)
     features = np.vstack(features) # 将所有批次的特征向量叠成一个矩阵
-
+    # print(image_paths)
     return features, image_paths
 
 def retrieve_images(query_image, features, image_paths, model, top_k = 5, transform = None, device = None):
@@ -77,4 +78,5 @@ def retrieve_images(query_image, features, image_paths, model, top_k = 5, transf
     similarities = cosine_similarity(query_features, features).flatten()
 
     top_indices = np.argsort(similarities)[-top_k:][::-1]
+
     return [(image_paths[i], similarities[i]) for i in top_indices]

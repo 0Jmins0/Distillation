@@ -5,6 +5,22 @@ from models.mvcnn_clip import MVCNN_CLIP
 from dataset.dataset import MultiViewDataset
 from torchvision import transforms
 from utils import TripletLoss
+from tqdm import tqdm
+import argparse
+import os
+import matplotlib.pyplot as plt
+
+
+# 定义命令行参数解析器
+parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
+parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training (default: 10)")
+parser.add_argument("--num_epochs", type=int, default=20, help="Number of epochs to train (default: 1)")
+parser.add_argument("--lr", type=float, default=0.001, help="Learning rate (default: 0.001)")
+parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
+parser.add_argument("--num_views", type=int, default=10, help="Number of views for MVCNN (default: 10)")
+parser.add_argument("--data_root", type=str, default="../data/ModelNet_random_30_final/DS/train", help="Root directory of the dataset (default: ../data/ModelNet_random_30_final/DS/train)")
+parser.add_argument("--model_path", type=str, default="../models/train_models/base/mvcnn_clip_1.pth", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+args = parser.parse_args()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -14,17 +30,47 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])    
 ])
 
+print("loading train data.......")
 train_dataset = MultiViewDataset(root_dir="../data/ModelNet_random_30_final/DS/train",transform=transform)
-train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+train_loader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle=True, drop_last=True)
 
-model = MVCNN_CLIP(num_views=1).to(device)
+print("finished loading train data.......")
+model = MVCNN_CLIP(num_views = args.batch_size).to(device)
 criterion = TripletLoss(margin = 1.0)
 optimizer = optim.Adam(model.parameters(),lr = 0.001)
 
-num_epochs = 10
+# 确保保存模型的目录存在
+os.makedirs(os.path.dirname(args.model_path), exist_ok=True)
+
+num_epochs = args.num_epochs
+
+# 检查是否存在已保存的模型文件
+if os.path.exists(args.model_path):
+    print(f"Loading model from {args.model_path}")
+    checkpoint = torch.load(args.model_path, map_location=device)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    start_epoch = checkpoint['epoch']
+    print(f"Resuming training from epoch {start_epoch + 1}")
+else:
+    print("No saved model found. Starting training from scratch.")
+    start_epoch = 0
+
+losses = []
+# 初始化绘图
+plt.ion()  # 开启交互模式
+fig, ax = plt.subplots(figsize=(10, 5))
+line, = ax.plot([], [], label="Training Loss")
+ax.set_xlabel("Epoch")
+ax.set_ylabel("Loss")
+ax.set_title("Training Loss Over Epochs")
+ax.legend()
+ax.grid(True)
+
 model.train()
-for epoch in range(num_epochs):
-    for anchor, positive, negative in train_loader:
+for epoch in range(start_epoch + 1, num_epochs):
+    epoch_loss = 0.0
+    for anchor, positive, negative in tqdm(train_loader, desc=f"Epoch {epoch + 1}/{num_epochs}", unit="batch"):
         anchor, positive, negative = anchor.to(device), positive.to(device), negative.to(device)
 
         optimizer.zero_grad()
@@ -35,7 +81,31 @@ for epoch in range(num_epochs):
         loss = criterion(anchor_features, positive_features, negative_features)
         loss.backward()
         optimizer.step()
+        epoch_loss += loss.item()
     
+    epoch_loss /= len(train_loader)
+    losses.append(epoch_loss)
     print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}")
 
-torch.save(model.state_dict(), "../models/train_models/base/mvcnn_clip_01.pth")
+    # 更新绘图
+    line.set_xdata(range(start_epoch + 1, epoch + 2))
+    line.set_ydata(losses)
+    ax.relim()
+    ax.autoscale_view()
+    fig.canvas.draw()
+    fig.canvas.flush_events()
+
+    # 保存模型
+    torch.save({
+        'epoch': epoch,
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+    }, f"../models/train_models/base/mvcnn_clip_{epoch}.pth")
+
+
+# 保存最终的损失曲线
+plt.ioff()  # 关闭交互模式
+plt.savefig("../models/train_models/base/loss_curve.png")
+plt.show()
+
+

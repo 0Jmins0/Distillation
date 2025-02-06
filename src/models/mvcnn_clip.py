@@ -18,7 +18,6 @@ class MVCNN_CLIP(nn.Module):
 
     def forward(self, x):
         # x: (batch_size * num_views, C, H, W)
-
         N, C, H, W = x.size()   
         x = x.view(-1, self.num_views,C, H, W)
         # 调整维度顺序，将视图维度（num_views）移到通道维度（C）之后，然后将张量重新整形为(N * num_views, C, H, W)。
