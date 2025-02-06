@@ -15,11 +15,11 @@ import matplotlib.pyplot as plt
 parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
 parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training (default: 10)")
 parser.add_argument("--num_epochs", type=int, default=20, help="Number of epochs to train (default: 1)")
-parser.add_argument("--lr", type=float, default=0.001, help="Learning rate (default: 0.001)")
+parser.add_argument("--lr", type=float, default=0.0001, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
-parser.add_argument("--num_views", type=int, default=10, help="Number of views for MVCNN (default: 10)")
+parser.add_argument("--num_views", type=int, default=8, help="Number of views for MVCNN (default: 10)")
 parser.add_argument("--data_root", type=str, default="../data/ModelNet_random_30_final/DS/train", help="Root directory of the dataset (default: ../data/ModelNet_random_30_final/DS/train)")
-parser.add_argument("--model_path", type=str, default="../models/train_models/base/mvcnn_clip_1.pth", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+parser.add_argument("--model_path", type=str, default="../models/train_models/base/mvcnn_clip_5.pth", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
 args = parser.parse_args()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -37,7 +37,7 @@ train_loader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle=T
 print("finished loading train data.......")
 model = MVCNN_CLIP(num_views = args.batch_size).to(device)
 criterion = TripletLoss(margin = 1.0)
-optimizer = optim.Adam(model.parameters(),lr = 0.001)
+optimizer = optim.Adam(model.parameters(),lr = args.lr)
 
 # 确保保存模型的目录存在
 os.makedirs(os.path.dirname(args.model_path), exist_ok=True)
@@ -57,15 +57,6 @@ else:
     start_epoch = 0
 
 losses = []
-# 初始化绘图
-plt.ion()  # 开启交互模式
-fig, ax = plt.subplots(figsize=(10, 5))
-line, = ax.plot([], [], label="Training Loss")
-ax.set_xlabel("Epoch")
-ax.set_ylabel("Loss")
-ax.set_title("Training Loss Over Epochs")
-ax.legend()
-ax.grid(True)
 
 model.train()
 for epoch in range(start_epoch + 1, num_epochs):
@@ -87,14 +78,6 @@ for epoch in range(start_epoch + 1, num_epochs):
     losses.append(epoch_loss)
     print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}")
 
-    # 更新绘图
-    line.set_xdata(range(start_epoch + 1, epoch + 2))
-    line.set_ydata(losses)
-    ax.relim()
-    ax.autoscale_view()
-    fig.canvas.draw()
-    fig.canvas.flush_events()
-
     # 保存模型
     torch.save({
         'epoch': epoch,
@@ -103,9 +86,17 @@ for epoch in range(start_epoch + 1, num_epochs):
     }, f"../models/train_models/base/mvcnn_clip_{epoch}.pth")
 
 
-# 保存最终的损失曲线
-plt.ioff()  # 关闭交互模式
+# 绘制损失曲线
+plt.figure(figsize=(10, 5))
+plt.plot(range(1, len(losses) + 1), losses, label="Training Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.title("Training Loss Over Epochs")
+plt.legend()
+plt.grid(True)
+
+# 保存图像
 plt.savefig("../models/train_models/base/loss_curve.png")
+
+# 显示图像
 plt.show()
-
-
