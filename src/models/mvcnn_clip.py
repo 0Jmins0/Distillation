@@ -10,14 +10,32 @@ class MVCNN_CLIP(nn.Module):
         self.num_views = num_views
 
         self.net_1 = self.clip_model
-        self.net_2 = nn.Sequential(
-            nn.Linear(self.net_1.config.hidden_size, 512),
-            nn.ReLU(),
-            nn.Linear(512,128)
-        )
+        # self.net_2 = nn.Sequential(
+        #     nn.Linear(self.net_1.config.hidden_size, 1024),
+        #     nn.ReLU(),
+        #     nn.Dropout(0.3),
+        #     nn.Linear(1024, 512),
+        #     nn.ReLU(),
+        #     nn.Dropout(0.3),
+        #     nn.Linear(512, 256)
+        # )
+
+       # 在 MVCNN_CLIP 的 __init__ 中解冻部分层
+        for name, param in self.net_1.named_parameters():
+            if "vision_model.encoder.layers.23" in name:  # 解冻最后几层
+                param.requires_grad = True
+            else:
+                param.requires_grad = False
+        
+        # for m in self.net_2.modules():
+        #     if isinstance(m, nn.Linear):
+        #         nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+        #         if m.bias is not None:
+        #             nn.init.constant_(m.bias, 0)
 
     def forward(self, x):
         # x: (batch_size * num_views, C, H, W)
+        # print(x.shape)
         N, C, H, W = x.size()   
         x = x.view(-1, self.num_views,C, H, W)
         # 调整维度顺序，将视图维度（num_views）移到通道维度（C）之后，然后将张量重新整形为(N * num_views, C, H, W)。
@@ -35,5 +53,5 @@ class MVCNN_CLIP(nn.Module):
         features = torch.max(features, dim = 1)[0] 
 
         # 通过CNN2
-        features = self.net_2(features)
+        # features = self.net_2(features)
         return features
