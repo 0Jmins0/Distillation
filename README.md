@@ -1,7 +1,13 @@
 # Distillation
 [Github仓库](https://github.com/0Jmins0/Distillation)
 
-### 02:
+### 01:CLIP23_CNN:
+* 训练可见类别检索：
+![alt text](src/CLIP23_CNN_DS.png)
+* 训练不可见类别检索：
+![alt text](src/CLIP23_CNN_DU.png)
+
+### 02 CLIP23:
 * 训练可见类别检索：
 ![alt text](src/retrieval_results_DS.png)
 * 训练不可见类别检索：
