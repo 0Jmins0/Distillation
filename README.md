@@ -1,6 +1,7 @@
 # Distillation
 [Github仓库](https://github.com/0Jmins0/Distillation)
-###02:
+
+### 02:
 * 训练可见类别检索：
 ![alt text](src/retrieval_results_DS.png)
 * 训练不可见类别检索：
