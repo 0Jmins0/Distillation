@@ -1,5 +1,8 @@
 # Distillation
 [Github仓库](https://github.com/0Jmins0/Distillation)
+训练可见类别检索：
+![alt text](src/retrieval_results_DS.png)
+训练不可见类别检索：
 ![alt text](src/retrieval_results.png)
 # 问题设定
 多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
