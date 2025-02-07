@@ -4,7 +4,7 @@
 # 问题设定
 多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
 
-# TODO LIST
+# TODO LISTa
 * 【已完成】数据集重构代码
 * 【已完成】数据集类定义代码
 * 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
@@ -112,7 +112,8 @@ sudo apt-get install aria2
 aria2c -x 16 -s 16 http://pan.blockelite.cn:15021/web/client/pubshares/rCc6ewhu3MJw4aDFDwhe5E -o /data
 
 
-wget -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/kA2TCzPGecYakeRkDARsBP?compress=false"
+wget -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/
+web/client/pubshares/kA2TCzPGecYakeRkDARsBP?compress=false"
 
 ### 48min
 nohup wget -O /root/workspace/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false" &
@@ -214,4 +215,99 @@ tmux attach -t train_session
 任务目标：图片分类，超过教师模型
 
 通过多视图的特征提取，抓取不同角度的关系，提高分类精度
-  
+
+
+## 实验记录
+### MVCNN_CLIP (Clip layer23 + CNN)
+![alt text](loss_curve.png)
+
+|epoch|loss|
+|-----|----|
+|1|1.0910|
+|2|0.5541|
+|3|0.4513|
+|4|0.3621|
+|5|0.3292|
+|6|0.2911|
+|7|0.2934|
+|8|0.2811|
+|9|0.2656|
+|10|0.2629|
+|11|0.2740|
+|12|0.2429|
+|13|0.2284|
+
+```python
+def __init__(self, num_views = 12):
+        super(MVCNN_CLIP, self).__init__()
+        self.clip_model = CLIPVisionModel.from_pretrained("openai/clip-vit-large-patch14")
+        self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
+        self.num_views = num_views
+
+        self.net_1 = self.clip_model
+        self.net_2 = nn.Sequential(
+            nn.Linear(self.net_1.config.hidden_size, 1024),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(1024, 512),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(512, 256)
+        )
+
+       # 在 MVCNN_CLIP 的 __init__ 中解冻部分层
+        for name, param in self.net_1.named_parameters():
+            if "vision_model.encoder.layers.23" in name:  # 解冻最后几层
+                param.requires_grad = True
+            else:
+                param.requires_grad = False
+        
+        for m in self.net_2.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+
+
+criterion = TripletLoss(margin = 0.5)
+optimizer = optim.Adam([
+    {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
+    {"params": model.net_2.parameters(), "lr": 1e-4}   # 新增层高学习率
+])
+```
+
+### MVCNN_CLIP(CLIP layer23)
+![alt text](loss_curve2.png)
+
+```python
+def __init__(self, num_views = 12):
+    super(MVCNN_CLIP, self).__init__()
+    self.clip_model = CLIPVisionModel.from_pretrained("openai/clip-vit-large-patch14")
+    self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
+    self.num_views = num_views
+
+    self.net_1 = self.clip_model
+    # 在 MVCNN_CLIP 的 __init__ 中解冻部分层
+    for name, param in self.net_1.named_parameters():
+        if "vision_model.encoder.layers.23" in name:  # 解冻最后几层
+            param.requires_grad = True
+        else:
+            param.requires_grad = False
+```
+
+|epoch|loss|
+|-----|----|
+|1|0.0198|
+|2|0.0194|
+|3|0.0193|
+|4|0.0182|
+|5|0.0191|
+|6|0.0136|
+|7|0.0211|
+|8|0.0142|
+|9|0.0129|
+
+* 可见种类：
+![alt text](CLIP23_DS.png)
+* 不可见种类
+![alt text](CLIP23_DU_top10.png)
