@@ -1,8 +1,9 @@
 # Distillation
 [Github仓库](https://github.com/0Jmins0/Distillation)
-训练可见类别检索：
+###02:
+* 训练可见类别检索：
 ![alt text](src/retrieval_results_DS.png)
-训练不可见类别检索：
+* 训练不可见类别检索：
 ![alt text](src/retrieval_results.png)
 # 问题设定
 多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
@@ -221,7 +222,7 @@ tmux attach -t train_session
 
 
 ## 实验记录
-### MVCNN_CLIP (Clip layer23 + CNN)
+### 01_MVCNN_CLIP (Clip layer23 + CNN)
 ![alt text](loss_curve.png)
 
 |epoch|loss|
@@ -279,7 +280,7 @@ optimizer = optim.Adam([
 ])
 ```
 
-### MVCNN_CLIP(CLIP layer23)
+### 02_MVCNN_CLIP(CLIP layer23)
 ![alt text](loss_curve2.png)
 
 ```python
