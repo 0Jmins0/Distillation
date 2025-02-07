@@ -247,6 +247,7 @@ tmux attach -t train_session
 |11|0.2740|
 |12|0.2429|
 |13|0.2284|
+|14|0.2123|
 
 ```python
 def __init__(self, num_views = 12):
