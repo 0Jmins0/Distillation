@@ -1,0 +1,5 @@
+nohup: ignoring input
+loading train data.......
+finished loading train data.......
+No saved model found. Starting training from scratch.
+Epoch 1/10:   0%|          | 0/318 [00:00<?, ?batch/s]Epoch 1/10:   0%|          | 1/318 [00:03<20:24,  3.86s/batch]Epoch 1/10:   1%|          | 2/318 [00:07<20:23,  3.87s/batch]Epoch 1/10:   1%|          | 3/318 [00:14<27:53,  5.31s/batch]Epoch 1/10:   1%|▏         | 4/318 [00:38<1:04:54, 12.40s/batch]Epoch 1/10:   2%|▏         | 5/318 [01:01<1:25:07, 16.32s/batch]Epoch 1/10:   2%|▏         | 6/318 [01:11<1:13:32, 14.14s/batch]Epoch 1/10:   2%|▏         | 7/318 [01:28<1:18:38, 15.17s/batch]Epoch 1/10:   3%|▎         | 8/318 [01:49<1:28:17, 17.09s/batch]Epoch 1/10:   3%|▎         | 9/318 [02:11<1:35:35, 18.56s/batch]Epoch 1/10:   3%|▎         | 10/318 [02:35<1:43:35, 20.18s/batch]

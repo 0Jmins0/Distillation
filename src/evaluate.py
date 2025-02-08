@@ -46,7 +46,7 @@ def get_random_query_images(root_dir, num_images=10):
     return query_images
 
 # 获取随机查询图像
-query_images = get_random_query_images("../data/ModelNet_random_30_final/DU/retrieval", num_images=10)
+query_images = get_random_query_images("../data/ModelNet_random_30_final/DS/retrieval", num_images=10)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -56,7 +56,7 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])    
 ])
 
-test_dataset = TestDataset(root_dir="../data/ModelNet_random_30_final/DU/retrieval",transform=transform)
+test_dataset = TestDataset(root_dir="../data/ModelNet_random_30_final/DS/retrieval",transform=transform)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=True, drop_last=True)
 
 
@@ -68,8 +68,8 @@ model.eval()
 
 
 # 加载特征和路径
-features = torch.load("features.pt")
-with open("image_paths.json", "r") as f:
+features = torch.load("features_DS.pt")
+with open("image_paths_DS.json", "r") as f:
     image_paths = json.load(f)
 
 
@@ -116,6 +116,6 @@ for idx, (query_image, query_image_path) in enumerate(query_images):
 # 调整布局
 plt.tight_layout()
 # 保存图像到文件
-plt.savefig("retrieval_results.png", dpi=300, bbox_inches='tight')
+plt.savefig("retrieval_results_DS.png", dpi=300, bbox_inches='tight')
 plt.show()
 

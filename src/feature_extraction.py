@@ -16,7 +16,7 @@ transform = transforms.Compose([
 ])
 
 # 加载测试数据集
-test_dataset = TestDataset(root_dir="../data/ModelNet_random_30_final/DU/retrieval", transform=transform)
+test_dataset = TestDataset(root_dir="../data/ModelNet_random_30_final/DS/retrieval", transform=transform)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False, drop_last=False)
 
 # 加载模型
@@ -38,6 +38,6 @@ with torch.no_grad():
 
 # 将特征和路径保存到文件
 features = torch.cat(features, dim=0)  # 将特征拼接成一个张量
-torch.save(features, "features.pt")  # 保存特征
-with open("image_paths.json", "w") as f:
+torch.save(features, "features_DS.pt")  # 保存特征
+with open("image_paths_DS.json", "w") as f:
     json.dump(image_paths, f)  # 保存路径
