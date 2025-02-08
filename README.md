@@ -2,7 +2,7 @@
 [Github仓库](https://github.com/0Jmins0/Distillation)
 
 ## 实验记录
-### 01_MVCNN_CLIP (Clip layer23 + CNN)
+### 01_MVCNN_CLIP (Clip layer23 + MLP)
 ![alt text](loss_curve.png)
 
 * 训练可见类别检索：
@@ -109,8 +109,8 @@ def __init__(self, num_views = 12):
 * 【已完成】数据集重构代码
 * 【已完成】数据集类定义代码
 * 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
-* 训练脚本
-* 评估脚本
+* 【已完成】训练脚本
+* 【已完成】评估脚本
 * 【已完成】其他（utils）
 
 # Q & A
@@ -134,7 +134,7 @@ def __init__(self, num_views = 12):
        * A: 分为：实例级别、种类级别，这次使用**实例级别**
        * A: 还是分类任务，多使用 **三元组损失** 
      * Q: 如何同时考虑实例和分类的
-       * A: 考虑 LOSS = label loss + instance loss（并赋予 label loss 稍大的占比）
+       * A: 考虑 LOSS = 三元组损失
 2. 替换蒸馏模型
 
 
@@ -241,10 +241,6 @@ git push
 ### 训练
 ```
 nohup python train.py > train_output.log 2>&1 &
-
-tmux new -s train_session
-
-tmux attach -t train_session
 ```
 
 
