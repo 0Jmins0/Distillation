@@ -10,6 +10,15 @@ from torch.utils.data import DataLoader
 import random
 import matplotlib.pyplot as plt
 
+# 定义命令行参数解析器
+parser = argparse.ArgumentParser(description="Extract features using MVCNN_CLIP model")
+parser.add_argument("--model_name", type=str, required=True, help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
+parser.add_argument("--model_num", type=str, default="5", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
+parser.add_argument("--batch_size", type=int, default=64, help="Batch size for feature extraction")
+parser.add_argument("--num_views", type=int, default=1, help="Number of views for MVCNN (default: 1)")
+parser.add_argument("--test_dataset",type=str, default="DU", help="DU or DS")
+args = parser.parse_args()
 
 # 提取类别和实例编号的函数
 def extract_category_and_instance(path):
@@ -46,7 +55,7 @@ def get_random_query_images(root_dir, num_images=10):
     return query_images
 
 # 获取随机查询图像
-query_images = get_random_query_images("../data/ModelNet_random_30_final/DS/retrieval", num_images=10)
+query_images = get_random_query_images(f"../data/ModelNet_random_30_final/{args.test_dataset}/retrieval", num_images=10)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -56,20 +65,20 @@ transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])    
 ])
 
-test_dataset = TestDataset(root_dir="../data/ModelNet_random_30_final/DS/retrieval",transform=transform)
+test_dataset = TestDataset(root_dir=f"../data/ModelNet_random_30_final/{args.test_dataset}/retrieval",transform=transform)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=True, drop_last=True)
 
 
 model = MVCNN_CLIP(num_views=1).to(device)
-model.load_state_dict(torch.load("../models/train_models/base/mvcnn_clip_9.pth")['model_state_dict'])
+model.load_state_dict(torch.load(f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
 model.eval()
 
 # features, image_paths = extract_features(model, test_loader, device)
 
 
 # 加载特征和路径
-features = torch.load("features_DS.pt")
-with open("image_paths_DS.json", "r") as f:
+features = torch.load(f"../features/features_{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pt")
+with open(f"../features/image_paths_{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.json", "r") as f:
     image_paths = json.load(f)
 
 
@@ -116,6 +125,6 @@ for idx, (query_image, query_image_path) in enumerate(query_images):
 # 调整布局
 plt.tight_layout()
 # 保存图像到文件
-plt.savefig("retrieval_results_DS.png", dpi=300, bbox_inches='tight')
+plt.savefig(f"output/{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png", dpi=300, bbox_inches='tight')
 plt.show()
 
