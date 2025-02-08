@@ -15,13 +15,13 @@ from torch.utils.tensorboard import SummaryWriter
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
 parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training (default: 10)")
-parser.add_argument("--num_epochs", type=int, default=10, help="Number of epochs to train (default: 1)")
+parser.add_argument("--num_epochs", type=int, default=15, help="Number of epochs to train (default: 1)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
 parser.add_argument("--num_views", type=int, default=15, help="Number of views for MVCNN (default: 10)")
 parser.add_argument("--data_root", type=str, default="../data/ModelNet_random_30_final/DS/train", help="Root directory of the dataset (default: ../data/ModelNet_random_30_final/DS/train)")
-parser.add_argument("--model_num", type=str, default="5", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
-parser.add_argument("--model_name", type=str, default="MVCLIP_CNN", help="The name of the model")
+parser.add_argument("--model_num", type=str, default="9", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+parser.add_argument("--model_name", type=str, default="MVCLIP_MLP", help="The name of the model")
 args = parser.parse_args()
 
 
@@ -81,7 +81,7 @@ else:
     start_step = 0
 
 # tensorboard
-log_dir = f"../models/train_models/base/{args.model_name}/tensorboard_logs/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../models/train_models/base/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 os.makedirs(log_dir, exist_ok=True)
 
 # 检查日志文件是否存在
@@ -150,7 +150,7 @@ plt.legend()
 plt.grid(True)
 
 # 保存图像
-plt.savefig(f"../models/train_models/base/{args.model_name}/loss_curve.png")
+plt.savefig(f"../models/train_models/base/pics/{args.model_name}/loss_curve.png")
 
 # 关闭 SummaryWriter
 writer.close()

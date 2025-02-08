@@ -236,6 +236,12 @@ python rebuild_dataset.py
 python train.py
 
 git add src
+git config --global user.name "HiHi"
+git config --global user.email "3234252073@qq.com"
+
+git add src
+git add models/train_models/base/MVCNN_CLIP/tensorboard_logs/
+
 git commit -m 'first'
 git push
 ```

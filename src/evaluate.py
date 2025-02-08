@@ -1,8 +1,9 @@
+import argparse
 import json
 import os
 from PIL import Image
 import torch 
-from models.mvcnn_clip import MVCNN_CLIP
+from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
 from dataset.dataset import MultiViewDataset, TestDataset
 from utils import retrieve_images, extract_features
 from torchvision import transforms
@@ -12,10 +13,10 @@ import matplotlib.pyplot as plt
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Extract features using MVCNN_CLIP model")
-parser.add_argument("--model_name", type=str, required=True, help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
-parser.add_argument("--model_num", type=str, default="5", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+parser.add_argument("--model_name", type=str, default="MVCLIP_MLP", help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
+parser.add_argument("--model_num", type=str, default="9", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
-parser.add_argument("--batch_size", type=int, default=64, help="Batch size for feature extraction")
+parser.add_argument("--batch_size", type=int, default=16, help="Batch size for feature extraction")
 parser.add_argument("--num_views", type=int, default=1, help="Number of views for MVCNN (default: 1)")
 parser.add_argument("--test_dataset",type=str, default="DU", help="DU or DS")
 args = parser.parse_args()
@@ -69,7 +70,14 @@ test_dataset = TestDataset(root_dir=f"../data/ModelNet_random_30_final/{args.tes
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=True, drop_last=True)
 
 
-model = MVCNN_CLIP(num_views=1).to(device)
+# 加载模型
+if args.model_name == "MVCNN_CLIP":
+    model = MVCNN_CLIP(num_views = args.num_views).to(device)
+elif args.model_name == "MVCLIP_CNN":
+    model = MVCLIP_CNN(num_views = args.num_views).to(device)
+elif args.model_name == "MVCLIP_MLP":
+    model = MVCLIP_MLP(num_views = args.num_views).to(device)
+
 model.load_state_dict(torch.load(f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
 model.eval()
 
@@ -125,6 +133,7 @@ for idx, (query_image, query_image_path) in enumerate(query_images):
 # 调整布局
 plt.tight_layout()
 # 保存图像到文件
-plt.savefig(f"output/{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png", dpi=300, bbox_inches='tight')
+os.makedirs(os.path.dirname(f"./output/{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png"), exist_ok=True)
+plt.savefig(f"./output/{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png", dpi=300, bbox_inches='tight')
 plt.show()
 
