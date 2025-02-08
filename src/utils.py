@@ -80,3 +80,31 @@ def retrieve_images(query_image, features, image_paths, model, top_k = 5, transf
     top_indices = np.argsort(similarities)[-top_k:][::-1]
 
     return [(image_paths[i], similarities[i]) for i in top_indices]
+
+import os
+import matplotlib.pyplot as plt
+from tensorboard.backend.event_processing import event_accumulator
+
+def read_tensorboard_data(log_dir, tag):
+    """从 TensorBoard 日志文件中读取指定标签的数据"""
+    ea = event_accumulator.EventAccumulator(log_dir)
+    ea.Reload()
+    if tag in ea.Tags()["scalars"]:
+        return ea.Scalars(tag)
+    else:
+        raise ValueError(f"Tag '{tag}' not found in TensorBoard logs.")
+
+def plot_tensorboard_data(data, title, xlabel, ylabel, save_path):
+    """绘制数据并保存为图片"""
+    steps = [x.step for x in data]
+    values = [x.value for x in data]
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(steps, values, label="Training Loss")
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(save_path)
+    plt.close()
