@@ -109,9 +109,11 @@ def __init__(self, num_views = 12):
 * 【已完成】数据集重构代码
 * 【已完成】数据集类定义代码
 * 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
-* 【已完成】训练脚本
-* 【已完成】评估脚本
+* 【已完成】训练代码
+* 【已完成】评估代码
 * 【已完成】其他（utils）
+* 整理代码
+* 快速训练/测试脚本(jupyter-notebook)
 
 # Q & A
 1. 搭建baseline
@@ -241,6 +243,9 @@ git push
 ### 训练
 ```
 nohup python train.py > train_output.log 2>&1 &
+
+# 监控loss变化
+tensorboard --logdir=../models/train_models/base/MVCLIP_CNN/tensorboard_logs
 ```
 
 
