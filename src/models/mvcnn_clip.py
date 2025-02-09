@@ -4,11 +4,16 @@ from transformers import CLIPVisionModel, CLIPProcessor
 
 class MVCNN_CLIP(nn.Module):
     def __init__(self, num_views = 12):
+        # 初始化 MVCNN_CLIP 类，并设置默认的视图数量为12
         super(MVCNN_CLIP, self).__init__()
+        # 从预训练模型中加载 CLIPVisionModel
         self.clip_model = CLIPVisionModel.from_pretrained("openai/clip-vit-base-patch32")
+        # 从预训练模型中加载 CLIPProcessor
         self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+        # 设置视图数量
         self.num_views = num_views
 
+        # 将 CLIPVisionModel 赋值给 net_1
         self.net_1 = self.clip_model
 
        # 在 MVCNN_CLIP 的 __init__ 中解冻部分层

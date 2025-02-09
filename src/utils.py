@@ -29,6 +29,24 @@ class TripletLoss(nn.Module):
         losses = torch.relu(distance_positive - distance_negative + self.margin)
         return losses.mean()
 
+class TripletRelationLoss():
+    def __init__(self, dis_margin = 1.0, ang_margin = 0.2):
+        super(TripletRelationLoss, self).__init__()
+        self.dis_margin = dis_margin
+        self.ang_margin = ang_margin
+    def distance_loss(self, anchor, positive, negative):
+        distance_positive = torch.norm(anchor - positive, p = 2, dim = 1)
+        distance_negative = torch.norm(anchor - negative, p = 2, dim = 1)
+        losses = torch.relu(distance_positive - distance_negative + self.dis_margin)
+        return losses.mean()
+    def angle_loss(self, anchor, positive, negative):
+        cos_positive = torch.sum(anchor * positive, dim = 1)
+        cos_negative = torch.sum(anchor * negative, dim = 1)
+        losses = torch.relu(cos_positive - cos_negative + self.angle_margin)
+        return losses.mean()
+    def forward(self, anchor, positive, negetive):
+        return self.distance_loss(anchor, positive, negetive) + self.angle_loss(anchor, positive, negetive)
+
 def extract_features(model, data_loader, device):
     """
     提取数据集的特征向量。

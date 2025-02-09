@@ -2,38 +2,9 @@
 [Github仓库](https://github.com/0Jmins0/Distillation)
 
 ## 实验记录
-### 01_MVCNN_CLIP (Clip layer23 + MLP)
-![alt text](loss_curve.png)
-
-* 训练可见类别检索：
-![alt text](src/CLIP23_CNN_DS.png)
-* 训练不可见类别检索：
-![alt text](src/CLIP23_CNN_DU.png)
-
-|epoch|loss|
-|-----|----|
-|1|1.0910|
-|2|0.5541|
-|3|0.4513|
-|4|0.3621|
-|5|0.3292|
-|6|0.2911|
-|7|0.2934|
-|8|0.2811|
-|9|0.2656|
-|10|0.2629|
-|11|0.2740|
-|12|0.2429|
-|13|0.2284|
-|14|0.2123|
-
+### 01 (Clip layer12 + 3 * 线性层)
 ```python
 def __init__(self, num_views = 12):
-        super(MVCNN_CLIP, self).__init__()
-        self.clip_model = CLIPVisionModel.from_pretrained("openai/clip-vit-large-patch14")
-        self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
-        self.num_views = num_views
-
         self.net_1 = self.clip_model
         self.net_2 = nn.Sequential(
             nn.Linear(self.net_1.config.hidden_size, 1024),
@@ -44,36 +15,48 @@ def __init__(self, num_views = 12):
             nn.Dropout(0.3),
             nn.Linear(512, 256)
         )
-
-       # 在 MVCNN_CLIP 的 __init__ 中解冻部分层
+       # 在 MVCNN_CLIP 的 __init__ 中解冻12层
         for name, param in self.net_1.named_parameters():
-            if "vision_model.encoder.layers.23" in name:  # 解冻最后几层
+            if "vision_model.encoder.layers.12" in name:  # 解冻最后一层
                 param.requires_grad = True
             else:
                 param.requires_grad = False
-        
-        for m in self.net_2.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-                if m.bias is not None:
-                    nn.init.constant_(m.bias, 0)
-
-
-criterion = TripletLoss(margin = 0.5)
-optimizer = optim.Adam([
-    {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
-    {"params": model.net_2.parameters(), "lr": 1e-4}   # 新增层高学习率
-])
 ```
-
-### 02_MVCNN_CLIP(CLIP layer23)
-![alt text](loss_curve2.png)
-
+![alt text](output/Loss_curve/MVCLIP_MLP.png)
 * 训练可见类别检索：
-![alt text](src/retrieval_results_DS.png)
+![alt text](output/result/DS/MVCLIP_MLP_epochs_19_lr_1e-06_batch_16.png)
 * 训练不可见类别检索：
-![alt text](src/retrieval_results.png)
+![alt text](output/result/DU/MVCLIP_MLP_epochs_19_lr_1e-06_batch_16.png)
 
+
+### 02 (Clip layer12 + 3 * 线性层)
+```python
+def __init__(self, num_views = 12):
+        self.net_1 = self.clip_model
+        self.net_2 = nn.Sequential(
+            nn.Linear(self.net_1.config.hidden_size, 4096),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(4096, 4096),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(4096, 1024)
+        )
+       # 在 MVCNN_CLIP 的 __init__ 中解冻12层
+        for name, param in self.net_1.named_parameters():
+            if "vision_model.encoder.layers.12" in name:  # 解冻最后一层
+                param.requires_grad = True
+            else:
+                param.requires_grad = False
+```
+![alt text](output/Loss_curve/MVCLIP_CNN.png)
+* 训练可见类别检索：
+![alt text](output/result/DS/MVCLIP_CNN_epochs_19_lr_1e-06_batch_16.png)
+* 训练不可见类别检索：
+![alt text](output/result/DU/MVCLIP_CNN_epochs_19_lr_1e-06_batch_16.png)
+
+
+### 03 (CLIP layer12)
 ```python
 def __init__(self, num_views = 12):
     super(MVCNN_CLIP, self).__init__()
@@ -84,37 +67,47 @@ def __init__(self, num_views = 12):
     self.net_1 = self.clip_model
     # 在 MVCNN_CLIP 的 __init__ 中解冻部分层
     for name, param in self.net_1.named_parameters():
-        if "vision_model.encoder.layers.23" in name:  # 解冻最后几层
+        if "vision_model.encoder.layers.12" in name:  # 解冻最后几层
             param.requires_grad = True
         else:
             param.requires_grad = False
 ```
 
-|epoch|loss|
-|-----|----|
-|1|0.0198|
-|2|0.0194|
-|3|0.0193|
-|4|0.0182|
-|5|0.0191|
-|6|0.0136|
-|7|0.0211|
-|8|0.0142|
-|9|0.0129|
+![alt text](output/Loss_curve/MVCNN_CLIP.png)
 
-# 问题设定
-多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
+* 训练可见类别检索：
+![alt text](output/result/DS/MVCNN_CLIP_epochs_19_lr_1e-06_batch_16.png)
+* 训练不可见类别检索：
+![alt text](output/result/DU/MVCNN_CLIP_epochs_19_lr_1e-06_batch_16.png)
 
-# TODO LISTa
+
+
+# 网络结构和LOSS
+
+![alt text](backbone.png)
+
+
+
+# TODO LIST
 * 【已完成】数据集重构代码
 * 【已完成】数据集类定义代码
 * 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
 * 【已完成】训练代码
 * 【已完成】评估代码
 * 【已完成】其他（utils）
-* 整理代码
+* 【已完成】整理代码
 * 快速训练/测试脚本(jupyter-notebook)
+* 可视化脚本(jupyter-notebook)
+* 【50%】具体的网络结构设计   
+* 【已完成】具体的LOSS的设计
+* 学生模型定义
+* 教师模型定义
+* 蒸馏的损失函数
+* 蒸馏的训练代码
 
+
+# 问题设定
+多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
 # Q & A
 1. 搭建baseline
    * 多视图特征学习
@@ -141,7 +134,7 @@ def __init__(self, num_views = 12):
 
 
 
-# 使用
+# 快速使用
 1. 调用 `remain_30` 函数，将 $180$ 张视图随机保留 $30$ 张
 2. 运行 `rebuild_dataset.py`，将原本数据集重构成如下结构
     ```
