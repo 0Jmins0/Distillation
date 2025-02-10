@@ -1,6 +1,7 @@
 import torch
 import torchvision
 import torch.nn as nn
+
 class BaseFeatureNet(nn.Module):
     def __init__(self, num_views = 15, base_model_name = "ALEXNET", pretrained = True):
         # 初始化函数，设置基础模型名称和是否使用预训练模型
@@ -51,7 +52,7 @@ class BaseFeatureNet(nn.Module):
         return features
     
 
-class BaseRetrievalNet(nn.module):
+class BaseRetrievalNet(nn.Module):
     def __init__(self, base_model_name = "ALEXNET", feature_len = 4096):
         super(BaseRetrievalNet, self).__init__()
         base_model_name = base_model.name.upper()
@@ -72,7 +73,7 @@ class MV_AlexNet(nn.Module):
 
         print(f'\ninit {base_model_name} model...\n')
         
-        self.features = BaseFeatureNet(base_model_name, num_views=num_views, pretrained = True)
+        self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
         self.retrieval = BaseRetrievalNet(base_model_name)
 
     # 定义前向传播函数

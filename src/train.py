@@ -89,7 +89,7 @@ else:
     start_step = 0
 
 # tensorboard
-log_dir = f"../models/train_models/base/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../output/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 os.makedirs(log_dir, exist_ok=True)
 
 # 检查日志文件是否存在
@@ -151,21 +151,21 @@ for epoch in range(start_epoch + 1, num_epochs):
 writer.close()
 
 # 定义日志路径和标签
-log_dir = f"../models/train_models/base/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../output/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 tag = "Loss/train_epoch"
 
 # 读取 TensorBoard 数据
 try:
     data = read_tensorboard_data(log_dir, tag)
     # 绘制并保存图表
-    os.makedirs(f"../models/train_models/base/pics/{args.model_name}", exist_ok=True)
+    os.makedirs(f"../output/Loss_curve/", exist_ok=True)
     plot_tensorboard_data(
         data,
         title="Training Loss Over Epochs",
         xlabel="Epoch",
         ylabel="Loss",
-        save_path=f"../models/train_models/base/pics/{args.model_name}/loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
+        save_path=f"../output/Loss_curve/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
     )
-    print(f"Loss curve saved to ../models/train_models/base/pics/{args.model_name}/loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png")
+    print(f"Loss curve saved to ../output/Loss_curve/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png")
 except ValueError as e:
     print(e)
