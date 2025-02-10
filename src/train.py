@@ -2,6 +2,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
+from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import MultiViewDataset
 from torchvision import transforms
 from utils import TripletLoss,read_tensorboard_data,plot_tensorboard_data
@@ -56,6 +57,13 @@ elif args.model_name == "MVCLIP_MLP":
     optimizer = optim.Adam([
     {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
     {"params": model.net_2.parameters(), "lr": 1e-4}   # 新增层高学习率
+])
+elif args.model_name == "MV_AlexNet":
+    model = MV_AlexNet(num_views = args.num_views).to(device)
+    optimizer = optim.Adam([
+    {"params": model.features.features.parameters(), "lr": 1e-6},
+    {"params": model.features.fc_features.parameters(), "lr": 1e-4},
+    {"params": model.retrieval.parameters(), "lr": 1e-4}   # 新增层高学习率
 ])
 
 model_path = f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
