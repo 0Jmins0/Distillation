@@ -4,6 +4,7 @@ import os
 from PIL import Image
 import torch 
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
+from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import MultiViewDataset, TestDataset
 from utils import retrieve_images, extract_features
 from torchvision import transforms
@@ -77,6 +78,8 @@ elif args.model_name == "MVCLIP_CNN":
     model = MVCLIP_CNN(num_views = args.num_views).to(device)
 elif args.model_name == "MVCLIP_MLP":
     model = MVCLIP_MLP(num_views = args.num_views).to(device)
+elif args.model_name == "MV_AlexNet":
+    model = MV_AlexNet(num_views = args.num_views).to(device)
 
 model.load_state_dict(torch.load(f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
 model.eval()
@@ -133,7 +136,7 @@ for idx, (query_image, query_image_path) in enumerate(query_images):
 # 调整布局
 plt.tight_layout()
 # 保存图像到文件
-os.makedirs(os.path.dirname(f"./output/{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png"), exist_ok=True)
-plt.savefig(f"./output/{args.model_name}/{args.test_dataset}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png", dpi=300, bbox_inches='tight')
+os.makedirs(os.path.dirname(f"../output/result/{args.test_dataset}/{args.model_name}_epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png"), exist_ok=True)
+plt.savefig(f"../output/result/{args.test_dataset}/{args.model_name}_epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.png", dpi=300, bbox_inches='tight')
 plt.show()
 

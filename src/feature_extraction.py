@@ -3,6 +3,7 @@ import os
 import torch
 import json
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
+from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import TestDataset
 from torchvision import transforms
 from torch.utils.data import DataLoader
@@ -38,6 +39,8 @@ elif args.model_name == "MVCLIP_CNN":
     model = MVCLIP_CNN(num_views = args.num_views).to(device)
 elif args.model_name == "MVCLIP_MLP":
     model = MVCLIP_MLP(num_views = args.num_views).to(device)
+elif args.model_name == "MV_AlexNet":
+    model = MV_AlexNet(num_views = args.num_views).to(device)
 
 model.load_state_dict(torch.load(f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
 model.eval()

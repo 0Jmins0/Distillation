@@ -1,6 +1,7 @@
 import torch
 import torchvision
 import torch.nn as nn
+
 class BaseFeatureNet(nn.Module):
     def __init__(self, num_views = 15, base_model_name = "ALEXNET", pretrained = True):
         # 初始化函数，设置基础模型名称和是否使用预训练模型
@@ -27,11 +28,11 @@ class BaseFeatureNet(nn.Module):
                 nn.Linear(4096, 4096),
                 nn.ReLU(inplace=True)
             )
-        def _get_conv_output_size(self):
-        # 使用一个虚拟输入来计算特征图的尺寸
-            dummy_input = torch.randn(1, 3, 224, 224)  # 假设输入尺寸为224x224
-            dummy_output = self.features(dummy_input)
-            return dummy_output.view(dummy_output.size(0), -1).size(1)
+    def _get_conv_output_size(self):
+    # 使用一个虚拟输入来计算特征图的尺寸
+        dummy_input = torch.randn(1, 3, 224, 224)  # 假设输入尺寸为224x224
+        dummy_output = self.features(dummy_input)
+        return dummy_output.view(dummy_output.size(0), -1).size(1)
     def forward(self, x):
         # 获取输入张量的维度
         N,C,H,W = x.size()
@@ -51,17 +52,17 @@ class BaseFeatureNet(nn.Module):
         return features
     
 
-class BaseRetrievalNet(nn.module):
+class BaseRetrievalNet(nn.Module):
     def __init__(self, base_model_name = "ALEXNET", feature_len = 4096):
         super(BaseRetrievalNet, self).__init__()
-        base_model_name = base_model.name.upper()
+        base_model_name = base_model_name.upper()
         if base_model_name == "ALEXNET":
             self.feature_len = feature_len
         
         self.fc = nn.Linear(self.feature_len, 1024)
     
     def forward(self, x):
-        x.self.fc(x)
+        x=self.fc(x)
         return x
 
 class MV_AlexNet(nn.Module):
@@ -72,7 +73,7 @@ class MV_AlexNet(nn.Module):
 
         print(f'\ninit {base_model_name} model...\n')
         
-        self.features = BaseFeatureNet(base_model_name, num_views=num_views, pretrained = True)
+        self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
         self.retrieval = BaseRetrievalNet(base_model_name)
 
     # 定义前向传播函数

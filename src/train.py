@@ -11,17 +11,18 @@ import argparse
 import os
 import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
+from torch.optim.lr_scheduler import StepLR
 
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
-parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training (default: 10)")
+parser.add_argument("--batch_size", type=int, default=32, help="Batch size for training (default: 10)")
 parser.add_argument("--num_epochs", type=int, default=15, required=True, help="Number of epochs to train (default: 1)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
 parser.add_argument("--num_views", type=int, default=15, help="Number of views for MVCNN (default: 10)")
 parser.add_argument("--data_root", type=str, default="../data/ModelNet_random_30_final/DS/train", help="Root directory of the dataset (default: ../data/ModelNet_random_30_final/DS/train)")
-parser.add_argument("--model_num", type=str, default="9", required=True,help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+parser.add_argument("--model_num", type=str, default=0, required=True,help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
 parser.add_argument("--model_name", type=str, default="MVCLIP_MLP", required=True, help="The name of the model")
 args = parser.parse_args()
 
@@ -50,21 +51,24 @@ elif args.model_name == "MVCLIP_CNN":
     model = MVCLIP_CNN(num_views = args.num_views).to(device)
     optimizer = optim.Adam([
     {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
-    {"params": model.net_2.parameters(), "lr": 1e-4}   # 新增层高学习率
+    {"params": model.net_2.parameters(), "lr": args.lr}   # 新增层高学习率
 ])
 elif args.model_name == "MVCLIP_MLP":
     model = MVCLIP_MLP(num_views = args.num_views).to(device)
     optimizer = optim.Adam([
     {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
-    {"params": model.net_2.parameters(), "lr": 1e-4}   # 新增层高学习率
+    {"params": model.net_2.parameters(), "lr": args.lr}   # 新增层高学习率
 ])
 elif args.model_name == "MV_AlexNet":
     model = MV_AlexNet(num_views = args.num_views).to(device)
     optimizer = optim.Adam([
     {"params": model.features.features.parameters(), "lr": 1e-6},
-    {"params": model.features.fc_features.parameters(), "lr": 1e-4},
-    {"params": model.retrieval.parameters(), "lr": 1e-4}   # 新增层高学习率
+    {"params": model.features.fc_features.parameters(), "lr": args.lr},
+    {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
 ])
+
+# 添加学习率调度器
+scheduler = StepLR(optimizer, step_size=4, gamma=0.5)  # 每 5 个 epoch 学习率乘以 0.1
 
 model_path = f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
 criterion = TripletLoss(margin = 0.5)
@@ -80,6 +84,7 @@ if os.path.exists(model_path):
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
     start_epoch = checkpoint['epoch']
     start_step = checkpoint['step']
     print(f"Resuming training from epoch {start_epoch + 1}")
@@ -89,7 +94,7 @@ else:
     start_step = 0
 
 # tensorboard
-log_dir = f"../models/train_models/base/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../output/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 os.makedirs(log_dir, exist_ok=True)
 
 # 检查日志文件是否存在
@@ -136,12 +141,16 @@ for epoch in range(start_epoch + 1, num_epochs):
     losses.append(epoch_loss)
     print(f"Epoch [{epoch}/{num_epochs}], Loss: {epoch_loss:.4f}")
 
+    # 更新学习率
+    scheduler.step()
+
     # 保存模型
     torch.save({
         'epoch': epoch,
         'step' : step,
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
+        'scheduler_state_dict': scheduler.state_dict() 
     }, f"../models/train_models/base/{args.model_name}/epochs_{epoch}_lr_{args.lr}_batch_{args.batch_size}.pth")
 
     # 将每个 epoch 的平均损失写入 TensorBoard
@@ -151,21 +160,21 @@ for epoch in range(start_epoch + 1, num_epochs):
 writer.close()
 
 # 定义日志路径和标签
-log_dir = f"../models/train_models/base/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../output/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 tag = "Loss/train_epoch"
 
 # 读取 TensorBoard 数据
 try:
     data = read_tensorboard_data(log_dir, tag)
     # 绘制并保存图表
-    os.makedirs(f"../models/train_models/base/pics/{args.model_name}", exist_ok=True)
+    os.makedirs(f"../output/Loss_curve/", exist_ok=True)
     plot_tensorboard_data(
         data,
         title="Training Loss Over Epochs",
         xlabel="Epoch",
         ylabel="Loss",
-        save_path=f"../models/train_models/base/pics/{args.model_name}/loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
+        save_path=f"../output/Loss_curve/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
     )
-    print(f"Loss curve saved to ../models/train_models/base/pics/{args.model_name}/loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png")
+    print(f"Loss curve saved to ../output/Loss_curve/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png")
 except ValueError as e:
     print(e)
