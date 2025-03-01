@@ -47,6 +47,36 @@ class TripletRelationLoss():
     def forward(self, anchor, positive, negetive):
         return self.distance_loss(anchor, positive, negetive) + self.angle_loss(anchor, positive, negetive)
 
+class RelationDisLoss(nn.Module):
+    def __init__(self, dis_margin = 1.0, ang_margin = 0.2):
+        super(RelationDisLoss, self).__init__()
+        self.triplet_loss = TripletRelationLoss(dis_margin, ang_margin)
+
+    def forward(self,t_anchor, t_positive, t_negative, s_anchor, s_positive, s_negative):
+        s_vector_pos = s_anchor - s_positive
+        s_vector_neg = s_anchor - s_negative
+        t_vector_pos = t_anchor - t_positive
+        t_vector_neg = t_anchor - t_negative
+
+        dis_pos = torch.sum(torch.norm(s_vector_pos - t_vector_pos, p = 2, dim = 2), dim = 1)
+        dis_neg = torch.sum(torch.norm(s_vector_neg - t_vector_neg, p = 2, dim = 2), dim = 1)
+
+        cos_pos = torch.sum(torch.sum(s_vector_pos * t_vector_pos, dim = 2), dim = 1)
+        cos_neg = torch.sum(torch.sum(s_vector_neg * t_vector_neg, dim = 2), dim = 1)
+
+        inner_losses = 0
+        len_dim = s_anchor.size()
+        for t in range(1, len_dim): # 全局特征cls没有内部的距离
+            anchor_t = s_anchor[:, t, :]
+            positive_t = s_positive[:, t, :]
+            negative_t = s_negative[:, t, :]
+            inner_losses += self.triplet_loss(anchor_t, positive_t, negative_t)
+
+        inner_losses /= (len_dim - 1)
+
+        Loss = (dis_pos + dis_neg + cos_pos + cos_neg ) / len_dim + inner_losses
+        return Loss
+
 def extract_features(model, data_loader, device):
     """
     提取数据集的特征向量。
