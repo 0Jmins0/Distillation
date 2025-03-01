@@ -80,7 +80,29 @@ def __init__(self, num_views = 12):
 * 训练不可见类别检索：
 ![alt text](output/result/DU/MVCNN_CLIP_epochs_19_lr_1e-06_batch_16.png)
 
+### 04 (MVAlexNet)
+```python
+base_model = torchvision.models.alexnet(pretrained = pretrained)
+# 加载预训练的alexnet模型
+self.feazture_len = 4096
+# 设置特征长度为4096
+self.features = base_model.features
+self.fc_features = nn.Sequential(
+    nn.Dropout(),
+    nn.Linear(self._get_conv_output_size(), 4096),  # 224x224输入时，特征图尺寸为6x6
+    nn.ReLU(inplace=True),
+    nn.Dropout(),
+    nn.Linear(4096, 4096),
+    nn.ReLU(inplace=True)
+)
+self.fc = nn.Linear(self.feature_len, 1024)
+```
+![alt text](output/Loss_curve/MV_AlexNet_loss_curve_tensorboard_lr_1e-06_batch_16.png)
 
+* 训练可见类别检索：
+![alt text](output/result/DS/MV_AlexNet_epochs_14_lr_1e-06_batch_16.png)
+* 训练不可见类别检索：
+![alt text](output/result/DU/MV_AlexNet_epochs_14_lr_1e-06_batch_16.png)
 
 # 网络结构和LOSS
 
