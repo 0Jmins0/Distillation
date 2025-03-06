@@ -17,7 +17,7 @@ from torch.optim.lr_scheduler import StepLR
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
-parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training (default: 10)")
+parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training (default: 10)")
 parser.add_argument("--num_epochs", type=int, default=15, required=True, help="Number of epochs to train (default: 1)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
@@ -69,7 +69,7 @@ elif args.model_name == "MV_AlexNet":
     model = MV_AlexNet(num_views = args.num_views).to(device)
     criterion = TripletLoss(margin = 0.5)
     optimizer = optim.Adam([
-    {"params": model.features.features.parameters(), "lr": 1e-6},
+    {"params": model.features.features.parameters(), "lr": 1e-4},
     {"params": model.features.fc_features.parameters(), "lr": args.lr},
     {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
 ])
@@ -153,6 +153,8 @@ for epoch in range(start_epoch + 1, num_epochs):
         #     if param.grad is not None:
         #         print(f"Gradient of {name}: {param.grad.norm().item():.4f}")
 
+
+        print(loss)
         optimizer.step()
         epoch_loss += loss.item()
 

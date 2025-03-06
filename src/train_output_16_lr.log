@@ -1,0 +1,82 @@
+nohup: 忽略输入
+/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/root/Distillation/src/train.py:98: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=device)
+loading train data.......
+finished loading train data.......
+
+init ALEXNET model...
+
+Loading model from ../models/train_models/base/MV_AlexNet_dis/epochs_3_lr_1e-06_batch_16.pth
+Resuming training from epoch 4
+before train
+Epoch 4/20:   0%|          | 0/318 [00:00<?, ?batch/s]Epoch 4/20:   0%|          | 1/318 [00:02<14:55,  2.82s/batch]Epoch 4/20:   1%|          | 2/318 [00:05<14:03,  2.67s/batch]Epoch 4/20:   1%|          | 3/318 [00:07<13:49,  2.63s/batch]Epoch 4/20:   1%|▏         | 4/318 [00:10<13:45,  2.63s/batch]Epoch 4/20:   2%|▏         | 5/318 [00:13<13:39,  2.62s/batch]Epoch 4/20:   2%|▏         | 6/318 [00:15<13:44,  2.64s/batch]Epoch 4/20:   2%|▏         | 7/318 [00:18<13:45,  2.66s/batch]Epoch 4/20:   3%|▎         | 8/318 [00:21<13:34,  2.63s/batch]Epoch 4/20:   3%|▎         | 9/318 [00:23<13:27,  2.61s/batch]Epoch 4/20:   3%|▎         | 10/318 [00:26<13:22,  2.61s/batch]Epoch 4/20:   3%|▎         | 11/318 [00:28<13:22,  2.61s/batch]Epoch 4/20:   4%|▍         | 12/318 [00:31<13:15,  2.60s/batch]Epoch 4/20:   4%|▍         | 13/318 [00:34<13:16,  2.61s/batch]Epoch 4/20:   4%|▍         | 14/318 [00:36<13:09,  2.60s/batch]Epoch 4/20:   5%|▍         | 15/318 [00:39<13:04,  2.59s/batch]Epoch 4/20:   5%|▌         | 16/318 [00:41<13:03,  2.59s/batch]Epoch 4/20:   5%|▌         | 17/318 [00:44<13:11,  2.63s/batch]Epoch 4/20:   6%|▌         | 18/318 [00:47<13:11,  2.64s/batch]Epoch 4/20:   6%|▌         | 19/318 [00:49<12:55,  2.59s/batch]Epoch 4/20:   6%|▋         | 20/318 [00:52<12:49,  2.58s/batch]Epoch 4/20:   7%|▋         | 21/318 [00:54<12:40,  2.56s/batch]Epoch 4/20:   7%|▋         | 22/318 [00:57<12:43,  2.58s/batch]Epoch 4/20:   7%|▋         | 23/318 [01:00<12:42,  2.58s/batch]Epoch 4/20:   8%|▊         | 24/318 [01:02<12:50,  2.62s/batch]Epoch 4/20:   8%|▊         | 25/318 [01:05<12:41,  2.60s/batch]Epoch 4/20:   8%|▊         | 26/318 [01:07<12:41,  2.61s/batch]Epoch 4/20:   8%|▊         | 27/318 [01:10<12:37,  2.60s/batch]Epoch 4/20:   9%|▉         | 28/318 [01:13<12:28,  2.58s/batch]Epoch 4/20:   9%|▉         | 29/318 [01:15<12:19,  2.56s/batch]Epoch 4/20:   9%|▉         | 30/318 [01:18<12:20,  2.57s/batch]Epoch 4/20:  10%|▉         | 31/318 [01:20<12:24,  2.60s/batch]Epoch 4/20:  10%|█         | 32/318 [01:23<12:18,  2.58s/batch]Epoch 4/20:  10%|█         | 33/318 [01:25<12:14,  2.58s/batch]Epoch 4/20:  11%|█         | 34/318 [01:28<12:09,  2.57s/batch]Epoch 4/20:  11%|█         | 35/318 [01:31<12:13,  2.59s/batch]Epoch 4/20:  11%|█▏        | 36/318 [01:33<12:24,  2.64s/batch]Epoch 4/20:  11%|█▏        | 36/318 [01:35<12:26,  2.65s/batch]
+tensor(8.3204, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(8.2705, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(8.2770, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(8.2018, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+tensor(nan, device='cuda:0', grad_fn=<MeanBackward0>)
+Traceback (most recent call last):
+  File "/root/Distillation/src/train.py", line 137, in <module>
+    anchor_features = model(anchor_images)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/Distillation/src/models/Students/MVAlexNet.py", line 106, in forward
+    x = self.features(x)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/Distillation/src/models/Students/MVAlexNet.py", line 34, in forward
+    features = self.features(x) # 13 * 13 * 256
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 554, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 549, in _conv_forward
+    return F.conv2d(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 130.00 MiB. GPU 0 has a total capacity of 47.50 GiB of which 96.12 MiB is free. Including non-PyTorch memory, this process has 3.10 GiB memory in use. Process 14389 has 44.28 GiB memory in use. Of the allocated memory 2.20 GiB is allocated by PyTorch, and 452.93 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
