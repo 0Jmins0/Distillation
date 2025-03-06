@@ -2,6 +2,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
+from models.Teachers.CLIP import MV_CLIP
 from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import MultiViewDataset
 from torchvision import transforms
@@ -16,7 +17,7 @@ from torch.optim.lr_scheduler import StepLR
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
-parser.add_argument("--batch_size", type=int, default=32, help="Batch size for training (default: 10)")
+parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training (default: 10)")
 parser.add_argument("--num_epochs", type=int, default=15, required=True, help="Number of epochs to train (default: 1)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
@@ -40,7 +41,7 @@ print("loading train data.......")
 train_dataset = MultiViewDataset(root_dir="../data/ModelNet_random_30_final/DS/train",transform=transform, num_views=args.num_views)
 train_loader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle=True)
 
-model_T = MVCNN_CLIP(num_views = args.num_views).to(device)
+model_T = MV_CLIP(num_views = args.num_views).to(device)
 
 print("finished loading train data.......")
 if args.model_name == "MVCNN_CLIP":

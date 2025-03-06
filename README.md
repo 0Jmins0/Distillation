@@ -265,6 +265,9 @@ git push
 ```
 nohup python train.py > train_output.log 2>&1 &
 
+# 从头训练MV_AlexNet_dis
+python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0
+
 # 监控loss变化
 tensorboard --logdir=../models/train_models/base/MVCLIP_CNN/tensorboard_logs
 ```

@@ -16,13 +16,12 @@ class BaseFeatureNet(nn.Module):
         # 移除最后一个池化层（MaxPool2d）
         self.features = nn.Sequential(*list(self.features.children())[:-1])
 
-            
-
     def _get_conv_output_size(self):
     # 使用一个虚拟输入来计算特征图的尺寸
         dummy_input = torch.randn(1, 3, 224, 224)  # 假设输入尺寸为224x224
         dummy_output = self.features(dummy_input)
         return dummy_output.view(dummy_output.size(0), -1).size(1)
+    
     def forward(self, x):
         # 获取输入张量的维度
         N,C,H,W = x.size()
@@ -33,8 +32,19 @@ class BaseFeatureNet(nn.Module):
 
         # 获取特征
         features = self.features(x) # 13 * 13 * 256
+    
+        # print("Alex——self", features.shape) # 480, 256, 13, 13
 
-        print(features.shape) # 30 256 6 6
+        # 将特征重新组织为 (N, num_views, 256, 13, 13)
+        features = features.view(-1, self.num_views, 256, 13, 13)
+    
+        # print("Alex_view", features.shape) # 32, 256, 13, 13
+
+        # 视角池化：对每个视角的特征进行全局池化
+        # 使用最大池化或平均池化聚合视角特征
+        features = torch.max(features, dim=1)[0]  # 使用最大池化
+
+        # print("before_return", features.shape) # （32，256，13，13）
         return features
     
 
@@ -73,7 +83,8 @@ class AlexNet_Adapter(nn.Module):
 
         global_feature = self.fc2(x)
         combined_feature = torch.cat((local_feature, global_feature.unsqueeze(1)), dim=1)
-        return combined_feature
+        print("after_adapter", combined_feature.shape) # （32， 50， 256）
+        return combined_feature 
 
 class MV_AlexNet(nn.Module):
     def __init__(self, num_views = 15, pretrained = True,    is_dis = False):
