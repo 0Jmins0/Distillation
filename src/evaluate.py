@@ -80,6 +80,8 @@ elif args.model_name == "MVCLIP_MLP":
     model = MVCLIP_MLP(num_views = args.num_views).to(device)
 elif args.model_name == "MV_AlexNet":
     model = MV_AlexNet(num_views = args.num_views).to(device)
+elif args.model_name == "MV_AlexNet_dis":
+    model = MV_AlexNet(num_views = args.num_views, is_dis = True).to(device)
 
 model.load_state_dict(torch.load(f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
 model.eval()
@@ -106,8 +108,14 @@ for idx, (query_image, query_image_path) in enumerate(query_images):
     ax.set_title(f"Query\n{category}/{instance}", fontsize=8)
     ax.axis('off')
     
+    query_image = transform(query_image).unsqueeze(0).to(device) # 因为model是4维带有批次的，所以要加一个维度
+    query_features = model(query_image).detach().cpu().numpy()
+
+    if args.model_name == "MV_AlexNet_dis":
+        results = retrieve_images(query_features[:,0,:], features[:,0,:], image_paths, model, top_k=10)
     # 对查询图像进行检索
-    results = retrieve_images(query_image, features, image_paths, model, top_k=10)
+    else:
+        results = retrieve_images(query_features, features, image_paths, model, top_k=10)
     
     # 显示检索结果
     for col, (path, similarity) in enumerate(results):

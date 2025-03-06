@@ -41,6 +41,8 @@ elif args.model_name == "MVCLIP_MLP":
     model = MVCLIP_MLP(num_views = args.num_views).to(device)
 elif args.model_name == "MV_AlexNet":
     model = MV_AlexNet(num_views = args.num_views).to(device)
+elif args.model_name == "MV_AlexNet_dis":
+    model = MV_AlexNet(num_views = args.num_views, is_dis = True).to(device)
 
 model.load_state_dict(torch.load(f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
 model.eval()

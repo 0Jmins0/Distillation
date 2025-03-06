@@ -29,7 +29,7 @@ class TripletLoss(nn.Module):
         losses = torch.relu(distance_positive - distance_negative + self.margin)
         return losses.mean()
 
-class TripletRelationLoss():
+class TripletRelationLoss(nn.Module):
     def __init__(self, dis_margin = 1.0, ang_margin = 0.2):
         super(TripletRelationLoss, self).__init__()
         self.dis_margin = dis_margin
@@ -42,17 +42,17 @@ class TripletRelationLoss():
     def angle_loss(self, anchor, positive, negative):
         cos_positive = torch.sum(anchor * positive, dim = 1)
         cos_negative = torch.sum(anchor * negative, dim = 1)
-        losses = torch.relu(cos_positive - cos_negative + self.angle_margin)
+        losses = torch.relu(cos_positive - cos_negative + self.ang_margin)
         return losses.mean()
-    def forward(self, anchor, positive, negetive):
-        return self.distance_loss(anchor, positive, negetive) + self.angle_loss(anchor, positive, negetive)
+    def forward(self, anchor, positive, negative):
+        return self.distance_loss(anchor, positive, negative) + self.angle_loss(anchor, positive, negative)
 
 class RelationDisLoss(nn.Module):
     def __init__(self, dis_margin = 1.0, ang_margin = 0.2):
         super(RelationDisLoss, self).__init__()
         self.triplet_loss = TripletRelationLoss(dis_margin, ang_margin)
 
-    def forward(self,t_anchor, t_positive, t_negative, s_anchor, s_positive, s_negative):
+    def forward(self,t_anchor, t_positive, t_negative, s_anchor, s_positive, s_negative): # (32,50,256)
         s_vector_pos = s_anchor - s_positive
         s_vector_neg = s_anchor - s_negative
         t_vector_pos = t_anchor - t_positive
@@ -65,7 +65,7 @@ class RelationDisLoss(nn.Module):
         cos_neg = torch.sum(torch.sum(s_vector_neg * t_vector_neg, dim = 2), dim = 1)
 
         inner_losses = 0
-        len_dim = s_anchor.size()
+        len_dim = s_anchor.size()[1]
         for t in range(1, len_dim): # 全局特征cls没有内部的距离
             anchor_t = s_anchor[:, t, :]
             positive_t = s_positive[:, t, :]
@@ -75,7 +75,8 @@ class RelationDisLoss(nn.Module):
         inner_losses /= (len_dim - 1)
 
         Loss = (dis_pos + dis_neg + cos_pos + cos_neg ) / len_dim + inner_losses
-        return Loss
+        # print("Loss",Loss.shape)
+        return Loss.mean()
 
 def extract_features(model, data_loader, device):
     """
@@ -99,7 +100,7 @@ def extract_features(model, data_loader, device):
     # print(image_paths)
     return features, image_paths
 
-def retrieve_images(query_image, features, image_paths, model, top_k = 5, transform = None, device = None):
+def retrieve_images(query_features, features, image_paths, model, top_k = 5, transform = None, device = None):
     """
     根据查询图像检索最相似的图像。
     :param query_image: 查询图像 (PIL.Image)
@@ -119,10 +120,11 @@ def retrieve_images(query_image, features, image_paths, model, top_k = 5, transf
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    query_image = transform(query_image).unsqueeze(0).to(device) # 因为model是4维带有批次的，所以要加一个维度
-    query_features = model(query_image).detach().cpu().numpy()
+    # query_image = transform(query_image).unsqueeze(0).to(device) # 因为model是4维带有批次的，所以要加一个维度
+    # query_features = model(query_image).detach().cpu().numpy()
 
     #[(1,D) + (N,D) -> (1,N) -> (N,)]
+    # print(query_features.shape, features.shape)
     similarities = cosine_similarity(query_features, features).flatten()
 
     top_indices = np.argsort(similarities)[-top_k:][::-1]

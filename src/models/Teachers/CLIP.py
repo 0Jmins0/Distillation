@@ -41,7 +41,7 @@ class MV_CLIP(nn.Module):
 
         clip_output = self.clip_model(x)
         features = clip_output.last_hidden_state 
-        print("T_before_pool", features.shape) #(480,50,768)
+        # print("T_before_pool", features.shape) #(480,50,768)
         
         features = self.adapter(features)  # (N * num_views, 50, 256)
         # 视角池化
@@ -49,5 +49,5 @@ class MV_CLIP(nn.Module):
         # 对每个样本的视图特征最大池化，保留每个样本的最显著特征
         # 最终(N, hidden_size)
         features = torch.max(features, dim = 1)[0] 
-        print("T",features.shape)
+        # print("T",features.shape)
         return features # (32,50,768)

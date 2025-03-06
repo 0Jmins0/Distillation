@@ -268,6 +268,13 @@ nohup python train.py > train_output.log 2>&1 &
 # 从头训练MV_AlexNet_dis
 python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0
 
+nohup python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0 --batch_size 16 >train_output_16.log 2>&1 &
+
+
+nohup python feature_extraction.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
+
+nohup python evaluate.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
+
 # 监控loss变化
 tensorboard --logdir=../models/train_models/base/MVCLIP_CNN/tensorboard_logs
 ```

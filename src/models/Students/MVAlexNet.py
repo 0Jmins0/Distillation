@@ -83,7 +83,7 @@ class AlexNet_Adapter(nn.Module):
 
         global_feature = self.fc2(x)
         combined_feature = torch.cat((local_feature, global_feature.unsqueeze(1)), dim=1)
-        print("after_adapter", combined_feature.shape) # （32， 50， 256）
+        # print("after_adapter", combined_feature.shape) # （32， 50， 256）
         return combined_feature 
 
 class MV_AlexNet(nn.Module):

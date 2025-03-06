@@ -1,0 +1,59 @@
+nohup: ignoring input
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+loading train data.......
+finished loading train data.......
+
+init ALEXNET model...
+
+No saved model found. Starting training from scratch.
+before train
+Epoch 1/20:   0%|          | 0/318 [00:00<?, ?batch/s]Epoch 1/20:   0%|          | 0/318 [00:01<?, ?batch/s]
+Traceback (most recent call last):
+  File "/home/xyzhang/project/Distillation/src/train.py", line 143, in <module>
+    t_negative_features = model_T(negative_images)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/project/Distillation/src/models/Teachers/CLIP.py", line 42, in forward
+    clip_output = self.clip_model(x)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 1170, in forward
+    return self.vision_model(
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 1096, in forward
+    encoder_outputs = self.encoder(
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 876, in forward
+    layer_outputs = encoder_layer(
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 617, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 572, in forward
+    hidden_states = self.fc1(hidden_states)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 142.00 MiB. GPU 0 has a total capacity of 23.69 GiB of which 89.94 MiB is free. Including non-PyTorch memory, this process has 23.59 GiB memory in use. Of the allocated memory 22.99 GiB is allocated by PyTorch, and 303.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
