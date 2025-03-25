@@ -26,6 +26,7 @@ class BaseFeatureNet(nn.Module):
         # 获取输入张量的维度
         N,C,H,W = x.size()
         # 将输入张量展平，使其维度为(N*self.num_views, C, H, W)
+
         x = x.view(-1, self.num_views, C, H, W)
         # 将张量的维度重新排列，使其维度为(N, C, self.num_views, H, W)
         x = x.permute(0,2,1,3,4).contiguous().view(-1, C, H, W)
@@ -87,18 +88,44 @@ class AlexNet_Adapter(nn.Module):
         return combined_feature 
 
 class MV_AlexNet(nn.Module):
-    def __init__(self, num_views = 15, pretrained = True,    is_dis = False):
+    def __init__(self, num_views = 15, is_dis = False, is_pre = True):
         # 初始化函数，设置默认参数num_viewsm为15
         super(MV_AlexNet, self).__init__()
         base_model_name = "ALEXNET"
-
+        
         print(f'\ninit {base_model_name} model...\n')
         self.is_dis = is_dis
-        self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
+        # self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
         if is_dis == False:
+            self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
             self.retrieval = BaseRetrievalNet(base_model_name)
-        else:
+        elif is_pre == False:
+            self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
             self.retrieval = AlexNet_Adapter()
+        else:
+            self.features = self.load_pretrained_model(num_views, "/home/xyzhang/project/Distillation/models/train_models/base/MV_AlexNet/epochs_14_lr_1e-06_batch_8.pth")
+            for param in self.features.parameters():
+                param.requires_grad = False
+            self.retrieval = AlexNet_Adapter()
+
+    def load_pretrained_model(self, num_views, model_path):
+        # 加载预训练模型的权重
+        print(f"Loading pre-trained model from {model_path}...")
+        checkpoint = torch.load(model_path, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+
+        # 初始化 BaseFeatureNet
+        features = BaseFeatureNet(num_views = num_views, base_model_name="ALEXNET", pretrained=False)
+
+        # 只加载特征提取层的权重
+        features_state_dict = {}
+        for k, v in checkpoint['model_state_dict'].items():
+            if k.startswith("features"):
+                # new_key = k.replace("features.", "")  # 移除前缀
+                features_state_dict[k[9:]] = v
+        features.load_state_dict(features_state_dict, strict=True)
+
+        print("Pre-trained features loaded successfully.")
+        return features
 
     # 定义前向传播函数
     def forward(self, x):

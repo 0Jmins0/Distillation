@@ -1,675 +1,0 @@
-nohup: 忽略输入
-/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
-  warnings.warn(
-/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
-  warnings.warn(msg)
-loading train data.......
-finished loading train data.......
-
-init ALEXNET model...
-
-No saved model found. Starting training from scratch.
-before train
-Epoch 1/30:   0%|          | 0/636 [00:00<?, ?batch/s]Epoch 1/30:   0%|          | 1/636 [00:02<22:23,  2.12s/batch]Epoch 1/30:   0%|          | 2/636 [00:03<18:22,  1.74s/batch]Epoch 1/30:   0%|          | 3/636 [00:05<19:20,  1.83s/batch]Epoch 1/30:   1%|          | 4/636 [00:06<17:43,  1.68s/batch]Epoch 1/30:   1%|          | 5/636 [00:08<18:16,  1.74s/batch]Epoch 1/30:   1%|          | 6/636 [00:10<17:12,  1.64s/batch]Epoch 1/30:   1%|          | 7/636 [00:12<18:25,  1.76s/batch]Epoch 1/30:   1%|▏         | 8/636 [00:13<17:07,  1.64s/batch]Epoch 1/30:   1%|▏         | 9/636 [00:15<17:51,  1.71s/batch]Epoch 1/30:   2%|▏         | 10/636 [00:16<16:49,  1.61s/batch]Epoch 1/30:   2%|▏         | 11/636 [00:18<17:55,  1.72s/batch]Epoch 1/30:   2%|▏         | 12/636 [00:20<16:51,  1.62s/batch]Epoch 1/30:   2%|▏         | 13/636 [00:22<17:24,  1.68s/batch]Epoch 1/30:   2%|▏         | 14/636 [00:23<16:30,  1.59s/batch]Epoch 1/30:   2%|▏         | 15/636 [00:25<16:54,  1.63s/batch]Epoch 1/30:   3%|▎         | 16/636 [00:27<17:58,  1.74s/batch]Epoch 1/30:   3%|▎         | 17/636 [00:28<16:55,  1.64s/batch]Epoch 1/30:   3%|▎         | 18/636 [00:30<17:17,  1.68s/batch]Epoch 1/30:   3%|▎         | 19/636 [00:31<16:16,  1.58s/batch]Epoch 1/30:   3%|▎         | 20/636 [00:33<17:00,  1.66s/batch]Epoch 1/30:   3%|▎         | 21/636 [00:34<16:08,  1.58s/batch]Epoch 1/30:   3%|▎         | 22/636 [00:36<16:53,  1.65s/batch]Epoch 1/30:   4%|▎         | 23/636 [00:38<15:55,  1.56s/batch]Epoch 1/30:   4%|▍         | 24/636 [00:40<17:10,  1.68s/batch]Epoch 1/30:   4%|▍         | 25/636 [00:41<16:19,  1.60s/batch]Epoch 1/30:   4%|▍         | 26/636 [00:43<16:26,  1.62s/batch]Epoch 1/30:   4%|▍         | 27/636 [00:44<15:51,  1.56s/batch]Epoch 1/30:   4%|▍         | 28/636 [00:46<15:56,  1.57s/batch]Epoch 1/30:   5%|▍         | 29/636 [00:48<16:51,  1.67s/batch]Epoch 1/30:   5%|▍         | 30/636 [00:49<16:05,  1.59s/batch]Epoch 1/30:   5%|▍         | 31/636 [00:51<17:17,  1.72s/batch]Epoch 1/30:   5%|▌         | 32/636 [00:52<16:18,  1.62s/batch]Epoch 1/30:   5%|▌         | 33/636 [00:54<16:24,  1.63s/batch]Epoch 1/30:   5%|▌         | 34/636 [00:56<15:58,  1.59s/batch]Epoch 1/30:   6%|▌         | 35/636 [00:57<15:50,  1.58s/batch]Epoch 1/30:   6%|▌         | 36/636 [00:59<16:32,  1.65s/batch]Epoch 1/30:   6%|▌         | 37/636 [01:00<15:42,  1.57s/batch]Epoch 1/30:   6%|▌         | 38/636 [01:02<16:59,  1.70s/batch]Epoch 1/30:   6%|▌         | 39/636 [01:04<16:00,  1.61s/batch]Epoch 1/30:   6%|▋         | 40/636 [01:05<16:06,  1.62s/batch]Epoch 1/30:   6%|▋         | 41/636 [01:07<16:14,  1.64s/batch]Epoch 1/30:   7%|▋         | 42/636 [01:09<15:43,  1.59s/batch]Epoch 1/30:   7%|▋         | 43/636 [01:10<16:21,  1.65s/batch]Epoch 1/30:   7%|▋         | 44/636 [01:12<15:31,  1.57s/batch]Epoch 1/30:   7%|▋         | 45/636 [01:14<16:12,  1.64s/batch]Epoch 1/30:   7%|▋         | 46/636 [01:15<15:27,  1.57s/batch]Epoch 1/30:   7%|▋         | 47/636 [01:17<16:39,  1.70s/batch]Epoch 1/30:   8%|▊         | 48/636 [01:18<15:55,  1.63s/batch]Epoch 1/30:   8%|▊         | 49/636 [01:20<16:25,  1.68s/batch]Epoch 1/30:   8%|▊         | 50/636 [01:22<16:52,  1.73s/batch]Epoch 1/30:   8%|▊         | 51/636 [01:23<16:06,  1.65s/batch]Epoch 1/30:   8%|▊         | 52/636 [01:25<16:34,  1.70s/batch]Epoch 1/30:   8%|▊         | 53/636 [01:27<15:38,  1.61s/batch]Epoch 1/30:   8%|▊         | 54/636 [01:29<16:47,  1.73s/batch]Epoch 1/30:   9%|▊         | 55/636 [01:30<15:51,  1.64s/batch]Epoch 1/30:   9%|▉         | 56/636 [01:32<15:57,  1.65s/batch]Epoch 1/30:   9%|▉         | 57/636 [01:34<16:05,  1.67s/batch]Epoch 1/30:   9%|▉         | 58/636 [01:35<15:34,  1.62s/batch]Epoch 1/30:   9%|▉         | 59/636 [01:37<16:23,  1.71s/batch]Epoch 1/30:   9%|▉         | 60/636 [01:38<15:31,  1.62s/batch]Epoch 1/30:  10%|▉         | 61/636 [01:40<16:14,  1.69s/batch]Epoch 1/30:  10%|▉         | 62/636 [01:42<15:27,  1.62s/batch]Epoch 1/30:  10%|▉         | 63/636 [01:43<16:00,  1.68s/batch]Epoch 1/30:  10%|█         | 64/636 [01:45<15:00,  1.58s/batch]Epoch 1/30:  10%|█         | 65/636 [01:47<15:43,  1.65s/batch]Epoch 1/30:  10%|█         | 66/636 [01:48<14:52,  1.57s/batch]Epoch 1/30:  11%|█         | 67/636 [01:50<15:24,  1.63s/batch]Epoch 1/30:  11%|█         | 68/636 [01:51<14:47,  1.56s/batch]Epoch 1/30:  11%|█         | 69/636 [01:53<15:29,  1.64s/batch]Epoch 1/30:  11%|█         | 70/636 [01:54<14:36,  1.55s/batch]Epoch 1/30:  11%|█         | 71/636 [01:56<15:13,  1.62s/batch]Epoch 1/30:  11%|█▏        | 72/636 [01:57<14:30,  1.54s/batch]Epoch 1/30:  11%|█▏        | 73/636 [01:59<15:11,  1.62s/batch]Epoch 1/30:  12%|█▏        | 74/636 [02:01<14:31,  1.55s/batch]Epoch 1/30:  12%|█▏        | 75/636 [02:02<15:05,  1.61s/batch]Epoch 1/30:  12%|█▏        | 76/636 [02:04<14:18,  1.53s/batch]Epoch 1/30:  12%|█▏        | 77/636 [02:06<15:05,  1.62s/batch]Epoch 1/30:  12%|█▏        | 78/636 [02:07<14:27,  1.55s/batch]Epoch 1/30:  12%|█▏        | 79/636 [02:09<15:13,  1.64s/batch]Epoch 1/30:  13%|█▎        | 80/636 [02:10<14:36,  1.58s/batch]Epoch 1/30:  13%|█▎        | 81/636 [02:12<15:10,  1.64s/batch]Epoch 1/30:  13%|█▎        | 82/636 [02:13<14:27,  1.57s/batch]Epoch 1/30:  13%|█▎        | 83/636 [02:15<15:10,  1.65s/batch]Epoch 1/30:  13%|█▎        | 84/636 [02:17<14:31,  1.58s/batch]Epoch 1/30:  13%|█▎        | 85/636 [02:19<15:26,  1.68s/batch]Epoch 1/30:  14%|█▎        | 86/636 [02:20<14:40,  1.60s/batch]Epoch 1/30:  14%|█▎        | 87/636 [02:22<15:25,  1.69s/batch]Epoch 1/30:  14%|█▍        | 88/636 [02:23<14:48,  1.62s/batch]Epoch 1/30:  14%|█▍        | 89/636 [02:25<15:09,  1.66s/batch]Epoch 1/30:  14%|█▍        | 90/636 [02:27<15:07,  1.66s/batch]Epoch 1/30:  14%|█▍        | 91/636 [02:28<14:33,  1.60s/batch]Epoch 1/30:  14%|█▍        | 92/636 [02:30<15:14,  1.68s/batch]Epoch 1/30:  15%|█▍        | 93/636 [02:32<14:49,  1.64s/batch]Epoch 1/30:  15%|█▍        | 94/636 [02:34<15:24,  1.71s/batch]Epoch 1/30:  15%|█▍        | 95/636 [02:35<15:41,  1.74s/batch]Epoch 1/30:  15%|█▌        | 96/636 [02:37<15:43,  1.75s/batch]Epoch 1/30:  15%|█▌        | 97/636 [02:39<14:47,  1.65s/batch]Epoch 1/30:  15%|█▌        | 98/636 [02:40<14:48,  1.65s/batch]Epoch 1/30:  16%|█▌        | 99/636 [02:42<14:59,  1.68s/batch]Epoch 1/30:  16%|█▌        | 100/636 [02:43<14:19,  1.60s/batch]Epoch 1/30:  16%|█▌        | 101/636 [02:45<15:09,  1.70s/batch]Epoch 1/30:  16%|█▌        | 102/636 [02:47<14:19,  1.61s/batch]Epoch 1/30:  16%|█▌        | 103/636 [02:49<14:53,  1.68s/batch]Epoch 1/30:  16%|█▋        | 104/636 [02:50<14:08,  1.60s/batch]Epoch 1/30:  17%|█▋        | 105/636 [02:52<15:13,  1.72s/batch]Epoch 1/30:  17%|█▋        | 106/636 [02:53<14:30,  1.64s/batch]Epoch 1/30:  17%|█▋        | 107/636 [02:55<15:26,  1.75s/batch]Epoch 1/30:  17%|█▋        | 108/636 [02:57<14:34,  1.66s/batch]Epoch 1/30:  17%|█▋        | 109/636 [02:59<14:44,  1.68s/batch]Epoch 1/30:  17%|█▋        | 110/636 [03:00<13:57,  1.59s/batch]Epoch 1/30:  17%|█▋        | 111/636 [03:02<14:02,  1.60s/batch]Epoch 1/30:  18%|█▊        | 112/636 [03:03<13:23,  1.53s/batch]Epoch 1/30:  18%|█▊        | 113/636 [03:05<13:46,  1.58s/batch]Epoch 1/30:  18%|█▊        | 114/636 [03:06<13:55,  1.60s/batch]Epoch 1/30:  18%|█▊        | 115/636 [03:08<13:37,  1.57s/batch]Epoch 1/30:  18%|█▊        | 116/636 [03:10<14:23,  1.66s/batch]Epoch 1/30:  18%|█▊        | 117/636 [03:11<13:43,  1.59s/batch]Epoch 1/30:  19%|█▊        | 118/636 [03:13<14:18,  1.66s/batch]Epoch 1/30:  19%|█▊        | 119/636 [03:14<13:34,  1.58s/batch]Epoch 1/30:  19%|█▉        | 120/636 [03:16<14:14,  1.66s/batch]Epoch 1/30:  19%|█▉        | 121/636 [03:18<13:34,  1.58s/batch]Epoch 1/30:  19%|█▉        | 122/636 [03:19<14:28,  1.69s/batch]Epoch 1/30:  19%|█▉        | 123/636 [03:21<13:49,  1.62s/batch]Epoch 1/30:  19%|█▉        | 124/636 [03:23<14:04,  1.65s/batch]Epoch 1/30:  20%|█▉        | 125/636 [03:24<13:20,  1.57s/batch]Epoch 1/30:  20%|█▉        | 126/636 [03:26<13:29,  1.59s/batch]Epoch 1/30:  20%|█▉        | 127/636 [03:27<12:58,  1.53s/batch]Epoch 1/30:  20%|██        | 128/636 [03:29<13:05,  1.55s/batch]Epoch 1/30:  20%|██        | 129/636 [03:31<13:53,  1.64s/batch]Epoch 1/30:  20%|██        | 130/636 [03:32<13:11,  1.57s/batch]Epoch 1/30:  21%|██        | 131/636 [03:34<13:56,  1.66s/batch]Epoch 1/30:  21%|██        | 132/636 [03:35<13:16,  1.58s/batch]Epoch 1/30:  21%|██        | 133/636 [03:37<13:50,  1.65s/batch]Epoch 1/30:  21%|██        | 134/636 [03:38<13:11,  1.58s/batch]Epoch 1/30:  21%|██        | 135/636 [03:40<13:42,  1.64s/batch]Epoch 1/30:  21%|██▏       | 136/636 [03:42<13:06,  1.57s/batch]Epoch 1/30:  22%|██▏       | 137/636 [03:43<13:35,  1.63s/batch]Epoch 1/30:  22%|██▏       | 138/636 [03:45<12:54,  1.56s/batch]Epoch 1/30:  22%|██▏       | 139/636 [03:47<13:56,  1.68s/batch]Epoch 1/30:  22%|██▏       | 140/636 [03:48<13:08,  1.59s/batch]Epoch 1/30:  22%|██▏       | 141/636 [03:50<13:47,  1.67s/batch]Epoch 1/30:  22%|██▏       | 142/636 [03:51<13:04,  1.59s/batch]Epoch 1/30:  22%|██▏       | 143/636 [03:53<13:31,  1.65s/batch]tensor(51.1520, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(37.6270, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(25.7253, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(23.3541, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(14.5983, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(12.2980, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(11.3305, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(9.4685, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(9.0738, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(7.8875, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(7.5255, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(7.2801, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.5815, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.8837, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.6527, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.7152, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.4707, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2879, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1051, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2978, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1482, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0392, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.3648, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6340, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0692, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0057, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9653, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1873, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9990, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9524, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0128, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9341, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0805, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9942, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.3155, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8858, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0644, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0239, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0335, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0811, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6322, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0909, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7746, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8650, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1889, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1499, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1612, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9319, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0303, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1172, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0106, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8126, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0484, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7568, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0819, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0600, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1073, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0703, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1104, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9243, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9967, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.3183, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1733, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1359, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0833, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1375, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0999, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1019, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9296, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1727, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8622, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7776, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6337, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1739, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8129, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1114, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1010, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9241, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6795, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8480, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1353, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9252, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1394, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2034, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9375, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9132, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1518, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9141, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2082, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0070, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1092, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8913, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1338, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1912, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9464, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1043, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1035, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0770, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9739, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1232, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9085, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9414, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0843, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0285, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9426, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1927, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9687, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.4410, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7430, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0079, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9676, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0038, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0235, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2251, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1639, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1316, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0140, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9046, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8400, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9558, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9775, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1774, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9543, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9471, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2362, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9304, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9895, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0205, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1226, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9911, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9237, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8778, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1191, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9423, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9501, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.3856, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9135, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7572, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8313, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7155, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1621, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8820, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0426, device='cuda:0', grad_fn=<MeanBackward0>)
-Epoch 1/30:  23%|██▎       | 144/636 [03:55<14:33,  1.78s/batch]Epoch 1/30:  23%|██▎       | 145/636 [03:57<13:44,  1.68s/batch]Epoch 1/30:  23%|██▎       | 146/636 [03:58<14:03,  1.72s/batch]Epoch 1/30:  23%|██▎       | 147/636 [04:00<13:19,  1.63s/batch]Epoch 1/30:  23%|██▎       | 148/636 [04:02<13:59,  1.72s/batch]Epoch 1/30:  23%|██▎       | 149/636 [04:03<13:09,  1.62s/batch]Epoch 1/30:  24%|██▎       | 150/636 [04:05<13:35,  1.68s/batch]Epoch 1/30:  24%|██▎       | 151/636 [04:07<13:07,  1.62s/batch]Epoch 1/30:  24%|██▍       | 152/636 [04:08<13:19,  1.65s/batch]Epoch 1/30:  24%|██▍       | 153/636 [04:10<13:56,  1.73s/batch]Epoch 1/30:  24%|██▍       | 154/636 [04:12<13:17,  1.65s/batch]Epoch 1/30:  24%|██▍       | 155/636 [04:13<13:34,  1.69s/batch]Epoch 1/30:  25%|██▍       | 156/636 [04:15<12:55,  1.62s/batch]Epoch 1/30:  25%|██▍       | 157/636 [04:17<13:28,  1.69s/batch]Epoch 1/30:  25%|██▍       | 158/636 [04:18<12:43,  1.60s/batch]Epoch 1/30:  25%|██▌       | 159/636 [04:20<13:42,  1.72s/batch]Epoch 1/30:  25%|██▌       | 160/636 [04:21<12:49,  1.62s/batch]Epoch 1/30:  25%|██▌       | 161/636 [04:23<13:18,  1.68s/batch]Epoch 1/30:  25%|██▌       | 162/636 [04:25<12:37,  1.60s/batch]Epoch 1/30:  26%|██▌       | 163/636 [04:26<12:54,  1.64s/batch]Epoch 1/30:  26%|██▌       | 164/636 [04:28<13:19,  1.69s/batch]Epoch 1/30:  26%|██▌       | 165/636 [04:30<12:29,  1.59s/batch]Epoch 1/30:  26%|██▌       | 166/636 [04:31<12:58,  1.66s/batch]Epoch 1/30:  26%|██▋       | 167/636 [04:33<12:15,  1.57s/batch]Epoch 1/30:  26%|██▋       | 168/636 [04:35<12:48,  1.64s/batch]Epoch 1/30:  27%|██▋       | 169/636 [04:36<12:10,  1.56s/batch]Epoch 1/30:  27%|██▋       | 170/636 [04:38<12:40,  1.63s/batch]Epoch 1/30:  27%|██▋       | 171/636 [04:39<12:12,  1.57s/batch]Epoch 1/30:  27%|██▋       | 172/636 [04:41<13:09,  1.70s/batch]Epoch 1/30:  27%|██▋       | 173/636 [04:43<12:21,  1.60s/batch]Epoch 1/30:  27%|██▋       | 174/636 [04:44<12:47,  1.66s/batch]Epoch 1/30:  28%|██▊       | 175/636 [04:46<12:52,  1.68s/batch]Epoch 1/30:  28%|██▊       | 176/636 [04:48<12:32,  1.63s/batch]Epoch 1/30:  28%|██▊       | 177/636 [04:49<12:54,  1.69s/batch]Epoch 1/30:  28%|██▊       | 178/636 [04:51<12:09,  1.59s/batch]Epoch 1/30:  28%|██▊       | 179/636 [04:53<12:42,  1.67s/batch]Epoch 1/30:  28%|██▊       | 180/636 [04:54<12:13,  1.61s/batch]Epoch 1/30:  28%|██▊       | 181/636 [04:56<12:44,  1.68s/batch]Epoch 1/30:  29%|██▊       | 182/636 [04:57<12:02,  1.59s/batch]Epoch 1/30:  29%|██▉       | 183/636 [04:59<12:35,  1.67s/batch]Epoch 1/30:  29%|██▉       | 184/636 [05:01<11:59,  1.59s/batch]Epoch 1/30:  29%|██▉       | 185/636 [05:02<12:26,  1.65s/batch]Epoch 1/30:  29%|██▉       | 186/636 [05:04<11:47,  1.57s/batch]Epoch 1/30:  29%|██▉       | 187/636 [05:06<12:18,  1.64s/batch]Epoch 1/30:  30%|██▉       | 188/636 [05:07<11:45,  1.58s/batch]Epoch 1/30:  30%|██▉       | 189/636 [05:09<12:33,  1.69s/batch]Epoch 1/30:  30%|██▉       | 190/636 [05:10<11:55,  1.60s/batch]Epoch 1/30:  30%|███       | 191/636 [05:12<12:24,  1.67s/batch]Epoch 1/30:  30%|███       | 192/636 [05:14<12:49,  1.73s/batch]Epoch 1/30:  30%|███       | 193/636 [05:16<12:01,  1.63s/batch]Epoch 1/30:  31%|███       | 194/636 [05:17<12:30,  1.70s/batch]Epoch 1/30:  31%|███       | 195/636 [05:19<11:54,  1.62s/batch]Epoch 1/30:  31%|███       | 196/636 [05:21<12:47,  1.74s/batch]Epoch 1/30:  31%|███       | 197/636 [05:22<12:32,  1.71s/batch]Epoch 1/30:  31%|███       | 198/636 [05:25<13:12,  1.81s/batch]Epoch 1/30:  31%|███▏      | 199/636 [05:26<12:37,  1.73s/batch]Epoch 1/30:  31%|███▏      | 200/636 [05:28<12:45,  1.76s/batch]Epoch 1/30:  32%|███▏      | 201/636 [05:30<13:00,  1.80s/batch]Epoch 1/30:  32%|███▏      | 202/636 [05:31<12:10,  1.68s/batch]Epoch 1/30:  32%|███▏      | 203/636 [05:33<12:28,  1.73s/batch]Epoch 1/30:  32%|███▏      | 204/636 [05:34<11:48,  1.64s/batch]Epoch 1/30:  32%|███▏      | 205/636 [05:36<12:37,  1.76s/batch]Epoch 1/30:  32%|███▏      | 206/636 [05:38<11:55,  1.66s/batch]Epoch 1/30:  33%|███▎      | 207/636 [05:40<11:50,  1.66s/batch]Epoch 1/30:  33%|███▎      | 208/636 [05:41<11:20,  1.59s/batch]Epoch 1/30:  33%|███▎      | 209/636 [05:43<11:43,  1.65s/batch]Epoch 1/30:  33%|███▎      | 210/636 [05:45<12:17,  1.73s/batch]Epoch 1/30:  33%|███▎      | 211/636 [05:46<11:45,  1.66s/batch]Epoch 1/30:  33%|███▎      | 212/636 [05:48<12:02,  1.70s/batch]Epoch 1/30:  33%|███▎      | 213/636 [05:49<11:26,  1.62s/batch]Epoch 1/30:  34%|███▎      | 214/636 [05:51<12:17,  1.75s/batch]Epoch 1/30:  34%|███▍      | 215/636 [05:53<11:36,  1.65s/batch]Epoch 1/30:  34%|███▍      | 216/636 [05:55<12:02,  1.72s/batch]Epoch 1/30:  34%|███▍      | 217/636 [05:56<11:23,  1.63s/batch]Epoch 1/30:  34%|███▍      | 218/636 [05:58<11:50,  1.70s/batch]Epoch 1/30:  34%|███▍      | 219/636 [06:00<11:52,  1.71s/batch]Epoch 1/30:  35%|███▍      | 220/636 [06:01<11:32,  1.66s/batch]Epoch 1/30:  35%|███▍      | 221/636 [06:03<11:54,  1.72s/batch]Epoch 1/30:  35%|███▍      | 222/636 [06:05<11:12,  1.62s/batch]Epoch 1/30:  35%|███▌      | 223/636 [06:06<11:36,  1.69s/batch]Epoch 1/30:  35%|███▌      | 224/636 [06:08<10:58,  1.60s/batch]Epoch 1/30:  35%|███▌      | 225/636 [06:10<11:20,  1.66s/batch]Epoch 1/30:  36%|███▌      | 226/636 [06:11<10:56,  1.60s/batch]Epoch 1/30:  36%|███▌      | 227/636 [06:13<11:45,  1.73s/batch]Epoch 1/30:  36%|███▌      | 228/636 [06:15<11:39,  1.71s/batch]Epoch 1/30:  36%|███▌      | 229/636 [06:17<11:42,  1.73s/batch]Epoch 1/30:  36%|███▌      | 230/636 [06:18<10:57,  1.62s/batch]Epoch 1/30:  36%|███▋      | 231/636 [06:20<11:03,  1.64s/batch]Epoch 1/30:  36%|███▋      | 232/636 [06:21<11:06,  1.65s/batch]Epoch 1/30:  37%|███▋      | 233/636 [06:23<10:37,  1.58s/batch]Epoch 1/30:  37%|███▋      | 234/636 [06:25<11:11,  1.67s/batch]Epoch 1/30:  37%|███▋      | 235/636 [06:26<10:43,  1.60s/batch]Epoch 1/30:  37%|███▋      | 236/636 [06:28<11:11,  1.68s/batch]Epoch 1/30:  37%|███▋      | 237/636 [06:29<10:42,  1.61s/batch]Epoch 1/30:  37%|███▋      | 238/636 [06:31<11:08,  1.68s/batch]Epoch 1/30:  38%|███▊      | 239/636 [06:33<10:45,  1.63s/batch]Epoch 1/30:  38%|███▊      | 240/636 [06:34<11:00,  1.67s/batch]Epoch 1/30:  38%|███▊      | 241/636 [06:36<10:59,  1.67s/batch]Epoch 1/30:  38%|███▊      | 242/636 [06:38<10:28,  1.59s/batch]Epoch 1/30:  38%|███▊      | 243/636 [06:39<10:53,  1.66s/batch]Epoch 1/30:  38%|███▊      | 244/636 [06:41<10:27,  1.60s/batch]Epoch 1/30:  39%|███▊      | 245/636 [06:43<10:54,  1.68s/batch]Epoch 1/30:  39%|███▊      | 246/636 [06:44<10:22,  1.60s/batch]Epoch 1/30:  39%|███▉      | 247/636 [06:46<10:51,  1.68s/batch]Epoch 1/30:  39%|███▉      | 248/636 [06:47<10:18,  1.59s/batch]Epoch 1/30:  39%|███▉      | 249/636 [06:49<10:28,  1.63s/batch]Epoch 1/30:  39%|███▉      | 250/636 [06:51<10:48,  1.68s/batch]Epoch 1/30:  39%|███▉      | 251/636 [06:52<10:14,  1.60s/batch]Epoch 1/30:  40%|███▉      | 252/636 [06:54<10:43,  1.68s/batch]Epoch 1/30:  40%|███▉      | 253/636 [06:56<10:08,  1.59s/batch]Epoch 1/30:  40%|███▉      | 254/636 [06:57<10:32,  1.66s/batch]Epoch 1/30:  40%|████      | 255/636 [06:59<09:59,  1.57s/batch]Epoch 1/30:  40%|████      | 256/636 [07:01<10:31,  1.66s/batch]Epoch 1/30:  40%|████      | 257/636 [07:02<09:54,  1.57s/batch]Epoch 1/30:  41%|████      | 258/636 [07:04<10:27,  1.66s/batch]Epoch 1/30:  41%|████      | 259/636 [07:05<10:00,  1.59s/batch]Epoch 1/30:  41%|████      | 260/636 [07:07<10:02,  1.60s/batch]Epoch 1/30:  41%|████      | 261/636 [07:08<09:41,  1.55s/batch]Epoch 1/30:  41%|████      | 262/636 [07:10<09:40,  1.55s/batch]Epoch 1/30:  41%|████▏     | 263/636 [07:12<10:20,  1.66s/batch]Epoch 1/30:  42%|████▏     | 264/636 [07:13<09:47,  1.58s/batch]Epoch 1/30:  42%|████▏     | 265/636 [07:15<10:13,  1.65s/batch]Epoch 1/30:  42%|████▏     | 266/636 [07:16<09:42,  1.57s/batch]Epoch 1/30:  42%|████▏     | 267/636 [07:18<10:23,  1.69s/batch]Epoch 1/30:  42%|████▏     | 268/636 [07:20<10:00,  1.63s/batch]Epoch 1/30:  42%|████▏     | 269/636 [07:21<09:57,  1.63s/batch]Epoch 1/30:  42%|████▏     | 270/636 [07:23<09:46,  1.60s/batch]Epoch 1/30:  43%|████▎     | 271/636 [07:25<09:39,  1.59s/batch]Epoch 1/30:  43%|████▎     | 272/636 [07:26<10:05,  1.66s/batch]Epoch 1/30:  43%|████▎     | 273/636 [07:28<09:29,  1.57s/batch]Epoch 1/30:  43%|████▎     | 274/636 [07:30<09:53,  1.64s/batch]Epoch 1/30:  43%|████▎     | 275/636 [07:31<09:21,  1.56s/batch]Epoch 1/30:  43%|████▎     | 276/636 [07:33<09:54,  1.65s/batch]Epoch 1/30:  44%|████▎     | 277/636 [07:34<09:21,  1.57s/batch]Epoch 1/30:  44%|████▎     | 278/636 [07:36<09:50,  1.65s/batch]Epoch 1/30:  44%|████▍     | 279/636 [07:37<09:18,  1.56s/batch]Epoch 1/30:  44%|████▍     | 280/636 [07:39<09:25,  1.59s/batch]Epoch 1/30:  44%|████▍     | 281/636 [07:40<08:58,  1.52s/batch]Epoch 1/30:  44%|████▍     | 282/636 [07:42<09:25,  1.60s/batch]Epoch 1/30:  44%|████▍     | 283/636 [07:44<10:00,  1.70s/batch]Epoch 1/30:  45%|████▍     | 284/636 [07:46<09:32,  1.63s/batch]Epoch 1/30:  45%|████▍     | 285/636 [07:48<10:11,  1.74s/batch]Epoch 1/30:  45%|████▍     | 286/636 [07:49<09:34,  1.64s/batch]tensor(6.1341, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0496, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9889, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7995, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1856, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7686, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7948, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9256, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9255, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0197, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1418, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8273, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8815, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9903, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8011, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9114, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1843, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8734, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9558, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8101, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6874, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0467, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5620, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1003, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1581, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8581, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1446, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2149, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1972, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9968, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1656, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0043, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8824, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9501, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1482, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9684, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8371, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2095, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8855, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1582, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0546, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0560, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9860, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7072, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0716, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1072, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1747, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9194, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8537, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1028, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1115, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0563, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0878, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9998, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0649, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8344, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9578, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1347, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9253, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8269, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8868, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9109, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0509, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0153, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9628, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2702, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2539, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8012, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0901, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0874, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7265, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8547, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9318, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1223, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1299, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1502, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9629, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0134, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8635, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0042, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8994, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0271, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1110, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9503, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8468, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0252, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6476, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2735, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8054, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7786, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9776, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0858, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0380, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9909, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9798, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0752, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0163, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8665, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0443, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0219, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0495, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9688, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9071, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9480, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9071, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8770, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9799, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9243, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9713, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9619, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1852, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0939, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9617, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0155, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7577, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9904, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9176, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8930, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9055, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2394, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9253, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0299, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0110, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8700, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1309, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8332, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1402, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0614, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9898, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8548, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9454, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1051, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8766, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0917, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2462, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0025, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9158, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1279, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0384, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7383, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9800, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6227, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8439, device='cuda:0', grad_fn=<MeanBackward0>)
-Epoch 1/30:  45%|████▌     | 287/636 [07:51<09:51,  1.69s/batch]Epoch 1/30:  45%|████▌     | 288/636 [07:52<09:20,  1.61s/batch]Epoch 1/30:  45%|████▌     | 289/636 [07:54<09:40,  1.67s/batch]Epoch 1/30:  46%|████▌     | 290/636 [07:55<09:10,  1.59s/batch]Epoch 1/30:  46%|████▌     | 291/636 [07:57<09:33,  1.66s/batch]Epoch 1/30:  46%|████▌     | 292/636 [07:59<09:04,  1.58s/batch]Epoch 1/30:  46%|████▌     | 293/636 [08:00<09:26,  1.65s/batch]Epoch 1/30:  46%|████▌     | 294/636 [08:02<09:01,  1.58s/batch]Epoch 1/30:  46%|████▋     | 295/636 [08:04<09:40,  1.70s/batch]Epoch 1/30:  47%|████▋     | 296/636 [08:05<09:09,  1.62s/batch]Epoch 1/30:  47%|████▋     | 297/636 [08:07<09:29,  1.68s/batch]Epoch 1/30:  47%|████▋     | 298/636 [08:09<09:04,  1.61s/batch]Epoch 1/30:  47%|████▋     | 299/636 [08:10<09:14,  1.64s/batch]Epoch 1/30:  47%|████▋     | 300/636 [08:12<09:11,  1.64s/batch]Epoch 1/30:  47%|████▋     | 301/636 [08:13<08:52,  1.59s/batch]Epoch 1/30:  47%|████▋     | 302/636 [08:15<09:20,  1.68s/batch]Epoch 1/30:  48%|████▊     | 303/636 [08:17<09:08,  1.65s/batch]Epoch 1/30:  48%|████▊     | 304/636 [08:19<09:52,  1.78s/batch]Epoch 1/30:  48%|████▊     | 305/636 [08:20<09:16,  1.68s/batch]Epoch 1/30:  48%|████▊     | 306/636 [08:22<09:10,  1.67s/batch]Epoch 1/30:  48%|████▊     | 307/636 [08:23<08:36,  1.57s/batch]Epoch 1/30:  48%|████▊     | 308/636 [08:25<08:42,  1.59s/batch]Epoch 1/30:  49%|████▊     | 309/636 [08:26<08:17,  1.52s/batch]Epoch 1/30:  49%|████▊     | 310/636 [08:28<08:25,  1.55s/batch]Epoch 1/30:  49%|████▉     | 311/636 [08:29<08:06,  1.50s/batch]Epoch 1/30:  49%|████▉     | 312/636 [08:31<08:21,  1.55s/batch]Epoch 1/30:  49%|████▉     | 313/636 [08:33<08:48,  1.64s/batch]Epoch 1/30:  49%|████▉     | 314/636 [08:34<08:21,  1.56s/batch]Epoch 1/30:  50%|████▉     | 315/636 [08:36<08:59,  1.68s/batch]Epoch 1/30:  50%|████▉     | 316/636 [08:38<08:27,  1.59s/batch]Epoch 1/30:  50%|████▉     | 317/636 [08:39<08:45,  1.65s/batch]Epoch 1/30:  50%|█████     | 318/636 [08:41<08:20,  1.57s/batch]Epoch 1/30:  50%|█████     | 319/636 [08:43<08:51,  1.68s/batch]Epoch 1/30:  50%|█████     | 320/636 [08:44<08:28,  1.61s/batch]Epoch 1/30:  50%|█████     | 321/636 [08:46<09:00,  1.72s/batch]Epoch 1/30:  51%|█████     | 322/636 [08:48<08:32,  1.63s/batch]Epoch 1/30:  51%|█████     | 323/636 [08:49<08:44,  1.67s/batch]Epoch 1/30:  51%|█████     | 324/636 [08:51<08:18,  1.60s/batch]Epoch 1/30:  51%|█████     | 325/636 [08:53<08:38,  1.67s/batch]Epoch 1/30:  51%|█████▏    | 326/636 [08:54<08:10,  1.58s/batch]Epoch 1/30:  51%|█████▏    | 327/636 [08:56<08:46,  1.70s/batch]Epoch 1/30:  52%|█████▏    | 328/636 [08:57<08:15,  1.61s/batch]Epoch 1/30:  52%|█████▏    | 329/636 [08:59<08:20,  1.63s/batch]Epoch 1/30:  52%|█████▏    | 330/636 [09:00<08:06,  1.59s/batch]Epoch 1/30:  52%|█████▏    | 331/636 [09:02<08:07,  1.60s/batch]Epoch 1/30:  52%|█████▏    | 332/636 [09:04<08:33,  1.69s/batch]Epoch 1/30:  52%|█████▏    | 333/636 [09:05<08:03,  1.60s/batch]Epoch 1/30:  53%|█████▎    | 334/636 [09:07<08:20,  1.66s/batch]Epoch 1/30:  53%|█████▎    | 335/636 [09:09<08:06,  1.62s/batch]Epoch 1/30:  53%|█████▎    | 336/636 [09:11<08:34,  1.72s/batch]Epoch 1/30:  53%|█████▎    | 337/636 [09:12<08:07,  1.63s/batch]Epoch 1/30:  53%|█████▎    | 338/636 [09:14<08:13,  1.66s/batch]Epoch 1/30:  53%|█████▎    | 339/636 [09:15<07:53,  1.59s/batch]Epoch 1/30:  53%|█████▎    | 340/636 [09:17<07:50,  1.59s/batch]Epoch 1/30:  54%|█████▎    | 341/636 [09:19<08:29,  1.73s/batch]Epoch 1/30:  54%|█████▍    | 342/636 [09:20<08:02,  1.64s/batch]Epoch 1/30:  54%|█████▍    | 343/636 [09:22<08:36,  1.76s/batch]Epoch 1/30:  54%|█████▍    | 344/636 [09:24<08:51,  1.82s/batch]Epoch 1/30:  54%|█████▍    | 345/636 [09:26<08:22,  1.73s/batch]Epoch 1/30:  54%|█████▍    | 346/636 [09:28<08:54,  1.84s/batch]Epoch 1/30:  55%|█████▍    | 347/636 [09:29<08:13,  1.71s/batch]Epoch 1/30:  55%|█████▍    | 348/636 [09:31<08:20,  1.74s/batch]Epoch 1/30:  55%|█████▍    | 349/636 [09:33<07:54,  1.65s/batch]Epoch 1/30:  55%|█████▌    | 350/636 [09:34<08:07,  1.70s/batch]Epoch 1/30:  55%|█████▌    | 351/636 [09:36<08:14,  1.74s/batch]Epoch 1/30:  55%|█████▌    | 352/636 [09:38<07:53,  1.67s/batch]Epoch 1/30:  56%|█████▌    | 353/636 [09:40<08:34,  1.82s/batch]Epoch 1/30:  56%|█████▌    | 354/636 [09:41<07:59,  1.70s/batch]Epoch 1/30:  56%|█████▌    | 355/636 [09:43<08:10,  1.75s/batch]Epoch 1/30:  56%|█████▌    | 356/636 [09:45<07:43,  1.66s/batch]Epoch 1/30:  56%|█████▌    | 357/636 [09:46<07:54,  1.70s/batch]Epoch 1/30:  56%|█████▋    | 358/636 [09:48<07:55,  1.71s/batch]Epoch 1/30:  56%|█████▋    | 359/636 [09:50<07:29,  1.62s/batch]Epoch 1/30:  57%|█████▋    | 360/636 [09:51<07:51,  1.71s/batch]Epoch 1/30:  57%|█████▋    | 361/636 [09:53<07:24,  1.62s/batch]Epoch 1/30:  57%|█████▋    | 362/636 [09:55<08:09,  1.79s/batch]Epoch 1/30:  57%|█████▋    | 363/636 [09:57<07:43,  1.70s/batch]Epoch 1/30:  57%|█████▋    | 364/636 [09:58<07:53,  1.74s/batch]Epoch 1/30:  57%|█████▋    | 365/636 [10:00<07:53,  1.75s/batch]Epoch 1/30:  58%|█████▊    | 366/636 [10:02<07:24,  1.65s/batch]Epoch 1/30:  58%|█████▊    | 367/636 [10:03<07:37,  1.70s/batch]Epoch 1/30:  58%|█████▊    | 368/636 [10:05<07:15,  1.62s/batch]Epoch 1/30:  58%|█████▊    | 369/636 [10:07<07:43,  1.74s/batch]Epoch 1/30:  58%|█████▊    | 370/636 [10:08<07:21,  1.66s/batch]Epoch 1/30:  58%|█████▊    | 371/636 [10:10<07:31,  1.71s/batch]Epoch 1/30:  58%|█████▊    | 372/636 [10:12<07:48,  1.77s/batch]Epoch 1/30:  59%|█████▊    | 373/636 [10:13<07:16,  1.66s/batch]Epoch 1/30:  59%|█████▉    | 374/636 [10:15<07:31,  1.72s/batch]Epoch 1/30:  59%|█████▉    | 375/636 [10:17<07:10,  1.65s/batch]Epoch 1/30:  59%|█████▉    | 376/636 [10:19<07:24,  1.71s/batch]Epoch 1/30:  59%|█████▉    | 377/636 [10:20<07:02,  1.63s/batch]Epoch 1/30:  59%|█████▉    | 378/636 [10:22<07:02,  1.64s/batch]Epoch 1/30:  60%|█████▉    | 379/636 [10:23<06:55,  1.62s/batch]Epoch 1/30:  60%|█████▉    | 380/636 [10:25<06:45,  1.58s/batch]Epoch 1/30:  60%|█████▉    | 381/636 [10:27<07:04,  1.67s/batch]Epoch 1/30:  60%|██████    | 382/636 [10:28<06:43,  1.59s/batch]Epoch 1/30:  60%|██████    | 383/636 [10:30<06:59,  1.66s/batch]Epoch 1/30:  60%|██████    | 384/636 [10:31<06:38,  1.58s/batch]Epoch 1/30:  61%|██████    | 385/636 [10:33<07:15,  1.73s/batch]Epoch 1/30:  61%|██████    | 386/636 [10:35<07:22,  1.77s/batch]Epoch 1/30:  61%|██████    | 387/636 [10:37<07:19,  1.76s/batch]Epoch 1/30:  61%|██████    | 388/636 [10:39<07:26,  1.80s/batch]Epoch 1/30:  61%|██████    | 389/636 [10:40<06:58,  1.70s/batch]Epoch 1/30:  61%|██████▏   | 390/636 [10:42<07:19,  1.79s/batch]Epoch 1/30:  61%|██████▏   | 391/636 [10:44<06:49,  1.67s/batch]Epoch 1/30:  62%|██████▏   | 392/636 [10:45<06:52,  1.69s/batch]Epoch 1/30:  62%|██████▏   | 393/636 [10:47<06:39,  1.65s/batch]Epoch 1/30:  62%|██████▏   | 394/636 [10:49<06:31,  1.62s/batch]Epoch 1/30:  62%|██████▏   | 395/636 [10:50<06:48,  1.70s/batch]Epoch 1/30:  62%|██████▏   | 396/636 [10:52<06:26,  1.61s/batch]Epoch 1/30:  62%|██████▏   | 397/636 [10:54<06:54,  1.74s/batch]Epoch 1/30:  63%|██████▎   | 398/636 [10:55<06:27,  1.63s/batch]Epoch 1/30:  63%|██████▎   | 399/636 [10:57<06:27,  1.64s/batch]Epoch 1/30:  63%|██████▎   | 400/636 [10:58<06:11,  1.58s/batch]Epoch 1/30:  63%|██████▎   | 401/636 [11:00<06:10,  1.57s/batch]Epoch 1/30:  63%|██████▎   | 402/636 [11:02<06:16,  1.61s/batch]Epoch 1/30:  63%|██████▎   | 403/636 [11:03<06:01,  1.55s/batch]Epoch 1/30:  64%|██████▎   | 404/636 [11:05<06:23,  1.65s/batch]Epoch 1/30:  64%|██████▎   | 405/636 [11:06<06:05,  1.58s/batch]Epoch 1/30:  64%|██████▍   | 406/636 [11:08<06:19,  1.65s/batch]Epoch 1/30:  64%|██████▍   | 407/636 [11:10<06:01,  1.58s/batch]Epoch 1/30:  64%|██████▍   | 408/636 [11:11<06:18,  1.66s/batch]Epoch 1/30:  64%|██████▍   | 409/636 [11:13<05:56,  1.57s/batch]Epoch 1/30:  64%|██████▍   | 410/636 [11:15<06:09,  1.64s/batch]Epoch 1/30:  65%|██████▍   | 411/636 [11:16<05:48,  1.55s/batch]Epoch 1/30:  65%|██████▍   | 412/636 [11:18<06:03,  1.62s/batch]Epoch 1/30:  65%|██████▍   | 413/636 [11:19<05:43,  1.54s/batch]Epoch 1/30:  65%|██████▌   | 414/636 [11:21<05:58,  1.62s/batch]Epoch 1/30:  65%|██████▌   | 415/636 [11:22<05:42,  1.55s/batch]Epoch 1/30:  65%|██████▌   | 416/636 [11:24<05:58,  1.63s/batch]Epoch 1/30:  66%|██████▌   | 417/636 [11:25<05:41,  1.56s/batch]Epoch 1/30:  66%|██████▌   | 418/636 [11:27<06:08,  1.69s/batch]Epoch 1/30:  66%|██████▌   | 419/636 [11:29<05:47,  1.60s/batch]Epoch 1/30:  66%|██████▌   | 420/636 [11:30<05:48,  1.61s/batch]Epoch 1/30:  66%|██████▌   | 421/636 [11:32<05:32,  1.54s/batch]Epoch 1/30:  66%|██████▋   | 422/636 [11:33<05:36,  1.57s/batch]Epoch 1/30:  67%|██████▋   | 423/636 [11:35<05:29,  1.55s/batch]Epoch 1/30:  67%|██████▋   | 424/636 [11:37<05:27,  1.55s/batch]Epoch 1/30:  67%|██████▋   | 425/636 [11:38<05:44,  1.63s/batch]Epoch 1/30:  67%|██████▋   | 426/636 [11:40<05:27,  1.56s/batch]Epoch 1/30:  67%|██████▋   | 427/636 [11:42<05:43,  1.64s/batch]Epoch 1/30:  67%|██████▋   | 428/636 [11:43<05:24,  1.56s/batch]Epoch 1/30:  67%|██████▋   | 429/636 [11:45<05:38,  1.63s/batch]tensor(5.7741, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0008, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8335, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0162, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6926, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9941, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9664, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1487, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1389, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1092, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7680, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0225, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0522, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2121, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1200, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9877, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0558, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9608, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1009, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7275, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0760, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2333, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0001, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8876, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8844, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8395, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9178, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7344, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0297, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0828, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0089, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9468, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8469, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2092, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8640, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9713, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0573, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0474, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7200, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9327, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7139, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1097, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8017, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0670, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9603, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9365, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5314, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1558, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0072, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7988, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0350, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6200, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0815, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9156, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8139, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8611, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0057, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8807, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7147, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9866, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6904, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0997, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8932, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8449, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1022, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1399, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8483, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9290, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7825, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9296, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9397, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8445, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9758, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8864, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0290, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0027, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1129, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8802, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2486, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9757, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0888, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8408, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0302, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9972, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7065, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0021, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8126, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7117, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0734, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8892, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7983, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7614, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9890, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1243, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6733, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0875, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8765, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0327, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9050, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1077, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7692, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0621, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0652, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6744, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9368, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9734, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7860, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9165, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0412, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0557, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0485, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6615, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9235, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9818, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0332, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0799, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0589, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7843, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9754, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0574, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0288, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8914, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0516, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8875, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8991, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9383, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0206, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0924, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7281, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8021, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9182, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9287, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0631, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9328, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1208, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0224, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7417, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7087, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6769, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8196, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6647, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7153, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7772, device='cuda:0', grad_fn=<MeanBackward0>)
-Epoch 1/30:  68%|██████▊   | 430/636 [11:46<05:19,  1.55s/batch]Epoch 1/30:  68%|██████▊   | 431/636 [11:48<05:35,  1.64s/batch]Epoch 1/30:  68%|██████▊   | 432/636 [11:49<05:17,  1.56s/batch]Epoch 1/30:  68%|██████▊   | 433/636 [11:51<05:38,  1.67s/batch]Epoch 1/30:  68%|██████▊   | 434/636 [11:53<05:20,  1.59s/batch]Epoch 1/30:  68%|██████▊   | 435/636 [11:54<05:32,  1.66s/batch]Epoch 1/30:  69%|██████▊   | 436/636 [11:56<05:17,  1.59s/batch]Epoch 1/30:  69%|██████▊   | 437/636 [11:58<05:17,  1.59s/batch]Epoch 1/30:  69%|██████▉   | 438/636 [11:59<05:06,  1.55s/batch]Epoch 1/30:  69%|██████▉   | 439/636 [12:01<05:07,  1.56s/batch]Epoch 1/30:  69%|██████▉   | 440/636 [12:02<05:24,  1.66s/batch]Epoch 1/30:  69%|██████▉   | 441/636 [12:04<05:10,  1.59s/batch]Epoch 1/30:  69%|██████▉   | 442/636 [12:06<05:29,  1.70s/batch]Epoch 1/30:  70%|██████▉   | 443/636 [12:07<05:12,  1.62s/batch]Epoch 1/30:  70%|██████▉   | 444/636 [12:09<05:23,  1.68s/batch]Epoch 1/30:  70%|██████▉   | 445/636 [12:11<05:37,  1.77s/batch]Epoch 1/30:  70%|███████   | 446/636 [12:12<05:16,  1.67s/batch]Epoch 1/30:  70%|███████   | 447/636 [12:15<05:38,  1.79s/batch]Epoch 1/30:  70%|███████   | 448/636 [12:16<05:13,  1.67s/batch]Epoch 1/30:  71%|███████   | 449/636 [12:18<05:09,  1.66s/batch]Epoch 1/30:  71%|███████   | 450/636 [12:19<05:00,  1.62s/batch]Epoch 1/30:  71%|███████   | 451/636 [12:21<04:54,  1.59s/batch]Epoch 1/30:  71%|███████   | 452/636 [12:22<05:06,  1.67s/batch]Epoch 1/30:  71%|███████   | 453/636 [12:24<05:04,  1.66s/batch]Epoch 1/30:  71%|███████▏  | 454/636 [12:26<05:21,  1.76s/batch]Epoch 1/30:  72%|███████▏  | 455/636 [12:27<04:57,  1.64s/batch]Epoch 1/30:  72%|███████▏  | 456/636 [12:29<05:03,  1.69s/batch]Epoch 1/30:  72%|███████▏  | 457/636 [12:31<04:45,  1.59s/batch]Epoch 1/30:  72%|███████▏  | 458/636 [12:32<04:45,  1.60s/batch]Epoch 1/30:  72%|███████▏  | 459/636 [12:34<04:34,  1.55s/batch]Epoch 1/30:  72%|███████▏  | 460/636 [12:35<04:35,  1.56s/batch]Epoch 1/30:  72%|███████▏  | 461/636 [12:37<04:47,  1.64s/batch]Epoch 1/30:  73%|███████▎  | 462/636 [12:39<04:32,  1.57s/batch]Epoch 1/30:  73%|███████▎  | 463/636 [12:40<04:45,  1.65s/batch]Epoch 1/30:  73%|███████▎  | 464/636 [12:42<04:30,  1.57s/batch]Epoch 1/30:  73%|███████▎  | 465/636 [12:44<04:43,  1.66s/batch]Epoch 1/30:  73%|███████▎  | 466/636 [12:45<04:27,  1.57s/batch]Epoch 1/30:  73%|███████▎  | 467/636 [12:47<04:30,  1.60s/batch]Epoch 1/30:  74%|███████▎  | 468/636 [12:48<04:19,  1.54s/batch]Epoch 1/30:  74%|███████▎  | 469/636 [12:50<04:25,  1.59s/batch]Epoch 1/30:  74%|███████▍  | 470/636 [12:52<04:37,  1.67s/batch]Epoch 1/30:  74%|███████▍  | 471/636 [12:53<04:22,  1.59s/batch]Epoch 1/30:  74%|███████▍  | 472/636 [12:55<04:32,  1.66s/batch]Epoch 1/30:  74%|███████▍  | 473/636 [12:56<04:17,  1.58s/batch]Epoch 1/30:  75%|███████▍  | 474/636 [12:58<04:34,  1.69s/batch]Epoch 1/30:  75%|███████▍  | 475/636 [13:00<04:15,  1.59s/batch]Epoch 1/30:  75%|███████▍  | 476/636 [13:01<04:22,  1.64s/batch]Epoch 1/30:  75%|███████▌  | 477/636 [13:03<04:06,  1.55s/batch]Epoch 1/30:  75%|███████▌  | 478/636 [13:04<04:19,  1.64s/batch]Epoch 1/30:  75%|███████▌  | 479/636 [13:06<04:07,  1.58s/batch]Epoch 1/30:  75%|███████▌  | 480/636 [13:08<04:24,  1.69s/batch]Epoch 1/30:  76%|███████▌  | 481/636 [13:09<04:08,  1.60s/batch]Epoch 1/30:  76%|███████▌  | 482/636 [13:11<04:11,  1.63s/batch]Epoch 1/30:  76%|███████▌  | 483/636 [13:12<03:58,  1.56s/batch]Epoch 1/30:  76%|███████▌  | 484/636 [13:14<04:03,  1.60s/batch]Epoch 1/30:  76%|███████▋  | 485/636 [13:16<04:17,  1.71s/batch]Epoch 1/30:  76%|███████▋  | 486/636 [13:17<04:01,  1.61s/batch]Epoch 1/30:  77%|███████▋  | 487/636 [13:19<04:21,  1.76s/batch]Epoch 1/30:  77%|███████▋  | 488/636 [13:21<04:03,  1.65s/batch]Epoch 1/30:  77%|███████▋  | 489/636 [13:23<04:18,  1.76s/batch]Epoch 1/30:  77%|███████▋  | 490/636 [13:24<03:59,  1.64s/batch]Epoch 1/30:  77%|███████▋  | 491/636 [13:26<04:01,  1.67s/batch]Epoch 1/30:  77%|███████▋  | 492/636 [13:27<03:47,  1.58s/batch]Epoch 1/30:  78%|███████▊  | 493/636 [13:29<03:49,  1.60s/batch]Epoch 1/30:  78%|███████▊  | 494/636 [13:31<04:02,  1.71s/batch]Epoch 1/30:  78%|███████▊  | 495/636 [13:32<03:50,  1.63s/batch]Epoch 1/30:  78%|███████▊  | 496/636 [13:34<03:56,  1.69s/batch]Epoch 1/30:  78%|███████▊  | 497/636 [13:36<03:42,  1.60s/batch]Epoch 1/30:  78%|███████▊  | 498/636 [13:38<03:56,  1.71s/batch]Epoch 1/30:  78%|███████▊  | 499/636 [13:39<03:43,  1.63s/batch]Epoch 1/30:  79%|███████▊  | 500/636 [13:41<03:44,  1.65s/batch]Epoch 1/30:  79%|███████▉  | 501/636 [13:42<03:32,  1.58s/batch]Epoch 1/30:  79%|███████▉  | 502/636 [13:44<03:37,  1.63s/batch]Epoch 1/30:  79%|███████▉  | 503/636 [13:46<03:38,  1.64s/batch]Epoch 1/30:  79%|███████▉  | 504/636 [13:47<03:28,  1.58s/batch]Epoch 1/30:  79%|███████▉  | 505/636 [13:49<03:37,  1.66s/batch]Epoch 1/30:  80%|███████▉  | 506/636 [13:50<03:26,  1.59s/batch]Epoch 1/30:  80%|███████▉  | 507/636 [13:52<03:35,  1.67s/batch]Epoch 1/30:  80%|███████▉  | 508/636 [13:54<03:22,  1.58s/batch]Epoch 1/30:  80%|████████  | 509/636 [13:56<03:42,  1.75s/batch]Epoch 1/30:  80%|████████  | 510/636 [13:57<03:25,  1.63s/batch]Epoch 1/30:  80%|████████  | 511/636 [13:59<03:24,  1.64s/batch]Epoch 1/30:  81%|████████  | 512/636 [14:00<03:14,  1.57s/batch]Epoch 1/30:  81%|████████  | 513/636 [14:02<03:19,  1.63s/batch]Epoch 1/30:  81%|████████  | 514/636 [14:04<03:26,  1.69s/batch]Epoch 1/30:  81%|████████  | 515/636 [14:05<03:12,  1.59s/batch]Epoch 1/30:  81%|████████  | 516/636 [14:07<03:19,  1.67s/batch]Epoch 1/30:  81%|████████▏ | 517/636 [14:08<03:08,  1.58s/batch]Epoch 1/30:  81%|████████▏ | 518/636 [14:10<03:16,  1.67s/batch]Epoch 1/30:  82%|████████▏ | 519/636 [14:12<03:05,  1.59s/batch]Epoch 1/30:  82%|████████▏ | 520/636 [14:14<03:17,  1.71s/batch]Epoch 1/30:  82%|████████▏ | 521/636 [14:15<03:06,  1.63s/batch]Epoch 1/30:  82%|████████▏ | 522/636 [14:17<03:09,  1.66s/batch]Epoch 1/30:  82%|████████▏ | 523/636 [14:18<03:01,  1.60s/batch]Epoch 1/30:  82%|████████▏ | 524/636 [14:20<02:59,  1.60s/batch]Epoch 1/30:  83%|████████▎ | 525/636 [14:22<03:09,  1.70s/batch]Epoch 1/30:  83%|████████▎ | 526/636 [14:23<02:57,  1.62s/batch]Epoch 1/30:  83%|████████▎ | 527/636 [14:25<03:07,  1.72s/batch]Epoch 1/30:  83%|████████▎ | 528/636 [14:26<02:55,  1.62s/batch]Epoch 1/30:  83%|████████▎ | 529/636 [14:28<03:03,  1.71s/batch]Epoch 1/30:  83%|████████▎ | 530/636 [14:30<02:50,  1.61s/batch]Epoch 1/30:  83%|████████▎ | 531/636 [14:31<02:50,  1.62s/batch]Epoch 1/30:  84%|████████▎ | 532/636 [14:33<02:42,  1.57s/batch]Epoch 1/30:  84%|████████▍ | 533/636 [14:34<02:41,  1.57s/batch]Epoch 1/30:  84%|████████▍ | 534/636 [14:36<02:51,  1.68s/batch]Epoch 1/30:  84%|████████▍ | 535/636 [14:38<02:40,  1.59s/batch]Epoch 1/30:  84%|████████▍ | 536/636 [14:40<02:44,  1.65s/batch]Epoch 1/30:  84%|████████▍ | 537/636 [14:41<02:35,  1.57s/batch]Epoch 1/30:  85%|████████▍ | 538/636 [14:43<02:47,  1.71s/batch]Epoch 1/30:  85%|████████▍ | 539/636 [14:44<02:40,  1.65s/batch]Epoch 1/30:  85%|████████▍ | 540/636 [14:46<02:47,  1.74s/batch]Epoch 1/30:  85%|████████▌ | 541/636 [14:48<02:37,  1.66s/batch]Epoch 1/30:  85%|████████▌ | 542/636 [14:50<02:39,  1.70s/batch]Epoch 1/30:  85%|████████▌ | 543/636 [14:52<02:46,  1.79s/batch]Epoch 1/30:  86%|████████▌ | 544/636 [14:53<02:34,  1.68s/batch]Epoch 1/30:  86%|████████▌ | 545/636 [14:55<02:37,  1.73s/batch]Epoch 1/30:  86%|████████▌ | 546/636 [14:56<02:27,  1.64s/batch]Epoch 1/30:  86%|████████▌ | 547/636 [14:58<02:33,  1.73s/batch]Epoch 1/30:  86%|████████▌ | 548/636 [15:00<02:22,  1.62s/batch]Epoch 1/30:  86%|████████▋ | 549/636 [15:01<02:26,  1.69s/batch]Epoch 1/30:  86%|████████▋ | 550/636 [15:03<02:19,  1.62s/batch]Epoch 1/30:  87%|████████▋ | 551/636 [15:05<02:17,  1.62s/batch]Epoch 1/30:  87%|████████▋ | 552/636 [15:06<02:18,  1.65s/batch]Epoch 1/30:  87%|████████▋ | 553/636 [15:08<02:11,  1.58s/batch]Epoch 1/30:  87%|████████▋ | 554/636 [15:10<02:16,  1.66s/batch]Epoch 1/30:  87%|████████▋ | 555/636 [15:11<02:08,  1.59s/batch]Epoch 1/30:  87%|████████▋ | 556/636 [15:13<02:12,  1.65s/batch]Epoch 1/30:  88%|████████▊ | 557/636 [15:14<02:03,  1.56s/batch]Epoch 1/30:  88%|████████▊ | 558/636 [15:16<02:06,  1.62s/batch]Epoch 1/30:  88%|████████▊ | 559/636 [15:17<01:58,  1.54s/batch]Epoch 1/30:  88%|████████▊ | 560/636 [15:19<02:05,  1.65s/batch]Epoch 1/30:  88%|████████▊ | 561/636 [15:21<01:58,  1.58s/batch]Epoch 1/30:  88%|████████▊ | 562/636 [15:23<02:04,  1.68s/batch]Epoch 1/30:  89%|████████▊ | 563/636 [15:24<01:57,  1.61s/batch]Epoch 1/30:  89%|████████▊ | 564/636 [15:26<01:56,  1.62s/batch]Epoch 1/30:  89%|████████▉ | 565/636 [15:27<01:53,  1.60s/batch]Epoch 1/30:  89%|████████▉ | 566/636 [15:29<01:51,  1.59s/batch]Epoch 1/30:  89%|████████▉ | 567/636 [15:31<01:54,  1.66s/batch]Epoch 1/30:  89%|████████▉ | 568/636 [15:32<01:48,  1.60s/batch]Epoch 1/30:  89%|████████▉ | 569/636 [15:34<01:52,  1.67s/batch]Epoch 1/30:  90%|████████▉ | 570/636 [15:35<01:45,  1.61s/batch]Epoch 1/30:  90%|████████▉ | 571/636 [15:37<01:52,  1.72s/batch]Epoch 1/30:  90%|████████▉ | 572/636 [15:39<01:44,  1.63s/batch]tensor(6.0459, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0595, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8172, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9369, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0819, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9384, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8717, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8419, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8056, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0231, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9234, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8992, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1835, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2288, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9279, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0858, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9154, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7183, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8411, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7353, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9454, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8028, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9132, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8410, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8875, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6186, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6594, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0493, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1341, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9702, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9820, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1964, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8955, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9188, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9186, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1894, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5962, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9371, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.2619, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8052, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0601, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9097, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9300, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9140, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6923, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9887, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0164, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6362, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8251, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8815, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7941, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9657, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6010, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8295, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.3157, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0481, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8529, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8308, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8171, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7462, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1542, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9064, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6554, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0228, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7627, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0172, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9162, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9591, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7001, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8533, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7598, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8482, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1305, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8955, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0286, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8008, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7206, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9557, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.3135, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9294, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9023, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9608, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7982, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9061, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7146, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8554, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5329, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6573, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9528, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0959, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7401, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6037, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5751, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7435, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1049, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6645, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7751, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7816, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7648, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0706, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8274, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8011, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0632, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9733, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8443, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0389, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1951, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9282, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7288, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9456, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8340, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6658, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0191, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1470, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0221, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8428, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0125, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8721, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9869, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9745, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8165, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1144, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8538, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7886, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8444, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9851, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7767, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6790, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0140, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9550, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1849, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9853, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1325, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8138, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8653, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.6840, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9239, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8181, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7120, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9936, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9042, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8555, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8081, device='cuda:0', grad_fn=<MeanBackward0>)
-Epoch 1/30:  90%|█████████ | 573/636 [15:41<01:47,  1.71s/batch]Epoch 1/30:  90%|█████████ | 574/636 [15:42<01:39,  1.60s/batch]Epoch 1/30:  90%|█████████ | 575/636 [15:44<01:41,  1.66s/batch]Epoch 1/30:  91%|█████████ | 576/636 [15:45<01:34,  1.57s/batch]Epoch 1/30:  91%|█████████ | 577/636 [15:47<01:33,  1.59s/batch]Epoch 1/30:  91%|█████████ | 578/636 [15:48<01:35,  1.64s/batch]Epoch 1/30:  91%|█████████ | 579/636 [15:50<01:32,  1.63s/batch]Epoch 1/30:  91%|█████████ | 580/636 [15:52<01:28,  1.58s/batch]Epoch 1/30:  91%|█████████▏| 581/636 [15:53<01:28,  1.60s/batch]Epoch 1/30:  92%|█████████▏| 582/636 [15:55<01:26,  1.61s/batch]Epoch 1/30:  92%|█████████▏| 583/636 [15:56<01:23,  1.57s/batch]Epoch 1/30:  92%|█████████▏| 584/636 [15:58<01:25,  1.65s/batch]Epoch 1/30:  92%|█████████▏| 585/636 [16:00<01:20,  1.58s/batch]Epoch 1/30:  92%|█████████▏| 586/636 [16:02<01:24,  1.69s/batch]Epoch 1/30:  92%|█████████▏| 587/636 [16:03<01:18,  1.60s/batch]Epoch 1/30:  92%|█████████▏| 588/636 [16:05<01:21,  1.70s/batch]Epoch 1/30:  93%|█████████▎| 589/636 [16:06<01:15,  1.61s/batch]Epoch 1/30:  93%|█████████▎| 590/636 [16:08<01:15,  1.65s/batch]Epoch 1/30:  93%|█████████▎| 591/636 [16:09<01:10,  1.56s/batch]Epoch 1/30:  93%|█████████▎| 592/636 [16:11<01:09,  1.59s/batch]Epoch 1/30:  93%|█████████▎| 593/636 [16:12<01:05,  1.52s/batch]Epoch 1/30:  93%|█████████▎| 594/636 [16:14<01:06,  1.58s/batch]Epoch 1/30:  94%|█████████▎| 595/636 [16:16<01:09,  1.69s/batch]Epoch 1/30:  94%|█████████▎| 596/636 [16:17<01:03,  1.60s/batch]Epoch 1/30:  94%|█████████▍| 597/636 [16:19<01:05,  1.69s/batch]Epoch 1/30:  94%|█████████▍| 598/636 [16:21<01:01,  1.62s/batch]Epoch 1/30:  94%|█████████▍| 599/636 [16:23<01:03,  1.73s/batch]Epoch 1/30:  94%|█████████▍| 600/636 [16:24<00:59,  1.64s/batch]Epoch 1/30:  94%|█████████▍| 601/636 [16:26<00:57,  1.64s/batch]Epoch 1/30:  95%|█████████▍| 602/636 [16:27<00:53,  1.56s/batch]Epoch 1/30:  95%|█████████▍| 603/636 [16:29<00:53,  1.62s/batch]Epoch 1/30:  95%|█████████▍| 604/636 [16:31<00:54,  1.70s/batch]Epoch 1/30:  95%|█████████▌| 605/636 [16:32<00:49,  1.61s/batch]Epoch 1/30:  95%|█████████▌| 606/636 [16:34<00:50,  1.68s/batch]Epoch 1/30:  95%|█████████▌| 607/636 [16:36<00:47,  1.64s/batch]Epoch 1/30:  96%|█████████▌| 608/636 [16:37<00:47,  1.69s/batch]Epoch 1/30:  96%|█████████▌| 609/636 [16:39<00:44,  1.64s/batch]Epoch 1/30:  96%|█████████▌| 610/636 [16:41<00:42,  1.62s/batch]Epoch 1/30:  96%|█████████▌| 611/636 [16:42<00:43,  1.72s/batch]Epoch 1/30:  96%|█████████▌| 612/636 [16:44<00:40,  1.69s/batch]Epoch 1/30:  96%|█████████▋| 613/636 [16:46<00:41,  1.79s/batch]Epoch 1/30:  97%|█████████▋| 614/636 [16:48<00:37,  1.72s/batch]Epoch 1/30:  97%|█████████▋| 615/636 [16:50<00:37,  1.77s/batch]Epoch 1/30:  97%|█████████▋| 616/636 [16:52<00:38,  1.94s/batch]Epoch 1/30:  97%|█████████▋| 616/636 [16:53<00:32,  1.65s/batch]
-tensor(5.7443, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0221, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8293, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0587, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9136, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0785, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9475, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8007, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7516, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8361, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0172, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8811, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0943, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7285, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9247, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7590, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0415, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8828, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1622, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0468, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0073, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8311, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0955, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0433, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1591, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9625, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7390, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8331, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5144, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5384, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0883, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8251, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.7566, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0843, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.8052, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.1760, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5891, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0416, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5914, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9755, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.9082, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0427, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(5.5995, device='cuda:0', grad_fn=<MeanBackward0>)
-tensor(6.0694, device='cuda:0', grad_fn=<MeanBackward0>)
-Traceback (most recent call last):
-  File "/root/Distillation/src/train.py", line 143, in <module>
-    t_negative_features = model_T(negative_images)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/Distillation/src/models/Teachers/CLIP.py", line 42, in forward
-    clip_output = self.clip_model(x)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 1170, in forward
-    return self.vision_model(
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 1096, in forward
-    encoder_outputs = self.encoder(
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 876, in forward
-    layer_outputs = encoder_layer(
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 617, in forward
-    hidden_states = self.mlp(hidden_states)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 573, in forward
-    hidden_states = self.activation_fn(hidden_states)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/activations.py", line 96, in forward
-    return input * torch.sigmoid(1.702 * input)
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 72.00 MiB. GPU 0 has a total capacity of 47.50 GiB of which 42.56 MiB is free. Process 12634 has 30.90 GiB memory in use. Including non-PyTorch memory, this process has 14.18 GiB memory in use. Process 13735 has 2.35 GiB memory in use. Of the allocated memory 13.37 GiB is allocated by PyTorch, and 364.43 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

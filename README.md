@@ -352,4 +352,15 @@ tensorboard --logdir=../output/tensorboard_logs
 
 
 
+|序号| Model            | Top-1 Accuracy |
+|--|------------------|----------------|
+|1| MVCNN_CLIP（CLIP微调       | 0.6068         |
+|2| MV_AlexNet （直接训练      | 0.4557         |
+|3| MV_AlexNet_dis（直接蒸馏   | 0.1711         |
+|4| MV_AlexNet_dis_Pre（基于2蒸馏 | 0.4137         |
+
+
+
+
+但现在预训练和蒸馏用的都是同样的数据集，我看MVCNN预训练用的ImageNet1K
 

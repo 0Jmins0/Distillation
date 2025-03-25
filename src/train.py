@@ -3,7 +3,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
 from models.Teachers.CLIP import MV_CLIP
-from models.Students.MVAlexNet import MV_AlexNet
+from models.Students.MVAlexNet import MV_AlexNet, MV_AlexNet_Pre
 from dataset.dataset import MultiViewDataset
 from torchvision import transforms
 from utils import TripletLoss, RelationDisLoss, read_tensorboard_data,plot_tensorboard_data
@@ -17,7 +17,7 @@ from torch.optim.lr_scheduler import StepLR
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
-parser.add_argument("--batch_size", type=int, default=16, help="Batch size for training (default: 10)")
+parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training (default: 10)")
 parser.add_argument("--num_epochs", type=int, default=15, required=True, help="Number of epochs to train (default: 1)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
@@ -66,15 +66,25 @@ elif args.model_name == "MVCLIP_MLP":
     {"params": model.net_2.parameters(), "lr": args.lr}   # 新增层高学习率
 ])
 elif args.model_name == "MV_AlexNet":
-    model = MV_AlexNet(num_views = args.num_views).to(device)
+    print("Training MV_AlexNet")
+    model = MV_AlexNet(num_views = args.num_views, is_dis = False).to(device)
     criterion = TripletLoss(margin = 0.5)
     optimizer = optim.Adam([
-    {"params": model.features.features.parameters(), "lr": 1e-4},
-    {"params": model.features.fc_features.parameters(), "lr": args.lr},
+    {"params": model.features.features.parameters(), "lr": 1e-6},
+    # {"params": model.features.fc_features.parameters(), "lr": args.lr},
+    {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
+])
+elif args.model_name == "MV_AlexNet_dis_Pre":
+    print("Training MV_AlexNet_dis_Pre")
+    model = MV_AlexNet(num_views = args.num_views, is_dis = True).to(device)
+    criterion = RelationDisLoss(dis_margin = 1.0, ang_margin = 0.2)
+    optimizer = optim.Adam([
+    {"params": model.features.features.parameters(), "lr": 1e-6},
     {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
 ])
 elif args.model_name == "MV_AlexNet_dis":
-    model = MV_AlexNet(num_views = args.num_views, is_dis = True).to(device)
+    print("Training MV_AlexNet_dis")
+    model = MV_AlexNet(num_views = args.num_views, is_dis = True, is_pre = False).to(device)
     criterion = RelationDisLoss(dis_margin = 1.0, ang_margin = 0.2)
     optimizer = optim.Adam([
     {"params": model.features.features.parameters(), "lr": 1e-6},
@@ -85,7 +95,6 @@ elif args.model_name == "MV_AlexNet_dis":
 scheduler = StepLR(optimizer, step_size=4, gamma=0.5)  # 每 5 个 epoch 学习率乘以 0.1
 
 model_path = f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
-
 
 # 确保保存模型的目录存在
 os.makedirs(os.path.dirname(model_path), exist_ok=True)
@@ -142,7 +151,7 @@ for epoch in range(start_epoch + 1, num_epochs):
         t_positive_features = model_T(positive_images)
         t_negative_features = model_T(negative_images)
 
-        if args.model_name == "MV_AlexNet_dis":
+        if args.model_name == "MV_AlexNet_dis" or args.model_name == "MV_AlexNet_dis_Pre":
             loss = criterion(t_anchor_features, t_positive_features, t_negative_features,anchor_features, positive_features, negative_features)
         else:  
             loss = criterion(anchor_features, positive_features, negative_features)
@@ -154,7 +163,7 @@ for epoch in range(start_epoch + 1, num_epochs):
         #         print(f"Gradient of {name}: {param.grad.norm().item():.4f}")
 
 
-        print(loss)
+        # print(loss)
         optimizer.step()
         epoch_loss += loss.item()
 

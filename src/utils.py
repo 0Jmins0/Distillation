@@ -66,13 +66,13 @@ class RelationDisLoss(nn.Module):
 
         inner_losses = 0
         len_dim = s_anchor.size()[1]
-        for t in range(1, len_dim): # 全局特征cls没有内部的距离
+        for t in range(0, len_dim): # 全局特征cls没有内部的距离
             anchor_t = s_anchor[:, t, :]
             positive_t = s_positive[:, t, :]
             negative_t = s_negative[:, t, :]
             inner_losses += self.triplet_loss(anchor_t, positive_t, negative_t)
 
-        inner_losses /= (len_dim - 1)
+        inner_losses /= len_dim
 
         Loss = (dis_pos + dis_neg + cos_pos + cos_neg ) / len_dim + inner_losses
         # print("Loss",Loss.shape)
@@ -127,7 +127,7 @@ def retrieve_images(query_features, features, image_paths, model, top_k = 5, tra
     # print(query_features.shape, features.shape)
     similarities = cosine_similarity(query_features, features).flatten()
 
-    top_indices = np.argsort(similarities)[-top_k:][::-1]
+    top_indices = np.argsort(similarities)[-top_k - 1:-1][::-1]
 
     return [(image_paths[i], similarities[i]) for i in top_indices]
 
