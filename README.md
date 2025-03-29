@@ -352,12 +352,12 @@ tensorboard --logdir=../output/tensorboard_logs
 
 
 
-|序号| Model            | Top-1 Accuracy |
-|--|------------------|----------------|
-|1| MVCNN_CLIP（CLIP微调       | 0.6068         |
-|2| MV_AlexNet （直接训练      | 0.4557         |
-|3| MV_AlexNet_dis（直接蒸馏   | 0.1711         |
-|4| MV_AlexNet_dis_Pre（基于2蒸馏 | 0.4137         |
+| 序号 | Model                     | Top-1 Accuracy (DU) | Top-1 Accuracy (DS) |
+|------|---------------------------|--------------------|--------------------|
+| 1    | MVCNN_CLIP（CLIP微调）     | 0.6068             | 0.6775             |
+| 2    | MV_AlexNet（直接训练）     | 0.4557             | 0.5286             |
+| 3    | MV_AlexNet_dis（直接蒸馏） | 0.1711             | 0.2246             |
+| 4    | MV_AlexNet_dis_Pre（基于2蒸馏） | 0.4137             | 0.4934             |
 
 
 

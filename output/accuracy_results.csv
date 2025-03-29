@@ -1,5 +1,11 @@
-Model,Epochs,Learning Rate,Batch Size,Top-1 Accuracy
-MVCNN_CLIP,19,1e-06,16,0.6068
-MV_AlexNet,14,1e-06,8,0.4557
-MV_AlexNet_dis,14,1e-06,8,0.1711
-MV_AlexNet_dis_Pre,14,1e-06,8,0.4137
+Model,Epochs,Learning Rate,Batch Size,Top-1 Accuracy, DU/DS,
+
+MVCNN_CLIP,19,1e-06,16,0.6068,DU
+MV_AlexNet,14,1e-06,8,0.4557,DU
+MV_AlexNet_dis,14,1e-06,8,0.1711,DU
+MV_AlexNet_dis_Pre,14,1e-06,8,0.4137,DS
+
+MV_AlexNet_dis,14,1e-06,8,0.2246,DS
+MV_AlexNet_dis_Pre,14,1e-06,8,0.4934,DS
+MV_AlexNet,14,1e-06,8,0.5286,DS
+MVCNN_CLIP,19,1e-06,16,0.6775,DS

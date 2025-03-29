@@ -48,7 +48,7 @@ class MultiViewDataset(Dataset):
         negative_instance = random.choice(self.instances)
         if random.random() < 0.5:
         # 保证不同类或者同类但不同实例
-            while negative_instance[0] == cls and negative_instance[1] == instance:
+            while negative_instance[0] == cls :
                 negative_instance = random.choice(self.instances)
         else:# 同类但不同实例
             while negative_instance[0] != cls or (negative_instance[0] == cls and negative_instance[1] == instance):
