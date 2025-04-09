@@ -1,6 +1,114 @@
 # Distillation
 [Github仓库](https://github.com/0Jmins0/Distillation)
 
+
+
+
+
+# TODO LIST
+## 阶段一：项目初步构建
+* 【已完成】数据集重构代码
+* 【已完成】数据集类定义代码
+* 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
+* 【已完成】训练代码
+* 【已完成】评估代码
+* 【已完成】其他（utils）
+* 【已完成】整理代码
+* 快速训练/测试脚本(jupyter-notebook)
+* 可视化脚本(jupyter-notebook)
+* 【已完成】具体的网络结构设计   
+* 【已完成】具体的LOSS的设计
+* 【已完成】学生模型定义
+* 【已完成】教师模型定义
+* 【已完成】蒸馏的损失函数
+* 【已完成】蒸馏的训练代码
+* 【已完成】初步实验效果
+## 阶段二：进一步修改
+* 由 2D to 2D 改成 3D to 3D
+* 评测标准MAP
+* 预训练尝试改成ImageNet1K
+* CLIP在这个问题上表现一般，试试蒸SAM或者DINOv2
+* 利用clip text文本
+
+
+## 服务器
+### 配置
+* 型号
+    GeForce RTX 3090 (24G)
+* 系统镜像
+    ```
+    No LSB modules are available.
+    Distributor ID: Ubuntu
+    Description:    Ubuntu 20.04.6 LTS
+    Release:        20.04
+    Codename:       focal
+    ```
+* 带宽
+    * 32 50kb/s
+    * 100 2Mb/s 0.2/h
+    * 200 22.8Mb/S 0.5/h  15min 17G
+### 快捷搭建
+```
+git clone https://github.com/0Jmins0/Distillation.git
+cd Distillation/
+conda env create -f environment.yml
+
+### 40min
+sudo apt-get install aria2
+aria2c -x 16 -s 16 http://pan.blockelite.cn:15021/web/client/pubshares/rCc6ewhu3MJw4aDFDwhe5E -o /data
+
+
+wget -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/
+web/client/pubshares/kA2TCzPGecYakeRkDARsBP?compress=false"
+
+### 48min
+nohup wget -O /root/workspace/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false" &
+### 下载中断，可继续
+wget -c -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false"
+### 查看是否下载完成
+tail -n 10 nohup.out
+
+mkdir -p /root/Distillation/data/model40_180
+unzip /root/Distillation/data -d /root/Distillation/data/model40_180
+unzip /root/Distillation/data/data_model40_180/ModelNet40-Images-180.zip -d /root/Distillation/data/data_model40_180
+
+conda activate Distillation
+cd src
+
+python rebuild_dataset.py
+python train.py
+
+git add src
+git config --global user.name "HiHi"
+git config --global user.email "3234252073@qq.com"
+
+git add src
+git add models/train_models/base/MVCNN_CLIP/tensorboard_logs/
+
+git commit -m 'first'
+git push
+```
+
+### 训练
+```
+nohup python train.py > train_output.log 2>&1 &
+
+# 从头训练MV_AlexNet_dis
+
+python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0
+
+nohup python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0 --batch_size 16 >train_output_16.log 2>&1 &
+
+
+nohup python feature_extraction.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
+
+nohup python evaluate.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
+
+# 监控loss变化
+tensorboard --logdir=../output/tensorboard_logs
+```
+
+
 ## 实验记录
 ### 01 (Clip layer12 + 3 * 线性层)
 ```python
@@ -108,26 +216,6 @@ self.fc = nn.Linear(self.feature_len, 1024)
 
 ![alt text](backbone.png)
 
-
-
-# TODO LIST
-* 【已完成】数据集重构代码
-* 【已完成】数据集类定义代码
-* 【已完成/有疑问】MVCNN_CLIP 的模型定义代码
-* 【已完成】训练代码
-* 【已完成】评估代码
-* 【已完成】其他（utils）
-* 【已完成】整理代码
-* 快速训练/测试脚本(jupyter-notebook)
-* 可视化脚本(jupyter-notebook)
-* 【50%】具体的网络结构设计   
-* 【已完成】具体的LOSS的设计
-* 学生模型定义
-* 教师模型定义
-* 蒸馏的损失函数
-* 蒸馏的训练代码
-
-
 # 问题设定
 多视图的特征学习（CLIP->关系蒸馏到CLIP里）+ 图像检索
 # Q & A
@@ -203,82 +291,7 @@ self.fc = nn.Linear(self.feature_len, 1024)
 4. 创建环境 `conda env create -f environment.yml`
 
 
-## 服务器
-### 配置
-* 型号
-    GeForce RTX 3090 (24G)
-* 系统镜像
-    ```
-    No LSB modules are available.
-    Distributor ID: Ubuntu
-    Description:    Ubuntu 20.04.6 LTS
-    Release:        20.04
-    Codename:       focal
-    ```
-* 带宽
-    * 32 50kb/s
-    * 100 2Mb/s 0.2/h
-    * 200 22.8Mb/S 0.5/h  15min 17G
-### 快捷搭建
-```
-git clone https://github.com/0Jmins0/Distillation.git
-cd Distillation/
-conda env create -f environment.yml
 
-### 40min
-sudo apt-get install aria2
-aria2c -x 16 -s 16 http://pan.blockelite.cn:15021/web/client/pubshares/rCc6ewhu3MJw4aDFDwhe5E -o /data
-
-
-wget -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/
-web/client/pubshares/kA2TCzPGecYakeRkDARsBP?compress=false"
-
-### 48min
-nohup wget -O /root/workspace/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false" &
-### 下载中断，可继续
-wget -c -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false"
-### 查看是否下载完成
-tail -n 10 nohup.out
-
-mkdir -p /root/Distillation/data/model40_180
-unzip /root/Distillation/data -d /root/Distillation/data/model40_180
-unzip /root/Distillation/data/data_model40_180/ModelNet40-Images-180.zip -d /root/Distillation/data/data_model40_180
-
-conda activate Distillation
-cd src
-
-python rebuild_dataset.py
-python train.py
-
-git add src
-git config --global user.name "HiHi"
-git config --global user.email "3234252073@qq.com"
-
-git add src
-git add models/train_models/base/MVCNN_CLIP/tensorboard_logs/
-
-git commit -m 'first'
-git push
-```
-
-### 训练
-```
-nohup python train.py > train_output.log 2>&1 &
-
-# 从头训练MV_AlexNet_dis
-
-python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0
-
-nohup python train.py --model_name MV_AlexNet_dis --num_epochs 15 --model_num 0 --batch_size 16 >train_output_16.log 2>&1 &
-
-
-nohup python feature_extraction.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
-
-nohup python evaluate.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
-
-# 监控loss变化
-tensorboard --logdir=../output/tensorboard_logs
-```
 
 
 
@@ -352,15 +365,6 @@ tensorboard --logdir=../output/tensorboard_logs
 
 
 
-| 序号 | Model                     | Top-1 Accuracy (DU) | Top-1 Accuracy (DS) |
-|------|---------------------------|--------------------|--------------------|
-| 1    | MVCNN_CLIP（CLIP微调）     | 0.6068             | 0.6775             |
-| 2    | MV_AlexNet（直接训练）     | 0.4557             | 0.5286             |
-| 3    | MV_AlexNet_dis（直接蒸馏） | 0.1711             | 0.2246             |
-| 4    | MV_AlexNet_dis_Pre（基于2蒸馏） | 0.4137             | 0.4934             |
 
 
-
-
-但现在预训练和蒸馏用的都是同样的数据集，我看MVCNN预训练用的ImageNet1K
 
