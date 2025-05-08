@@ -97,4 +97,34 @@ def split_instance(class_dir = "../data/ModelNet_random_30/plane", output_train_
         os.makedirs(os.path.dirname(dst_instance_dir), exist_ok = True)
         shutil.copytree(src_instance_dir,dst_instance_dir)
 
-dataset_process()
+def select_query_instance():
+    # 数据根目录
+    root_dir = "/home/xyzhang/project/Distillation/data/ModelNet_random_30_final/DS/retrieval"
+
+    # 输出query文件夹路径
+    query_dir = "/home/xyzhang/project/Distillation/data/ModelNet_random_30_final/DS/query"
+    os.makedirs(query_dir, exist_ok=True)
+    
+    for category in os.listdir(root_dir):
+        category_path = os.path.join(root_dir, category)
+        if os.path.isdir(category_path):
+            instances =  [os.path.join(category_path, instance) for instance in os.listdir(category_path) if os.path.isdir(os.path.join(category_path, instance))]
+
+            if len(instances) < 4: 
+                print("类别实例数量不足，跳过该类别:", category)
+                continue
+            # 随机选择两个实例
+            selected_instances = random.sample(instances, 4)
+
+            target_category_dir = os.path.join(query_dir, category)
+            os.makedirs(target_category_dir, exist_ok=True)
+
+            for instance in selected_instances:
+                instance_name = os.path.basename(instance)
+                target_instance_dir = os.path.join(target_category_dir, instance_name)
+                # os.makedirs(target_instance_dir, exist_ok=True)
+                print(instance, target_category_dir)
+                shutil.move(instance, target_category_dir)
+                print(f"已复制实例 {instance} 到 {target_instance_dir}")
+# dataset_process()
+select_query_instance()

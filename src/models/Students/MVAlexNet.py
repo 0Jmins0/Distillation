@@ -23,6 +23,7 @@ class BaseFeatureNet(nn.Module):
         return dummy_output.view(dummy_output.size(0), -1).size(1)
     
     def forward(self, x):
+        # print(x.size())
         # 获取输入张量的维度
         N,C,H,W = x.size()
         # 将输入张量展平，使其维度为(N*self.num_views, C, H, W)
@@ -103,7 +104,7 @@ class MV_AlexNet(nn.Module):
             self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
             self.retrieval = AlexNet_Adapter()
         else:
-            self.features = self.load_pretrained_model(num_views, "/home/xyzhang/project/Distillation/models/train_models/base/MV_AlexNet/epochs_14_lr_1e-06_batch_8.pth")
+            self.features = self.load_pretrained_model(num_views, "/home/xyzhang/project/Distillation/models/train_models/OS-NTU-core/MV_AlexNet/epochs_14_lr_1e-06_batch_8.pth")
             for param in self.features.parameters():
                 param.requires_grad = False
             self.retrieval = AlexNet_Adapter()

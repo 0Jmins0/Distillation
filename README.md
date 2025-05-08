@@ -24,8 +24,12 @@
 * 【已完成】蒸馏的训练代码
 * 【已完成】初步实验效果
 ## 阶段二：进一步修改
-* 由 2D to 2D 改成 3D to 3D
-* 评测标准MAP
+* 【2025.4.3】由 2D to 2D 改成 3D to 3D
+* 【2025.3.30】数据集处理修改，负样本改成不同类别
+* 【2025.4.7】测试变成3D
+* 【2025.4.9】评测标准MAP
+* 降低特征维度: 50 * 256 -> 4096
+* 重新训练模型 num_views = 12
 * 预训练尝试改成ImageNet1K
 * CLIP在这个问题上表现一般，试试蒸SAM或者DINOv2
 * 利用clip text文本
@@ -78,7 +82,7 @@ cd src
 python rebuild_dataset.py
 python train.py
 
-git add src
+git add src output README.md pre.md
 git config --global user.name "HiHi"
 git config --global user.email "3234252073@qq.com"
 

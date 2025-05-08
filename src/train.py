@@ -1,9 +1,11 @@
+import random
+import numpy as np
 import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
 from models.Teachers.CLIP import MV_CLIP
-from models.Students.MVAlexNet import MV_AlexNet, MV_AlexNet_Pre
+from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import MultiViewDataset
 from torchvision import transforms
 from utils import TripletLoss, RelationDisLoss, read_tensorboard_data,plot_tensorboard_data
@@ -21,13 +23,24 @@ parser.add_argument("--batch_size", type=int, default=8, help="Batch size for tr
 parser.add_argument("--num_epochs", type=int, default=15, required=True, help="Number of epochs to train (default: 1)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
-parser.add_argument("--num_views", type=int, default=15, help="Number of views for MVCNN (default: 10)")
+parser.add_argument("--num_views", type=int, default=12, help="Number of views for MVCNN (default: 10)")
 parser.add_argument("--data_root", type=str, default="../data/ModelNet_random_30_final/DS/train", help="Root directory of the dataset (default: ../data/ModelNet_random_30_final/DS/train)")
 parser.add_argument("--model_num", type=str, default=0, required=True,help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
 parser.add_argument("--model_name", type=str, default="MVCLIP_MLP", required=True, help="The name of the model")
+parser.add_argument("--train_data", type=str, default="OS-NTU-core", help="The name of the train data")
+
 args = parser.parse_args()
 
+def set_seed(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)  # 如果使用多GPU
+    torch.backends.cudnn.deterministic = True  # 确保CuDNN使用确定性算法
+    torch.backends.cudnn.benchmark = False  # 关闭CuDNN的自动优化（避免不确定性）
 
+set_seed(2025)  # 可以改成你想要的种子值（如 2023, 1234 等）
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -38,7 +51,9 @@ transform = transforms.Compose([
 ])
 
 print("loading train data.......")
-train_dataset = MultiViewDataset(root_dir="../data/ModelNet_random_30_final/DS/train",transform=transform, num_views=args.num_views)
+# train_dataset = MultiViewDataset(root_dir="../data/ModelNet_random_30_final/DS/train",transform=transform, num_views=args.num_views)
+train_dataset = MultiViewDataset(root_dir=f"../data/{args.train_data}/train",transform=transform, num_views=args.num_views)
+
 train_loader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle=True)
 
 model_T = MV_CLIP(num_views = args.num_views).to(device)
@@ -94,7 +109,7 @@ elif args.model_name == "MV_AlexNet_dis":
 # 添加学习率调度器
 scheduler = StepLR(optimizer, step_size=4, gamma=0.5)  # 每 5 个 epoch 学习率乘以 0.1
 
-model_path = f"../models/train_models/base/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
+model_path = f"../models/train_models/{args.train_data}/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
 
 # 确保保存模型的目录存在
 os.makedirs(os.path.dirname(model_path), exist_ok=True)
@@ -117,7 +132,7 @@ else:
     start_step = 0
 
 # tensorboard
-log_dir = f"../output/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../output/tensorboard_logs/{args.train_data}/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 os.makedirs(log_dir, exist_ok=True)
 
 # 检查日志文件是否存在
@@ -150,6 +165,8 @@ for epoch in range(start_epoch + 1, num_epochs):
         t_anchor_features = model_T(anchor_images)
         t_positive_features = model_T(positive_images)
         t_negative_features = model_T(negative_images)
+
+        # print("anchor_features", anchor_features.shape) # anchor_features torch.Size([32, 768])
 
         if args.model_name == "MV_AlexNet_dis" or args.model_name == "MV_AlexNet_dis_Pre":
             loss = criterion(t_anchor_features, t_positive_features, t_negative_features,anchor_features, positive_features, negative_features)
@@ -187,7 +204,7 @@ for epoch in range(start_epoch + 1, num_epochs):
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
         'scheduler_state_dict': scheduler.state_dict() 
-    }, f"../models/train_models/base/{args.model_name}/epochs_{epoch}_lr_{args.lr}_batch_{args.batch_size}.pth")
+    }, f"../models/train_models/{args.train_data}/{args.model_name}/epochs_{epoch}_lr_{args.lr}_batch_{args.batch_size}.pth")
 
     # 将每个 epoch 的平均损失写入 TensorBoard
     writer.add_scalar("Loss/train_epoch", epoch_loss, epoch)
@@ -196,21 +213,21 @@ for epoch in range(start_epoch + 1, num_epochs):
 writer.close()
 
 # 定义日志路径和标签
-log_dir = f"../output/tensorboard_logs/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../output/tensorboard_logs/{args.train_data}/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
 tag = "Loss/train_epoch"
 
 # 读取 TensorBoard 数据
 try:
     data = read_tensorboard_data(log_dir, tag)
     # 绘制并保存图表
-    os.makedirs(f"../output/Loss_curve/", exist_ok=True)
+    os.makedirs(f"../output/Loss_curve/{args.train_data}/", exist_ok=True)
     plot_tensorboard_data(
         data,
         title="Training Loss Over Epochs",
         xlabel="Epoch",
         ylabel="Loss",
-        save_path=f"../output/Loss_curve/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
+        save_path=f"../output/Loss_curve/{args.train_data}/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
     )
-    print(f"Loss curve saved to ../output/Loss_curve/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png")
+    print(f"Loss curve saved to ../output/Loss_curve/{args.train_data}/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png")
 except ValueError as e:
     print(e)

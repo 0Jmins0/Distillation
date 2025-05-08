@@ -120,6 +120,7 @@ def retrieve_images(query_features, features, image_paths, model, top_k = 5, tra
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    # print("q", query_features.shape, "f", features.shape)
     # query_image = transform(query_image).unsqueeze(0).to(device) # 因为model是4维带有批次的，所以要加一个维度
     # query_features = model(query_image).detach().cpu().numpy()
 
@@ -127,7 +128,11 @@ def retrieve_images(query_features, features, image_paths, model, top_k = 5, tra
     # print(query_features.shape, features.shape)
     similarities = cosine_similarity(query_features, features).flatten()
 
-    top_indices = np.argsort(similarities)[-top_k - 1:-1][::-1]
+    top_indices = np.argsort(similarities)[-top_k:][::-1]
+
+    # print(top_indices)
+
+    # print("top_indices", len(image_paths),len(similarities), len(top_indices))
 
     return [(image_paths[i], similarities[i]) for i in top_indices]
 
