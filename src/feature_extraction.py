@@ -26,13 +26,13 @@ def custom_collate_fn(batch):
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Extract features using MVCNN_CLIP model")
-parser.add_argument("--model_name", type=str, default="MVCNN_CLIP", help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
+parser.add_argument("--model_name", type=str, default="MV_AlexNet_dis_Pre", help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
 parser.add_argument("--model_num", type=str, default="14", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
 parser.add_argument("--batch_size", type=int, default=8, help="Batch size for feature extraction")
 parser.add_argument("--num_views", type=int, default=12, help="Number of views for MVCNN (default: 1)")
-parser.add_argument("--test_dataset",type=str, default="OS-NTU-core", help="DU or DS")
-parser.add_argument("--train_data", type=str, default="OS-NTU-core", help="The name of the train data")
+parser.add_argument("--test_dataset",type=str, default="OS-ABO-core", help="DU or DS")
+parser.add_argument("--train_data", type=str, default="OS-ABO-core", help="The name of the train data")
 args = parser.parse_args()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

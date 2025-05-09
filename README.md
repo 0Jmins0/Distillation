@@ -34,6 +34,20 @@
 * CLIP在这个问题上表现一般，试试蒸SAM或者DINOv2
 * 利用clip text文本
 
+## 阶段三：实验
+1. 四个数据集上的分别训练和测试（map、NDVG、ANMRR）
+2. 重新分配MN40，为20可见，20不可见，重新训练模型，并分别看效果
+3. 检索的视图数量减少为4 
+4. 重新划分可见/不可见类别的比例并训练 
+5. 跨数据集测试，使用MN40训练，ABO测试 
+## 实验
+1. 视图消融：用现有模型，改变检索测试时输入的视图数量
+2. real and virtual：在MN40训练，在ABO检索 VS 在ABO训练，在MN40检索 
+3. seen and unseen：重新划分mn40为20可见，20不可见，重新训练，分别看可见和不可见的效果
+4. Cross-dataset：用现有模型（MN40core训练），在ABOcore上测试检索，
+5. visualization：可视化
+
+
 
 ## 服务器
 ### 配置
@@ -66,7 +80,7 @@ wget -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockel
 web/client/pubshares/kA2TCzPGecYakeRkDARsBP?compress=false"
 
 ### 48min
-nohup wget -O /root/workspace/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false" &
+wget -O /root/workspace/Distillation/data/OS-ABO-core.zip "http://pan.blockelite.cn:15021/web/client/pubshares/UPJ3T59vYbr9DM6xiBkGcB?compress=false"
 ### 下载中断，可继续
 wget -c -O /root/Distillation/data/ModelNet_random_30_final.zip "http://pan.blockelite.cn:15021/web/client/pubshares/MhwSJSPtbxtBuR26myvRtg?compress=false"
 ### 查看是否下载完成
@@ -74,7 +88,8 @@ tail -n 10 nohup.out
 
 mkdir -p /root/Distillation/data/model40_180
 unzip /root/Distillation/data -d /root/Distillation/data/model40_180
-unzip /root/Distillation/data/data_model40_180/ModelNet40-Images-180.zip -d /root/Distillation/data/data_model40_180
+
+unzip /root/Distillation/data/OS-ABO-core.zip -d /root/Distillation/data/OS-ABO-core
 
 conda activate Distillation
 cd src

@@ -77,6 +77,55 @@ class RelationDisLoss(nn.Module):
         Loss = (dis_pos + dis_neg + cos_pos + cos_neg ) / len_dim + inner_losses
         # print("Loss",Loss.shape)
         return Loss.mean()
+import torch
+import torch.nn as nn
+
+class SimpleFeatureDistillationLoss(nn.Module):
+    def __init__(self):
+        super(SimpleFeatureDistillationLoss, self).__init__()
+        self.mse_loss = nn.MSELoss()
+
+    def forward(self,t_anchor, t_positive, t_negative, s_anchor, s_positive, s_negative): 
+        """
+        计算教师模型和学生模型特征之间的均方误差损失。
+        
+        参数:
+        t_anchor (torch.Tensor): 教师模型的锚点特征，形状为 (batch_size, seq_len, feature_dim)
+        t_positive (torch.Tensor): 教师模型的正样本特征，形状为 (batch_size, seq_len, feature_dim)
+        t_negative (torch.Tensor): 教师模型的负样本特征，形状为 (batch_size, seq_len, feature_dim)
+        s_anchor (torch.Tensor): 学生模型的锚点特征，形状为 (batch_size, seq_len, feature_dim)
+        s_positive (torch.Tensor): 学生模型的正样本特征，形状为 (batch_size, seq_len, feature_dim)
+        s_negative (torch.Tensor): 学生模型的负样本特征，形状为 (batch_size, seq_len, feature_dim)
+        
+        返回:
+        torch.Tensor: 特征蒸馏损失
+        """
+        # 初始化总损失
+        total_loss = 0.0
+
+        # 获取序列长度
+        seq_len = t_anchor.size(1)
+
+        # 逐个时间步计算损失
+        for t in range(seq_len):
+            # 提取当前时间步的特征
+            t_anchor_t = t_anchor[:, t, :]
+            s_anchor_t = s_anchor[:, t, :]
+
+            # 计算每个特征的均方误差损失
+            loss_anchor = self.mse_loss(t_anchor_t, s_anchor_t)
+
+            # 沿着特征维度求和
+            loss_anchor = torch.sum(loss_anchor, dim=1)
+
+            # 累加当前时间步的损失
+            total_loss += loss_anchor
+
+        # 计算平均损失
+        total_loss /= seq_len
+        # + self.mse_loss(t_positive, s_positive) + self.mse_loss(t_negative, s_negative)
+
+        return total_loss
 
 def extract_features(model, data_loader, device):
     """

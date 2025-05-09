@@ -8,32 +8,28 @@ from models.Teachers.CLIP import MV_CLIP
 from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import MultiViewDataset
 from torchvision import transforms
-from utils import TripletLoss, RelationDisLoss, read_tensorboard_data,plot_tensorboard_data,SimpleFeatureDistillationLoss
+from utils import TripletLoss, RelationDisLoss, read_tensorboard_data,plot_tensorboard_data
 from tqdm import tqdm
 import argparse
 import os
 import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
 from torch.optim.lr_scheduler import StepLR
-import os
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
+from variable import TrainConfig
 
-# 定义命令行参数解析器
-parser = argparse.ArgumentParser(description="Train MVCNN_CLIP model")
-parser.add_argument("--batch_size", type=int, default=8, help="Batch size for training (default: 10)")
-parser.add_argument("--num_epochs", type=int, default=15,help="Number of epochs to train (default: 1)")
-parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
-parser.add_argument("--margin", type=float, default=1.0, help="Margin for triplet loss (default: 1.0)")
-parser.add_argument("--num_views", type=int, default=12, help="Number of views for MVCNN (default: 10)")
-parser.add_argument("--data_root", type=str, default="../data/ModelNet_random_30_final/DS/train", help="Root directory of the dataset (default: ../data/ModelNet_random_30_final/DS/train)")
-parser.add_argument("--model_num", type=str, default=0,help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
-parser.add_argument("--model_name", type=str, default="MV_AlexNet_dis_Pre", help="The name of the model")
-parser.add_argument("--train_data", type=str, default="OS-ABO-core", help="The name of the train data")
-# parser.add_argument("--loss", type=str, default="SimpleFeatureDistillationLoss", help="The name of the train data")
-parser.add_argument("--loss", type=str, default="RelationDisLoss", help="The name of the train data")
+# 训练配置
+train_config = TrainConfig(
+    model_name='MVCNN_CLIP',  # 模型名称
+    batch_size=8,  # 批大小
+    lr=1e-6,  # 学习率
+    model_num=0,  # 模型编号
+    margin=1.0,  # 边距
+    train_num_views=12,  # 视图数量
+    num_epochs=14,  # 训练轮数
+    train_dataset='OS-MN40-core',  # 训练数据集名称
+    experiment_name="exp1"  # 实验名称
+)
 
-
-args = parser.parse_args()
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -47,7 +43,7 @@ def set_seed(seed=42):
 set_seed(2025)  # 可以改成你想要的种子值（如 2023, 1234 等）
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
+
 transform = transforms.Compose([
     transforms.Resize((224, 224)),  # 直接调整到 CLIP 的输入尺寸
     transforms.ToTensor(),
@@ -55,75 +51,47 @@ transform = transforms.Compose([
 ])
 
 print("loading train data.......")
-# train_dataset = MultiViewDataset(root_dir="../data/ModelNet_random_30_final/DS/train",transform=transform, num_views=args.num_views)
-train_dataset = MultiViewDataset(root_dir=f"../data/{args.train_data}/train",transform=transform, num_views=args.num_views)
+train_dataset = MultiViewDataset(root_dir=f"../../data/{train_config.train_data}/train",transform=transform, num_views=train_config.train_num_views)
 
-train_loader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle=True)
+train_loader = DataLoader(train_dataset, batch_size = train_config.batch_size, shuffle=True)
 
-model_T = MV_CLIP(num_views = args.num_views).to(device)
+model_T = MV_CLIP(num_views = train_config.num_views).to(device)
 
 print("finished loading train data.......")
-if args.model_name == "MVCNN_CLIP":
-    model = MVCNN_CLIP(num_views = args.num_views).to(device)
+if train_config.model_name == "MVCNN_CLIP":
+    model = MVCNN_CLIP(num_views = train_config.train_num_views).to(device)
     criterion = TripletLoss(margin = 0.5)
     optimizer = optim.Adam([
     {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
     # {"params": model.net_2.parameters(), "lr": 1e-4}   # 新增层高学习率
 ])
-elif args.model_name == "MVCLIP_CNN":
-    model = MVCLIP_CNN(num_views = args.num_views).to(device)
-    criterion = TripletLoss(margin = 0.5)
-    optimizer = optim.Adam([
-    {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
-    {"params": model.net_2.parameters(), "lr": args.lr}   # 新增层高学习率
-])
-elif args.model_name == "MVCLIP_MLP":
-    model = MVCLIP_MLP(num_views = args.num_views).to(device)
-    criterion = TripletLoss(margin = 0.5)
-    optimizer = optim.Adam([
-    {"params": model.net_1.parameters(), "lr": 1e-6},  # 主干网络低学习率
-    {"params": model.net_2.parameters(), "lr": args.lr}   # 新增层高学习率
-])
-elif args.model_name == "MV_AlexNet":
+elif train_config.model_name == "MV_AlexNet":
     print("Training MV_AlexNet")
-    model = MV_AlexNet(num_views = args.num_views, is_dis = False).to(device)
+    model = MV_AlexNet(num_views = train_config.train_num_views, is_dis = False).to(device)
     criterion = TripletLoss(margin = 0.5)
     optimizer = optim.Adam([
     {"params": model.features.features.parameters(), "lr": 1e-6},
-    # {"params": model.features.fc_features.parameters(), "lr": args.lr},
-    {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
+    # {"params": model.features.fc_features.parameters(), "lr": train_config.lr},
+    {"params": model.retrieval.parameters(), "lr": train_config.lr}   # 新增层高学习率
 ])
-elif args.model_name == "MV_AlexNet_dis_Pre":
+elif train_config.model_name == "MV_AlexNet_dis_Pre":
     print("Training MV_AlexNet_dis_Pre")
-    if args.loss == "SimpleFeatureDistillationLoss":
-        criterion = SimpleFeatureDistillationLoss()
-    elif args.loss == "RelationDisLoss":
-        criterion = RelationDisLoss(dis_margin = 1.0, ang_margin = 0.2)
-    model = MV_AlexNet(num_views = args.num_views, is_dis = True).to(device)
-    optimizer = optim.Adam([
-    {"params": model.features.features.parameters(), "lr": 1e-6},
-    {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
-])
-elif args.model_name == "MV_AlexNet_dis":
-    print("Training MV_AlexNet_dis")
-    model = MV_AlexNet(num_views = args.num_views, is_dis = True, is_pre = False).to(device)
+    model = MV_AlexNet(num_views = train_config.train_num_views, is_dis = True).to(device)
     criterion = RelationDisLoss(dis_margin = 1.0, ang_margin = 0.2)
     optimizer = optim.Adam([
     {"params": model.features.features.parameters(), "lr": 1e-6},
-    {"params": model.retrieval.parameters(), "lr": args.lr}   # 新增层高学习率
+    {"params": model.retrieval.parameters(), "lr": train_config.lr}   # 新增层高学习率
 ])
 
 # 添加学习率调度器
 scheduler = StepLR(optimizer, step_size=4, gamma=0.5)  # 每 5 个 epoch 学习率乘以 0.1
-if args.model_name == "MV_AlexNet_dis_Pre":
-    model_path = f"../models/train_models/{args.train_data}/{args.model_name}/{args.loss}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
-else:
-    model_path = f"../models/train_models/{args.train_data}/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth"
+
+model_path = f"../../models/train_models/{train_config.experiment_name}/{train_config.train_data}/{train_config.model_name}/epochs_{train_config.model_num}_lr_{train_config.lr}_batch_{train_config.batch_size}.pth"
 
 # 确保保存模型的目录存在
 os.makedirs(os.path.dirname(model_path), exist_ok=True)
 
-num_epochs = args.num_epochs
+num_epochs = train_config.num_epochs
 
 # 检查是否存在已保存的模型文件
 if os.path.exists(model_path):
@@ -141,10 +109,7 @@ else:
     start_step = 0
 
 # tensorboard
-if args.model_name == "MV_AlexNet_dis_Pre":
-    log_dir = f"../output/tensorboard_logs/{args.train_data}/{args.model_name}/{args.loss}/lr_{args.lr}_batch_{args.batch_size}"
-else:
-    log_dir = f"../output/tensorboard_logs/{args.train_data}/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../../output/tensorboard_logs/{train_config.experiment_name}/{train_config.train_data}/{train_config.model_name}/lr_{train_config.lr}_batch_{train_config.batch_size}"
 os.makedirs(log_dir, exist_ok=True)
 
 # 检查日志文件是否存在
@@ -157,11 +122,10 @@ losses = []
 step = start_step
 model.train()
 print("before train")
-
 for epoch in range(start_epoch + 1, num_epochs):
     # print("in the loop")
     epoch_loss = 0.0
-    torch.cuda.empty_cache()
+    
     for anchor_images, positive_images, negative_images in tqdm(train_loader, desc=f"Epoch {epoch}/{num_epochs}", unit="batch"):
         step += 1
         anchor_images = anchor_images.view(-1, *anchor_images.shape[-3:])  # (batch_size * num_views, C, H, W)
@@ -181,7 +145,7 @@ for epoch in range(start_epoch + 1, num_epochs):
 
         # print("anchor_features", anchor_features.shape) # anchor_features torch.Size([32, 768])
 
-        if args.model_name == "MV_AlexNet_dis" or args.model_name == "MV_AlexNet_dis_Pre":
+        if train_config.model_name == "MV_AlexNet_dis" or train_config.model_name == "MV_AlexNet_dis_Pre":
             loss = criterion(t_anchor_features, t_positive_features, t_negative_features,anchor_features, positive_features, negative_features)
         else:  
             loss = criterion(anchor_features, positive_features, negative_features)
@@ -209,10 +173,7 @@ for epoch in range(start_epoch + 1, num_epochs):
 
     # 更新学习率
     scheduler.step()
-    if args.model_name == "MV_AlexNet_dis_Pre":
-        save_path = f"../models/train_models/{args.train_data}/{args.model_name}/{args.loss}/epochs_{epoch}_lr_{args.lr}_batch_{args.batch_size}.pth"
-    else:
-        save_path = f"../models/train_models/{args.train_data}/{args.model_name}/epochs_{epoch}_lr_{args.lr}_batch_{args.batch_size}.pth"
+
     # 保存模型
     torch.save({
         'epoch': epoch,
@@ -220,7 +181,8 @@ for epoch in range(start_epoch + 1, num_epochs):
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
         'scheduler_state_dict': scheduler.state_dict() 
-    }, save_path)
+    }, f"../../models/train_models/{train_config.experiment_name}/{train_config.train_data}/{train_config.model_name}/epochs_{epoch}_lr_{train_config.lr}_batch_{train_config.batch_size}.pth")
+
     # 将每个 epoch 的平均损失写入 TensorBoard
     writer.add_scalar("Loss/train_epoch", epoch_loss, epoch)
 
@@ -228,28 +190,21 @@ for epoch in range(start_epoch + 1, num_epochs):
 writer.close()
 
 # 定义日志路径和标签
-if args.model_name == "MV_AlexNet_dis_Pre":
-    log_dir = f"../output/tensorboard_logs/{args.train_data}/{args.model_name}/{args.loss}/lr_{args.lr}_batch_{args.batch_size}"    
-else:
-    log_dir = f"../output/tensorboard_logs/{args.train_data}/{args.model_name}/lr_{args.lr}_batch_{args.batch_size}"
+log_dir = f"../../output/tensorboard_logs/{train_config.experiment_name}/{train_config.train_data}/{train_config.model_name}/lr_{train_config.lr}_batch_{train_config.batch_size}"
 tag = "Loss/train_epoch"
 
 # 读取 TensorBoard 数据
 try:
     data = read_tensorboard_data(log_dir, tag)
     # 绘制并保存图表
-    os.makedirs(f"../output/Loss_curve/{args.train_data}/", exist_ok=True)
-    if args.model_name == "MV_AlexNet_dis_Pre":
-        save_path = f"../output/Loss_curve/{args.train_data}/{args.model_name}/{args.loss}/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
-    else:
-        save_path = f"../output/Loss_curve/{args.train_data}/{args.model_name}_loss_curve_tensorboard_lr_{args.lr}_batch_{args.batch_size}.png"
+    os.makedirs(f"../../output/Loss_curve/{train_config.experiment_name}/{train_config.train_data}/", exist_ok=True)
     plot_tensorboard_data(
         data,
         title="Training Loss Over Epochs",
         xlabel="Epoch",
         ylabel="Loss",
-        save_path=save_path
+        save_path=f"../../output/Loss_curve/{train_config.experiment_name}/{train_config.train_data}/{train_config.model_name}_loss_curve_tensorboard_lr_{train_config.lr}_batch_{train_config.batch_size}.png"
     )
-    print(f"Loss curve saved to {save_path}")
+    print(f"Loss curve saved to ../../output/Loss_curve/{train_config.experiment_name}/{train_config.train_data}/{train_config.model_name}_loss_curve_tensorboard_lr_{train_config.lr}_batch_{train_config.batch_size}.png")
 except ValueError as e:
     print(e)

@@ -104,7 +104,7 @@ class MV_AlexNet(nn.Module):
             self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
             self.retrieval = AlexNet_Adapter()
         else:
-            self.features = self.load_pretrained_model(num_views, "/home/xyzhang/project/Distillation/models/train_models/OS-NTU-core/MV_AlexNet/epochs_14_lr_1e-06_batch_8.pth")
+            self.features = self.load_pretrained_model(num_views, "/home/xyzhang/project/Distillation/models/train_models/OS-ABO-core/MV_AlexNet/epochs_14_lr_1e-06_batch_8.pth")
             for param in self.features.parameters():
                 param.requires_grad = False
             self.retrieval = AlexNet_Adapter()
