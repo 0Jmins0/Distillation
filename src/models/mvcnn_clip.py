@@ -6,10 +6,11 @@ class MVCNN_CLIP(nn.Module):
     def __init__(self, num_views = 12):
         # 初始化 MVCNN_CLIP 类，并设置默认的视图数量为12
         super(MVCNN_CLIP, self).__init__()
+        model_dir = "/home/xyzhang/project/Distillation/models/pretrained/clip-vit-large-patch14"
         # 从预训练模型中加载 CLIPVisionModel
-        self.clip_model = CLIPVisionModel.from_pretrained("openai/clip-vit-base-patch32")
+        self.clip_model = CLIPVisionModel.from_pretrained(model_dir)
         # 从预训练模型中加载 CLIPProcessor
-        self.clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+        self.clip_processor = CLIPProcessor.from_pretrained(model_dir)
         # 设置视图数量
         self.num_views = num_views
 
@@ -18,7 +19,7 @@ class MVCNN_CLIP(nn.Module):
 
        # 在 MVCNN_CLIP 的 __init__ 中解冻部分层
         for name, param in self.net_1.named_parameters():
-            if "vision_model.encoder.layers.11" in name:  # 解冻最后几层
+            if "vision_model.encoder.layers.21" in name:  # 解冻最后几层
                 param.requires_grad = True
             else:
                 param.requires_grad = False

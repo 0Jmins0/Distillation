@@ -1,0 +1,18 @@
+Model,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset,loss,average_inference_time,mAP,ndcg@100,anmrr
+MVCNN_CLIP,14,1e-06,8,12,OS-NTU-core,OS-NTU-core,TripleLoss,0.0092,0.3884,0.2060,0.6210
+MV_AlexNet,14,1e-06,8,12,OS-NTU-core,OS-NTU-core,TripleLoss,0.0018,0.2418,0.1486,0.7525
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-NTU-core,OS-NTU-core,SimpleFeatureDistillationLoss,0.0016,0.2890,0.1657,0.7089
+
+
+MVCNN_CLIP,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,TripleLoss,0.0104,0.4409,0.2015,0.5836
+MV_AlexNet,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,TripleLoss,0.0023,0.3529,0.1696,0.6459
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,SimpleFeatureDistillationLoss,0.0022,0.3779,0.1828,0.6347
+
+MVCNN_CLIP,14,1e-06,8,12,OS-MN40-core,OS-MN40-core,TripleLoss,0.0103,0.4668,0.6041,0.5336
+MV_AlexNet,14,1e-06,8,12,OS-MN40-core,OS-MN40-core,TripleLoss,0.0021,0.3480,0.4721,0.6394
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-MN40-core,OS-MN40-core,SimpleFeatureDistillationLoss,0.0020,0.4401,0.5686,0.5575
+
+MVCNN_CLIP,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,TripleLoss,0.0109,0.4319,0.4667,0.5663
+MV_AlexNet,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,TripleLoss,0.0027,0.3277,0.3636,0.6664
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,0.0026,0.4195,0.4675,0.5796
+MVCNN_CLIP_L,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,TripleLoss,0.2562,0.5072,0.5229,0.5011

@@ -110,7 +110,59 @@ git push
 
 ### 训练
 ```
-nohup python train.py > train_output.log 2>&1 &
+nohup python train.py --train_data OS-NTU-core --lr 1e-5> AlexNet_32_NTU_1e5.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core > AlexNet_32_ESB_1e6.log 2>&1 &
+
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 4 > AlexNet_dis_Pre_4_ABO_1e6.log 2>&1 &
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 8 > AlexNet_dis_Pre_8_ABO_1e6.log 2>&1 &
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 > AlexNet_dis_Pre_16_ABO_1e6.log 2>&1 &
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet --lr 1e-5 --batch_size 16 > AlexNet_16_ABO_1e5.log 2>&1 &
+
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-5 --batch_size 4 > AlexNet_dis_Pre_4_ABO_1e5.log 2>&1 &
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-5 --batch_size 8 > AlexNet_dis_Pre_8_ABO_1e5.log 2>&1 &
+
+待办：
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-5 --batch_size 16 > AlexNet_dis_Pre_16_ABO_1e5.log 2>&1 &
+
+nohup python train.py --train_data OS-MN40-core --model_name MV_AlexNet --lr 1e-6 > AlexNet_16_MN40_1e6.log 2>&1 &
+
+nohup python train.py --train_data OS-NTU-core --model_name MV_AlexNet_dis_Pre > AlexNet_dis_32_NTU_1e5.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core --model_name MV_AlexNet_dis_Pre > AlexNet_dis_32_ESB_1e4.log 2>&1 &
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss > AlexNet_dis_32_ABO_1e5_smp.log 2>&1 &
+nohup python train.py --train_data OS-MN40-core --model_name MV_AlexNet_dis_Pre > AlexNet_dis_32_MN40_1e4.log 2>&1 &
+
+
+
+python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet
+python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet
+python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet --lr 1e-5 --batch_size 32
+python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet  
+
+python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss
+python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss
+python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss --lr 1e-5 --batch_size 32
+python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss --lr 1e-4
+
+
+
+python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet
+python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet
+python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet --lr 1e-5
+python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet
+
+python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss
+python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss
+python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss --lr 1e-5
+python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --loss RelationDisLoss --lr 1e-4
+
+python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss --lr 1e-5 --batch_size 32
+
+
+
+nohup python train.py --train_data OS-NTU-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss > AlexNet_dis_32_NTU_smp_1e4.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss > AlexNet_dis_32_ESB_smp_1e4.log 2>&1 &
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss > AlexNet_dis_32_ABO_smp_1e4.log 2>&1 &
+nohup python train.py --train_data OS-MN40-core --model_name MV_AlexNet_dis_Pre --loss SimpleFeatureDistillationLoss > AlexNet_dis_32_MN40_smp_1e4.log 2>&1 &
 
 # 从头训练MV_AlexNet_dis
 
@@ -126,6 +178,7 @@ nohup python evaluate.py --model_name MV_AlexNet_dis --model_num 14 --batch_size
 # 监控loss变化
 tensorboard --logdir=../output/tensorboard_logs
 ```
+
 
 
 ## 实验记录

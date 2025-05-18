@@ -1,9 +1,11 @@
 import argparse
 import json
 import os
+import time
 from PIL import Image
 import numpy as np
 import torch 
+from models.Teachers.CLIP import MV_CLIP,MV_CLIP_without_adpter
 from models.mvcnn_clip import MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP
 from models.Students.MVAlexNet import MV_AlexNet
 from dataset.dataset import MultiViewDataset, TestDataset,TestMultiViewDataset
@@ -20,21 +22,42 @@ import pandas as pd
 
 # 定义命令行参数解析器
 parser = argparse.ArgumentParser(description="Extract features using MVCNN_CLIP model")
-parser.add_argument("--model_name", type=str, default="MVCNN_CLIP", help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
-parser.add_argument("--model_num", type=str, default="14", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
+parser.add_argument("--model_name", type=str, default="MV_AlexNet", help="Model name (MVCNN_CLIP, MVCLIP_CNN, MVCLIP_MLP)")
+parser.add_argument("--model_num", type=str, default="66", help="Path to save the trained model (default: ../models/train_models/base/mvcnn_clip_01.pth)")
 parser.add_argument("--lr", type=float, default=1e-6, help="Learning rate (default: 0.001)")
-parser.add_argument("--batch_size", type=int, default=8, help="Batch size for feature extraction")
+parser.add_argument("--num_epochs", type=int, default=15,help="Number of epochs to train (default: 1)")
+parser.add_argument("--batch_size", type=int, default=16, help="Batch size for feature extraction")
 parser.add_argument("--num_views", type=int, default=12, help="Number of views for MVCNN (default: 1)")
-parser.add_argument("--test_dataset",type=str, default="OS-NTU-core", help="DU or DS")
-parser.add_argument("--train_data", type=str, default="OS-NTU-core", help="The name of the train data")
+parser.add_argument("--test_dataset",type=str, default="OS-ESB-core", help="DU or DS")
+parser.add_argument("--train_data", type=str, default="OS-ESB-core", help="The name of the train data")
+parser.add_argument("--loss", type=str, default="SimpleFeatureDistillationLoss", help="The name of the train data")
+parser.add_argument("--rGL", type=float, default=0.8, help="The rate of G:L")
+parser.add_argument("--rOI", type=float, default=0.8, help="The rate of Out:In")
+# parser.add_argument("--loss", type=str, default="RelationDisLoss", help="The name of the train data")
+parser.add_argument("--order", type=int, default=1, help="The rate of Out:In")
+
 args = parser.parse_args()
 
+def set_seed(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)  # 如果使用多GPU
+    torch.backends.cudnn.deterministic = True  # 确保CuDNN使用确定性算法
+    torch.backends.cudnn.benchmark = False  # 关闭CuDNN的自动优化（避免不确定性）
+
+
+set_seed(2025)  # 可以改成你想要的种子值（如 2023, 1234 等）
 # 提取类别和实例编号的函数
 def extract_category_and_instance(path, data_dict = "q"):
     # print(path)
     parts = path.split(os.sep)
     # print("A",parts)
     instance = parts[-3]  # 实例编号
+    if instance == "query" or instance == "target":
+        instance = parts[-2]
+    # print("B",instance)
     if data_dict == "q":
         category = data_dict_q[instance]  # 类别名称
     else:
@@ -47,7 +70,8 @@ def get_random_query_groups(root_dir, num_views=3):
 
     for instance in os.listdir(root_dir):
         instance_path = os.path.join(root_dir, instance)
-        instance_path = os.path.join(instance_path, "image")
+        if root_dir not in ["../data/MN40-DS/query", "../data/MN40-DU/query",]: 
+            instance_path = os.path.join(instance_path, "image")
         if os.path.isdir(instance_path):
             views = os.listdir(instance_path)
             if len(views) >= num_views:
@@ -74,14 +98,20 @@ def calculate_metrics_category(query_groups, features, image_paths, model, devic
     Returns:
         metrics: 包含 mAP、NDCG@100、ANMRR 和 PR 曲线的字典。
     """
+    seen_labels = [""]
     query_features = []
     query_labels = []
+    inference_times = []  # 用于存储每次查询的推理时间
     
     for view_images, view_paths in tqdm(query_groups, desc="Extracting query features"):
         view_tensors = torch.stack([transform(view) for view in view_images]).to(device)
+
+        start_time = time.time()  # 开始时间
         query_feature = model(view_tensors).detach().cpu().numpy()
-        
-        if args.model_name in ["MV_AlexNet_dis", "MV_AlexNet_dis_Pre"]:
+        end_time = time.time()  # 结束时间
+        inference_times.append(end_time - start_time)  # 记录推理时间
+
+        if args.model_name in ["MV_AlexNet_dis", "MV_AlexNet_dis_Pre","MVCNN_CLIP_L","MV_CLIP_without_adpter"]:
             query_global = query_feature[:, 0, :]
             query_local = query_feature[:, 1:, :].reshape(query_feature.shape[0], -1)
             query_feature = np.concatenate([query_global, query_local], axis=1)
@@ -91,25 +121,28 @@ def calculate_metrics_category(query_groups, features, image_paths, model, devic
     
     query_features = np.concatenate(query_features, axis=0)
     query_labels = np.array(query_labels)
-
-    
-        
+    print("features", features.shape) # features (32, 768)
     # 对数据库特征进行相同的处理
-    if args.model_name in ["MV_AlexNet_dis", "MV_AlexNet_dis_Pre"]:
+    if args.model_name in ["MV_AlexNet_dis", "MV_AlexNet_dis_Pre","MVCNN_CLIP_L","MV_CLIP_without_adpter"]:
         db_features = features.reshape(features.shape[0], -1)
         # print("dill")
     else:
         db_features = features
 
+    print("features_after", db_features.shape) # features (32, 768)
+    
+
     # 检查 features 的形状
-    if len(db_features.shape) != 2:
-        raise ValueError(f"Features must be a 2-dimensional array, but got shape {db_features.shape}")    
+    # if len(db_features.shape) != 2:
+    #     raise ValueError(f"Features must be a 2-dimensional array, but got shape {db_features.shape}")    
     
     target_labels = [extract_category_and_instance(path[0], "t")[0] for path in image_paths]
     target_labels = np.array(target_labels)
-    
+    print("query_labels", query_labels) # query_labels (32,)
     metrics = eval_retrieval_metric(query_features, db_features, query_labels, target_labels)
-    
+    # 添加平均推理时间到 metrics
+    metrics["average_inference_time"] = np.mean(inference_times)
+
     return metrics
 
 # def calculate_metrics_category(query_groups, features, image_paths, model, device, top_k=100):
@@ -212,11 +245,14 @@ transform = transforms.Compose([
 
 # test_dataset = TestMultiViewDataset(root_dir=f"../data/{args.test_dataset}", transform=transform, num_views=args.num_views, data = "query")
 # test_loader = DataLoader(test_dataset, batch_size=64, shuffle=True, drop_last=True)
+Pretrained_model_path = f"../models/exp/train_models/{args.train_data}/MV_AlexNet/best_model_lr_{args.lr}_batch_{args.batch_size}.pth"
 
 
 # 加载模型
 if args.model_name == "MVCNN_CLIP":
-    model = MVCNN_CLIP(num_views = args.num_views).to(device)
+    model = MV_CLIP(num_views = args.num_views).to(device)
+elif args.model_name == "MVCNN_CLIP_L":
+    model = MV_CLIP(num_views = args.num_views).to(device)
 elif args.model_name == "MVCLIP_CNN":
     model = MVCLIP_CNN(num_views = args.num_views).to(device)
 elif args.model_name == "MVCLIP_MLP":
@@ -224,11 +260,20 @@ elif args.model_name == "MVCLIP_MLP":
 elif args.model_name == "MV_AlexNet":
     model = MV_AlexNet(num_views = args.num_views).to(device)
 elif args.model_name == "MV_AlexNet_dis_Pre":
-    model = MV_AlexNet(num_views = args.num_views, is_dis = True).to(device)
+    model = MV_AlexNet(num_views = args.num_views, is_dis = True, PretrainedModel_dir = Pretrained_model_path).to(device)
 elif args.model_name == "MV_AlexNet_dis":
     model = MV_AlexNet(num_views = args.num_views, is_dis = True, is_pre = False).to(device)
+elif args.model_name == "MV_CLIP_without_adpter":
+    model = MV_CLIP_without_adpter(num_views = args.num_views).to(device)
 
-model.load_state_dict(torch.load(f"../models/train_models/{args.train_data}/{args.model_name}/epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+if args.model_name == "MV_AlexNet_dis_Pre":
+    if args.loss == "SimpleFeatureDistillationLoss":
+        model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/{args.loss}/best_model_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+    elif args.loss == "RelationDisLoss":
+        model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/{args.loss}/best_model_lr_{args.lr}_batch_{args.batch_size}_rGL_{args.rGL}_rOI_{args.rOI}.pth")['model_state_dict'])
+elif args.model_name != "MV_CLIP_without_adpter":
+    model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/best_model_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+
 model.eval()
 
 # features, image_paths = extract_features(model, test_loader, device)
@@ -250,8 +295,16 @@ root_dir = f"../data/{args.test_dataset}/query"
 
 # else:
 # 加载特征和路径
-path_1 = f"../features/train_{args.train_data}/features_{args.model_name}/{args.test_dataset}/12_epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.pt"
-path_2 = f"../features/train_{args.train_data}/image_paths_{args.model_name}/{args.test_dataset}/12_epochs_{args.model_num}_lr_{args.lr}_batch_{args.batch_size}.json"
+if args.model_name == "MV_AlexNet_dis_Pre":
+    if args.loss == "SimpleFeatureDistillationLoss":
+        path_1 = f"../features/exp/train_{args.train_data}/features_{args.model_name}/{args.loss}/{args.test_dataset}/{args.num_views}_lr_{args.lr}_batch_{args.batch_size}.pt"
+        path_2 = f"../features/exp/train_{args.train_data}/image_paths_{args.model_name}/{args.loss}/{args.test_dataset}/{args.num_views}_lr_{args.lr}_batch_{args.batch_size}.json"
+    else:
+        path_1 = f"../features/exp/train_{args.train_data}/features_{args.model_name}/{args.loss}/{args.test_dataset}/{args.num_views}_lr_{args.lr}_batch_{args.batch_size}_rGL_{args.rGL}_rOI_{args.rOI}.pt"
+        path_2 = f"../features/exp/train_{args.train_data}/image_paths_{args.model_name}/{args.loss}/{args.test_dataset}/{args.num_views}_lr_{args.lr}_batch_{args.batch_size}_rGL_{args.rGL}_rOI_{args.rOI}.json"
+else:
+    path_1 = f"../features/exp/train_{args.train_data}/features_{args.model_name}/{args.test_dataset}/{args.num_views}_lr_{args.lr}_batch_{args.batch_size}.pt"
+    path_2 = f"../features/exp/train_{args.train_data}/image_paths_{args.model_name}/{args.test_dataset}/{args.num_views}_lr_{args.lr}_batch_{args.batch_size}.json"
 
 features = torch.load(path_1)
 
@@ -303,10 +356,11 @@ ans = calculate_metrics_category(
 
 
 # 定义 CSV 文件路径
-csv_file_path = "../output/new_accuracy.csv"
+csv_file_path = "../output/acc/accuracy_09.csv"
 
 # 创建一个 DataFrame 存储结果
 result = {
+    "order": [args.order],
     "Model": [args.model_name],
     "Epochs": [args.model_num],
     "Learning Rate": [args.lr],
@@ -314,10 +368,18 @@ result = {
     "num_views": [args.num_views],
     "Train Dataset": [args.train_data],
     "test_dataset": [args.test_dataset],
+    "loss": [args.loss],
+    "rGL": [args.rGL],
+    "rOI": [args.rOI],
+    "average_inference_time": [f"{ans['average_inference_time']:.4f}"],
     "mAP": [f"{ans['map']:.4f}"],
     "ndcg@100": [f"{ans['ndcg@100']:.4f}"],
     "anmrr": [f"{ans['anmrr']:.4f}"],
 }
+
+if args.model_name != "MV_AlexNet_dis_Pre":
+    result['loss'] = "TripleLoss"
+
 df = pd.DataFrame(result)
 
 # 如果文件已存在，则追加数据；否则创建新文件

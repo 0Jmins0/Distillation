@@ -1,0 +1,16 @@
+Model,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset,mAP,ndcg@100,anmrr
+MVCNN_CLIP,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,0.4398,0.4850,0.5609
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,0.4148,0.4641,0.5821
+MV_AlexNet,14,1e-06,8,12,OS-ABO-core,OS-ABO-core,0.3348,0.3716,0.6548
+
+MV_AlexNet,14,1e-06,8,12,OS-MN40-core,OS-MN40-core,0.3575,0.4849,0.6306
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-MN40-core,OS-MN40-core,0.4309,0.5601,0.5644
+MVCNN_CLIP,14,1e-06,8,12,OS-MN40-core,OS-MN40-core,0.4694,0.6131,0.5288
+
+MVCNN_CLIP,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,0.4442,0.2024,0.5837
+MV_AlexNet,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,0.3423,0.1665,0.6702
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,0.3783,0.1801,0.6324
+
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-NTU-core,OS-NTU-core,0.2893,0.1664,0.7062
+MV_AlexNet,14,1e-06,8,12,OS-NTU-core,OS-NTU-core,0.2416,0.1468,0.7536
+MVCNN_CLIP,14,1e-06,8,12,OS-NTU-core,OS-NTU-core,0.3908,0.2049,0.6199

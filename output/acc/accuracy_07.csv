@@ -1,0 +1,12 @@
+Model,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset,loss,rGL,rOI,average_inference_time,mAP,ndcg@100,anmrr
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,1.0,0.5,0.0028,0.4010,0.4555,0.5928
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.5,0.0028,0.4016,0.4566,0.5893
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.5,0.5,0.0027,0.3993,0.4525,0.5924
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.2,0.5,0.0028,0.3943,0.4483,0.5979
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.0,0.5,0.0029,0.3975,0.4563,0.5936
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,\,\,0.0078,0.4073,0.4689,0.5891
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.5,0.0027,0.3995,0.4565,0.5926
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,1.0,0.0030,0.4024,0.4628,0.5925
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0029,0.4073,0.4678,0.5882
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.2,0.0029,0.3983,0.4520,0.5939
+MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.0,0.0030,0.3997,0.4507,0.5941

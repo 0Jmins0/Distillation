@@ -1,0 +1,6 @@
+Model,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset,loss,average_inference_time,mAP,ndcg@100,anmrr
+MVCNN_CLIP_L,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,TripleLoss,0.1352,0.2626,0.1397,0.7404
+MV_AlexNet,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,TripleLoss,0.0023,0.3447,0.1715,0.6722
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,SimpleFeatureDistillationLoss,0.0026,0.3719,0.1801,0.6458
+MV_AlexNet_dis_Pre,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.0026,0.3843,0.1826,0.6261
+MVCNN_CLIP_L,14,1e-06,8,12,OS-ESB-core,OS-ESB-core,TripleLoss,0.1352,0.2586,0.1400,0.7435

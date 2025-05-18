@@ -18,7 +18,8 @@ class MultiViewDataset(Dataset):
             cls_dir = os.path.join(self.root_dir, cls)
             for instance in os.listdir(cls_dir):
                 instance_dir = os.path.join(cls_dir, instance)
-                instance_dir = os.path.join(instance_dir, "image")
+                if self.root_dir != "../data/MN40-DS/train":
+                    instance_dir = os.path.join(instance_dir, "image")
                 if os.path.isdir(instance_dir): # 检查是否为文件夹
                     instances.append((cls, instance, instance_dir))
         return instances
@@ -31,7 +32,7 @@ class MultiViewDataset(Dataset):
         views = os.listdir(instance_dir)
         selet_views = []
         step = len(views) // self.num_views
-        for idx in range(0, len(views), step):
+        for idx in range(0, step * self.num_views, step):
             # print("idx",idx)
             selet_views.append(views[idx])
         # print("selet_views",selet_views.sort)
@@ -143,7 +144,8 @@ class TestMultiViewDataset(Dataset):
         instances = []
         for instance in os.listdir(data_dir):
             instance_dir = os.path.join(data_dir, instance)
-            instance_dir = os.path.join(instance_dir, "image")
+            if self.root_dir not in ["../data/MN40-DS", "../data/MN40-DU",]: 
+                instance_dir = os.path.join(instance_dir, "image")
             cls = data_dict[instance]
             if os.path.isdir(instance_dir): # 检查是否为文件夹
                 instances.append((cls, instance, instance_dir))
@@ -159,7 +161,7 @@ class TestMultiViewDataset(Dataset):
 
         test_views = []
         step = len(views) // self.num_views
-        for idx in range(0, len(views), step):
+        for idx in range(0, step * self.num_views, step):
             # print("idx",idx)
             test_views.append(views[idx])
         

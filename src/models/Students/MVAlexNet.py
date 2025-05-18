@@ -70,26 +70,48 @@ class BaseRetrievalNet(nn.Module):
 
 # 13 * 13 * 256 -> 49 * 256 -> 256
 class AlexNet_Adapter(nn.Module):
-    def __init__(self):
+    def __init__(self,target_size = (7,7),batch_size = 4):
         super(AlexNet_Adapter, self).__init__()
-        self.adapter = nn.Conv2d(256,256,kernel_size=3,stride=2,padding=1)
-        self.fc1 = nn.Linear(7 * 7 * 256, 1024)
+        self.target_sieze = target_size
+        if target_size == (16,16):
+            self.adapter = nn.Sequential(
+                nn.Upsample(size=target_size, mode='bilinear', align_corners=False),
+                nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)  # 保持通道数
+            )
+            input_size = 16 * 16 * 256
+            self.feature_dim = 1024
+        else:
+            self.adapter = nn.Conv2d(256,256,kernel_size=3,stride=2,padding=1)
+            input_size = 7 * 7 * 256
+            self.feature_dim = 768
+        self.fc1 = nn.Linear(input_size, 1024)
         self.fc2 = nn.Linear(1024, 256) 
+        self.fc3 = nn.Linear(256, self.feature_dim)
 
     def forward(self, x):
-        x = self.adapter(x)
+        batch_size = x.size(0)
+        # print("before_adapter", x.shape) # [4, 256, 13, 13]
+        x = self.adapter(x) # 7 * 7 * 256
+        # print("after_adapter", x.shape) # [4, 256, 7, 7
         local_feature = x.view(x.size(0), -1, 256)
-        
+        # print("local_feature", local_feature.shape) # [4, 49, 256]
         x = local_feature.view(local_feature.size(0), -1)
+        # print("local_feature_view", x.shape) # [4, 49 * 256]
         x = F.relu(self.fc1(x))
-
+        # print("after_fc1_relu", x.shape) # [4, 1024]
         global_feature = self.fc2(x)
+        # print("global_feature", global_feature.shape) # [4, 256]
         combined_feature = torch.cat((local_feature, global_feature.unsqueeze(1)), dim=1)
+        # print("combined_feature", combined_feature.shape) # [4, 50, 256]
+        # print("combined_feature_view", combined_feature.view(-1, 256).shape) # [4, 50 * 256]
+        combined_feature = F.relu(self.fc3(combined_feature.view(-1, 256)))
+        combined_feature = combined_feature.view(local_feature.size(0), -1, self.feature_dim)  # 重塑回 [4, 50, 768]
+        # print("after_fc3", combined_feature.shape) # [4, 768]
         # print("after_adapter", combined_feature.shape) # （32， 50， 256）
         return combined_feature 
 
 class MV_AlexNet(nn.Module):
-    def __init__(self, num_views = 15, is_dis = False, is_pre = True):
+    def __init__(self, num_views = 15, is_dis = False, is_pre = True,target_sieze = (7,7),batch_size = 4, PretrainedModel_dir = None):
         # 初始化函数，设置默认参数num_viewsm为15
         super(MV_AlexNet, self).__init__()
         base_model_name = "ALEXNET"
@@ -102,12 +124,12 @@ class MV_AlexNet(nn.Module):
             self.retrieval = BaseRetrievalNet(base_model_name)
         elif is_pre == False:
             self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
-            self.retrieval = AlexNet_Adapter()
+            self.retrieval = AlexNet_Adapter(target_sieze, batch_size)
         else:
-            self.features = self.load_pretrained_model(num_views, "/home/xyzhang/project/Distillation/models/train_models/OS-ABO-core/MV_AlexNet/epochs_14_lr_1e-06_batch_8.pth")
+            self.features = self.load_pretrained_model(num_views, PretrainedModel_dir)
             for param in self.features.parameters():
                 param.requires_grad = False
-            self.retrieval = AlexNet_Adapter()
+            self.retrieval = AlexNet_Adapter(target_sieze, batch_size)
 
     def load_pretrained_model(self, num_views, model_path):
         # 加载预训练模型的权重

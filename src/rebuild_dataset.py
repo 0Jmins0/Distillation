@@ -126,5 +126,48 @@ def select_query_instance():
                 print(instance, target_category_dir)
                 shutil.move(instance, target_category_dir)
                 print(f"已复制实例 {instance} 到 {target_instance_dir}")
+
+def move_query():
+
+    # 定义源目录和目标目录
+    source_dir = "/home/xyzhang/project/Distillation/data/ModelNet_random_30_final/DS/query/"
+    target_dir = "/home/xyzhang/project/Distillation/data/ModelNet_random_30_final/DS/query/"
+
+    # 遍历源目录下的所有子文件夹
+    for category in os.listdir(source_dir):
+        category_path = os.path.join(source_dir, category)
+        
+        # 确保是文件夹
+        if os.path.isdir(category_path):
+            # 遍历类别文件夹中的所有文件
+            for instance in os.listdir(category_path):
+                instance_path = os.path.join(category_path, instance)
+                
+                # 构造目标文件名（类别名_实例名）
+                target_instance_name = instance
+                target_instance_path = os.path.join(target_dir, target_instance_name)
+                
+                # 移动文件
+                shutil.move(instance_path, target_instance_path)
+                print(f"Moved: {instance_path} -> {target_instance_path}")
+    print("All instances have been moved successfully.")
+
+def create_txt():
+    # 定义源目录
+    source_dir = "/home/xyzhang/project/Distillation/data/ModelNet_random_30_final/DS/target/"
+
+    # 定义输出的txt文件路径
+    output_file_path = "/home/xyzhang/project/Distillation/data/ModelNet_random_30_final/DS/target_label.txt"
+    # 打开输出文件
+    with open(output_file_path, "w") as output_file:
+
+        for instance in os.listdir(source_dir):
+            # 构造实例的完整路径
+            instance_path = os.path.join(source_dir, instance)
+            output_file.write(f"{instance},{instance[:-5]}\n")
+
+    print(f"所有实例及其类别已成功写入到 {output_file_path}")
 # dataset_process()
-select_query_instance()
+# select_query_instance()
+# move_query()
+create_txt()

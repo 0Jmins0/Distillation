@@ -48,33 +48,97 @@ class TripletRelationLoss(nn.Module):
         return self.distance_loss(anchor, positive, negative) + self.angle_loss(anchor, positive, negative)
 
 class RelationDisLoss(nn.Module):
-    def __init__(self, dis_margin = 1.0, ang_margin = 0.2):
+    def __init__(self, dis_margin = 1.0, ang_margin = 0.2, rateGL = 0.5,rateOI = 0.5):
         super(RelationDisLoss, self).__init__()
         self.triplet_loss = TripletRelationLoss(dis_margin, ang_margin)
+        self.rateGL = rateGL
+        self.rateOI = rateOI
 
     def forward(self,t_anchor, t_positive, t_negative, s_anchor, s_positive, s_negative): # (32,50,256)
+        len_dim = s_anchor.size()[1]
+
+        # 归一化特征向量
+        s_anchor = torch.nn.functional.normalize(s_anchor, p=2, dim=-1)
+        s_positive = torch.nn.functional.normalize(s_positive, p=2, dim=-1)
+        s_negative = torch.nn.functional.normalize(s_negative, p=2, dim=-1)
+        t_anchor = torch.nn.functional.normalize(t_anchor, p=2, dim=-1)
+        t_positive = torch.nn.functional.normalize(t_positive, p=2, dim=-1)
+        t_negative = torch.nn.functional.normalize(t_negative, p=2, dim=-1)
+
         s_vector_pos = s_anchor - s_positive
         s_vector_neg = s_anchor - s_negative
         t_vector_pos = t_anchor - t_positive
         t_vector_neg = t_anchor - t_negative
+        
+        s_vector_pos_G = s_vector_pos[:, 0, :]
+        s_vector_neg_G = s_vector_neg[:, 0, :]
+        t_vector_pos_G = t_vector_pos[:, 0, :]
+        t_vector_neg_G = t_vector_neg[:, 0, :]
 
-        dis_pos = torch.sum(torch.norm(s_vector_pos - t_vector_pos, p = 2, dim = 2), dim = 1)
-        dis_neg = torch.sum(torch.norm(s_vector_neg - t_vector_neg, p = 2, dim = 2), dim = 1)
+        s_vector_pos_L = s_vector_pos[:, 1:, :]
+        s_vector_neg_L = s_vector_neg[:, 1:, :]
+        t_vector_pos_L = t_vector_pos[:, 1:, :]
+        t_vector_neg_L = t_vector_neg[:, 1:, :]
 
-        cos_pos = torch.sum(torch.sum(s_vector_pos * t_vector_pos, dim = 2), dim = 1)
-        cos_neg = torch.sum(torch.sum(s_vector_neg * t_vector_neg, dim = 2), dim = 1)
+        dis_pos_G = torch.mean(torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1))
+        dis_neg_G = torch.mean(torch.norm(s_vector_neg_G - t_vector_neg_G, p = 2, dim = 1))
+        dis_pos_L = torch.mean(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1).mean()
+        dis_neg_L = torch.mean(torch.norm(s_vector_neg_L - t_vector_neg_L, p = 2, dim = 2), dim = 1).mean()
 
-        inner_losses = 0
-        len_dim = s_anchor.size()[1]
-        for t in range(0, len_dim): # 全局特征cls没有内部的距离
+        cos_pos_G = torch.mean(torch.sum(s_vector_pos_G * t_vector_pos_G, dim = 1))
+        cos_neg_G = torch.mean(torch.sum(s_vector_neg_G * t_vector_neg_G, dim = 1)) 
+        cos_pos_L = torch.mean(torch.sum(s_vector_pos_L * t_vector_pos_L, dim = 2), dim = 1).mean()
+        cos_neg_L = torch.mean(torch.sum(s_vector_neg_L * t_vector_neg_L, dim = 2), dim = 1).mean()
+        
+        # print("dis_pos_G_before sum",torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1))
+        # print("disG_shape",s_vector_pos_G.shape) #([16, 768])
+        # print("disL_shape",s_vector_pos_L.shape) #([16, 49, 768])
+
+        # print("G_norm_shape",torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1).shape) #([16])
+        # print("L_norm_shape",torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2).shape) #([16, 49])
+
+        # print("G_sum",torch.sum(torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1)).shape)# []
+        # print("L_sum",torch.sum(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1).shape) #([16])
+
+
+        # print("dis_pos_G", dis_pos_G)
+        # print("dis_pos_L", dis_pos_L)
+        # print("disL0",torch.sum(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1)[0])
+ 
+        # print("dis_pos_L_before mean",torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2))
+        # print("dis_pos_L", dis_pos_L)
+        # print("dis_pos_L_sum/dim",torch.sum(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1)/ (len_dim - 1))
+
+
+        # dis_pos = torch.sum(torch.norm(s_vector_pos - t_vector_pos, p = 2, dim = 2), dim = 1)
+        # dis_neg = torch.sum(torch.norm(s_vector_neg - t_vector_neg, p = 2, dim = 2), dim = 1)
+
+        # cos_pos = torch.sum(torch.sum(s_vector_pos * t_vector_pos, dim = 2), dim = 1)
+        # cos_neg = torch.sum(torch.sum(s_vector_neg * t_vector_neg, dim = 2), dim = 1)
+
+        inner_losses_L = 0
+        
+        for t in range(1, len_dim): # 全局特征cls没有内部的距离
             anchor_t = s_anchor[:, t, :]
             positive_t = s_positive[:, t, :]
             negative_t = s_negative[:, t, :]
-            inner_losses += self.triplet_loss(anchor_t, positive_t, negative_t)
+            inner_losses_L += self.triplet_loss(anchor_t, positive_t, negative_t)
+        inner_losses_L /= (len_dim - 1)
+        
+        inner_losses_G = self.triplet_loss(s_anchor[:, 0, :], s_positive[:, 0, :], s_negative[:, 0, :]) # 全局特征cls
 
-        inner_losses /= len_dim
+        # print("inner_losses_G", inner_losses_G)
+        # print("inner_losses_L", inner_losses_L)
 
-        Loss = (dis_pos + dis_neg + cos_pos + cos_neg ) / len_dim + inner_losses
+        loss_G = (dis_pos_G + dis_neg_G + cos_pos_G + cos_neg_G) * self.rateOI + inner_losses_G * (1 - self.rateOI)
+        loss_L = (dis_pos_L + dis_neg_L + cos_pos_L + cos_neg_L) * self.rateOI + inner_losses_L * (1 - self.rateOI)
+
+
+        # 归一化损失
+        # loss_G_normalized = loss_G / (loss_G.detach().max() + 1e-8)  # 防止除以零
+        # loss_L_normalized = loss_L / (loss_L.detach().max() + 1e-8)  # 防止除以零
+
+        Loss = loss_G * self.rateGL + loss_L * (1 - self.rateGL)        
         # print("Loss",Loss.shape)
         return Loss.mean()
 import torch
@@ -100,32 +164,135 @@ class SimpleFeatureDistillationLoss(nn.Module):
         返回:
         torch.Tensor: 特征蒸馏损失
         """
-        # 初始化总损失
-        total_loss = 0.0
+        # # 初始化总损失
+        # total_loss = 0.0
 
-        # 获取序列长度
-        seq_len = t_anchor.size(1)
+        # # 获取序列长度
+        # seq_len = t_anchor.size(1)
 
-        # 逐个时间步计算损失
-        for t in range(seq_len):
-            # 提取当前时间步的特征
-            t_anchor_t = t_anchor[:, t, :]
-            s_anchor_t = s_anchor[:, t, :]
+        # # 逐个时间步计算损失
+        # for t in range(seq_len):
+        #     # 提取当前时间步的特征
+        #     t_anchor_t = t_anchor[:, t, :]
+        #     s_anchor_t = s_anchor[:, t, :]
 
-            # 计算每个特征的均方误差损失
-            loss_anchor = self.mse_loss(t_anchor_t, s_anchor_t)
+        #     # 计算每个特征的均方误差损失
+        #     loss_anchor = self.mse_loss(t_anchor_t, s_anchor_t)
 
-            # 沿着特征维度求和
-            loss_anchor = torch.sum(loss_anchor, dim=1)
+        #     # 沿着特征维度求和
+        #     loss_anchor = torch.sum(loss_anchor, dim=1)
 
-            # 累加当前时间步的损失
-            total_loss += loss_anchor
+        #     # 累加当前时间步的损失
+        #     total_loss += loss_anchor
 
-        # 计算平均损失
-        total_loss /= seq_len
+        # # 计算平均损失
+        # total_loss /= seq_len
         # + self.mse_loss(t_positive, s_positive) + self.mse_loss(t_negative, s_negative)
 
-        return total_loss
+        # 计算均方误差损失
+        loss = self.mse_loss(t_anchor, s_anchor)
+        return loss
+
+class CombineLoss(nn.Module):
+    def __init__(self, dis_margin = 1.0, ang_margin = 0.2, rateGL = 0.5,rateOI = 0.5):
+        super(CombineLoss, self).__init__()
+        self.triplet_loss = TripletRelationLoss(dis_margin, ang_margin)
+        self.rateGL = rateGL
+        self.rateOI = rateOI
+        self.mse_loss = nn.MSELoss()
+
+    def forward(self,t_anchor, t_positive, t_negative, s_anchor, s_positive, s_negative): # (32,50,256)
+        len_dim = s_anchor.size()[1]
+
+        # 归一化特征向量
+        s_anchor = torch.nn.functional.normalize(s_anchor, p=2, dim=-1)
+        s_positive = torch.nn.functional.normalize(s_positive, p=2, dim=-1)
+        s_negative = torch.nn.functional.normalize(s_negative, p=2, dim=-1)
+        t_anchor = torch.nn.functional.normalize(t_anchor, p=2, dim=-1)
+        t_positive = torch.nn.functional.normalize(t_positive, p=2, dim=-1)
+        t_negative = torch.nn.functional.normalize(t_negative, p=2, dim=-1)
+
+        s_vector_pos = s_anchor - s_positive
+        s_vector_neg = s_anchor - s_negative
+        t_vector_pos = t_anchor - t_positive
+        t_vector_neg = t_anchor - t_negative
+        
+        s_vector_pos_G = s_vector_pos[:, 0, :]
+        s_vector_neg_G = s_vector_neg[:, 0, :]
+        t_vector_pos_G = t_vector_pos[:, 0, :]
+        t_vector_neg_G = t_vector_neg[:, 0, :]
+
+        s_vector_pos_L = s_vector_pos[:, 1:, :]
+        s_vector_neg_L = s_vector_neg[:, 1:, :]
+        t_vector_pos_L = t_vector_pos[:, 1:, :]
+        t_vector_neg_L = t_vector_neg[:, 1:, :]
+
+        dis_pos_G = torch.mean(torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1))
+        dis_neg_G = torch.mean(torch.norm(s_vector_neg_G - t_vector_neg_G, p = 2, dim = 1))
+        dis_pos_L = torch.mean(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1).mean()
+        dis_neg_L = torch.mean(torch.norm(s_vector_neg_L - t_vector_neg_L, p = 2, dim = 2), dim = 1).mean()
+
+        cos_pos_G = torch.mean(torch.sum(s_vector_pos_G * t_vector_pos_G, dim = 1))
+        cos_neg_G = torch.mean(torch.sum(s_vector_neg_G * t_vector_neg_G, dim = 1)) 
+        cos_pos_L = torch.mean(torch.sum(s_vector_pos_L * t_vector_pos_L, dim = 2), dim = 1).mean()
+        cos_neg_L = torch.mean(torch.sum(s_vector_neg_L * t_vector_neg_L, dim = 2), dim = 1).mean()
+        
+        # print("dis_pos_G_before sum",torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1))
+        # print("disG_shape",s_vector_pos_G.shape) #([16, 768])
+        # print("disL_shape",s_vector_pos_L.shape) #([16, 49, 768])
+
+        # print("G_norm_shape",torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1).shape) #([16])
+        # print("L_norm_shape",torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2).shape) #([16, 49])
+
+        # print("G_sum",torch.sum(torch.norm(s_vector_pos_G - t_vector_pos_G, p = 2, dim = 1)).shape)# []
+        # print("L_sum",torch.sum(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1).shape) #([16])
+
+
+        # print("dis_pos_G", dis_pos_G)
+        # print("dis_pos_L", dis_pos_L)
+        # print("disL0",torch.sum(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1)[0])
+ 
+        # print("dis_pos_L_before mean",torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2))
+        # print("dis_pos_L", dis_pos_L)
+        # print("dis_pos_L_sum/dim",torch.sum(torch.norm(s_vector_pos_L - t_vector_pos_L, p = 2, dim = 2), dim = 1)/ (len_dim - 1))
+
+
+        # dis_pos = torch.sum(torch.norm(s_vector_pos - t_vector_pos, p = 2, dim = 2), dim = 1)
+        # dis_neg = torch.sum(torch.norm(s_vector_neg - t_vector_neg, p = 2, dim = 2), dim = 1)
+
+        # cos_pos = torch.sum(torch.sum(s_vector_pos * t_vector_pos, dim = 2), dim = 1)
+        # cos_neg = torch.sum(torch.sum(s_vector_neg * t_vector_neg, dim = 2), dim = 1)
+
+        inner_losses_L = 0
+        
+        for t in range(1, len_dim): # 全局特征cls没有内部的距离
+            anchor_t = s_anchor[:, t, :]
+            positive_t = s_positive[:, t, :]
+            negative_t = s_negative[:, t, :]
+            inner_losses_L += self.triplet_loss(anchor_t, positive_t, negative_t)
+        inner_losses_L /= (len_dim - 1)
+        
+        inner_losses_G = self.triplet_loss(s_anchor[:, 0, :], s_positive[:, 0, :], s_negative[:, 0, :]) # 全局特征cls
+
+        # print("inner_losses_G", inner_losses_G)
+        # print("inner_losses_L", inner_losses_L)
+
+        loss_G = (dis_pos_G + dis_neg_G + cos_pos_G + cos_neg_G) * self.rateOI + inner_losses_G * (1 - self.rateOI)
+        loss_L = (dis_pos_L + dis_neg_L + cos_pos_L + cos_neg_L) * self.rateOI + inner_losses_L * (1 - self.rateOI)
+
+        Loss1 = loss_G * self.rateGL + loss_L * (1 - self.rateGL)
+
+        Loss2 = self.mse_loss(t_anchor, s_anchor)
+
+
+        # 动态权重调整（改进版）
+        alpha = Loss2 / (Loss1 + Loss2 + 1e-8)
+        beta = Loss1 / (Loss1 + Loss2 + 1e-8)
+
+        # 结合损失函数
+        TotalLoss = alpha * Loss1 + beta * Loss2
+
+        return TotalLoss
 
 def extract_features(model, data_loader, device):
     """
