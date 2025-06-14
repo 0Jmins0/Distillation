@@ -1,0 +1,85 @@
+nohup: ignoring input
+/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py:137: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+/home/xyzhang/project/Distillation/src/evaluate.py:282: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/{args.model_T}/{args.loss}/best_model_lr_{args.lr}_batch_{args.batch_size}_rGL_{args.rGL}_rOI_{args.rOI}.pth")['model_state_dict'])
+/home/xyzhang/project/Distillation/src/evaluate.py:318: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+
+init ALEXNET model...
+
+Loading pre-trained model from ../models/exp/train_models/OS-NTU-core/MV_AlexNet/best_model_lr_1e-06_batch_16.pth...
+Pre-trained features loaded successfully.
+Extracting query features:   0%|          | 0/270 [00:00<?, ?it/s]Extracting query features:   0%|          | 1/270 [00:00<00:45,  5.89it/s]Extracting query features:   3%|▎         | 9/270 [00:00<00:06, 39.71it/s]Extracting query features:   7%|▋         | 18/270 [00:00<00:04, 57.82it/s]Extracting query features:  10%|█         | 27/270 [00:00<00:03, 67.77it/s]Extracting query features:  13%|█▎        | 36/270 [00:00<00:03, 72.94it/s]Extracting query features:  17%|█▋        | 45/270 [00:00<00:02, 76.48it/s]Extracting query features:  20%|██        | 54/270 [00:00<00:02, 80.23it/s]Extracting query features:  23%|██▎       | 63/270 [00:00<00:02, 80.22it/s]Extracting query features:  27%|██▋       | 73/270 [00:01<00:02, 84.64it/s]Extracting query features:  31%|███       | 84/270 [00:01<00:02, 90.10it/s]Extracting query features:  35%|███▌      | 95/270 [00:01<00:01, 95.09it/s]Extracting query features:  39%|███▉      | 106/270 [00:01<00:01, 97.81it/s]Extracting query features:  43%|████▎     | 116/270 [00:01<00:01, 97.92it/s]Extracting query features:  47%|████▋     | 127/270 [00:01<00:01, 98.92it/s]Extracting query features:  51%|█████     | 138/270 [00:01<00:01, 99.98it/s]Extracting query features:  55%|█████▌    | 149/270 [00:01<00:01, 98.57it/s]Extracting query features:  59%|█████▉    | 160/270 [00:01<00:01, 99.78it/s]Extracting query features:  63%|██████▎   | 170/270 [00:01<00:01, 98.69it/s]Extracting query features:  67%|██████▋   | 181/270 [00:02<00:00, 101.29it/s]Extracting query features:  71%|███████   | 192/270 [00:02<00:00, 99.69it/s] Extracting query features:  75%|███████▍  | 202/270 [00:02<00:00, 76.69it/s]Extracting query features:  78%|███████▊  | 211/270 [00:02<00:00, 78.38it/s]Extracting query features:  81%|████████▏ | 220/270 [00:02<00:00, 79.33it/s]Extracting query features:  85%|████████▍ | 229/270 [00:02<00:00, 78.82it/s]Extracting query features:  88%|████████▊ | 238/270 [00:02<00:00, 79.04it/s]Extracting query features:  91%|█████████▏| 247/270 [00:02<00:00, 80.74it/s]Extracting query features:  95%|█████████▍| 256/270 [00:03<00:00, 79.62it/s]Extracting query features:  98%|█████████▊| 265/270 [00:03<00:00, 79.16it/s]Extracting query features: 100%|██████████| 270/270 [00:03<00:00, 83.07it/s]
+features torch.Size([1271, 257, 768])
+features_after torch.Size([1271, 197376])
+query_labels ['gun___submachine' 'car___common' 'human_stand' 'cold_weapon___knife'
+ 'insect___fly' 'cold_weapon___knife' 'helmet' 'animal___duck' 'missle'
+ 'table___round' 'chair___common' 'car___truck' 'missle' 'insect___fly'
+ 'lamp___floorlamp' 'chair___sofa_multi-man' 'plane___straight_wing'
+ 'insect___polypod' 'insect___fly' 'ring' 'chair___common'
+ 'animal___tetrapods' 'ship___galleon' 'gun___submachine' 'bird'
+ 'animal___dinosaur' 'cold_weapon___sword' 'car___truck' 'car___truck'
+ 'lamp___tablelamp' 'door' 'chess' 'cycle___bike' 'chess' 'orchestral'
+ 'clock' 'cold_weapon___sword' 'container' 'tool___hammer' 'pen' 'bottle'
+ 'plant___flower' 'chip' 'gun___musket' 'door' 'bird'
+ 'plane___forwardswept_wing' 'tool___screwdriver' 'lamp___floorlamp'
+ 'bird' 'plant___tree' 'chip' 'chair___swivel' 'bottle'
+ 'plane___helicopter' 'gun___musket' 'wheel' 'plant___weed' 'missle'
+ 'insect___polypod' 'bed' 'lamp___floorlamp' 'bird' 'zeppelin'
+ 'orchestral' 'plane___straight_wing' 'cold_weapon___long' 'ring'
+ 'plane___backswept_wing' 'plane___forwardswept_wing' 'lamp___tablelamp'
+ 'table___round' 'ship___modern' 'tank' 'lamp___tablelamp' 'car___common'
+ 'missle' 'clock' 'chair___swivel' 'clock' 'bed' 'ship___galleon'
+ 'plant___flower' 'cup' 'ship___galleon' 'animal___dog'
+ 'cold_weapon___sword' 'human_stand' 'orchestral' 'animal___fish' 'ring'
+ 'hydrant' 'plane___forwardswept_wing' 'animal___dinosaur' 'human_stand'
+ 'cycle___bike' 'gun___submachine' 'insect___fly' 'animal___tetrapods'
+ 'lamp___tablelamp' 'cold_weapon___long' 'hydrant' 'lamp___floorlamp'
+ 'tool___hammer' 'ship___modern' 'plant___weed' 'animal___dinosaur'
+ 'animal___dog' 'plant___flower' 'bed' 'door' 'chip' 'helmet'
+ 'plant___weed' 'bottle' 'bottle' 'computer' 'wheel' 'cold_weapon___knife'
+ 'insect___polypod' 'plane___straight_wing' 'hydrant' 'table___round'
+ 'tank' 'wheel' 'hydrant' 'zeppelin' 'tool___hammer'
+ 'chair___sofa_multi-man' 'plant___flower' 'tool___screwdriver'
+ 'chair___sofa_multi-man' 'animal___fish' 'animal___tetrapods'
+ 'cold_weapon___knife' 'cold_weapon___knife' 'lamp___tablelamp' 'helmet'
+ 'animal___dinosaur' 'animal___tetrapods' 'pen' 'container'
+ 'plane___forwardswept_wing' 'plane___straight_wing' 'plant___flower'
+ 'insect___polypod' 'animal___dog' 'bed' 'cycle___bike'
+ 'plane___backswept_wing' 'chip' 'wheel' 'cold_weapon___long' 'container'
+ 'chair___swivel' 'car___common' 'animal___duck' 'door' 'lamp___floorlamp'
+ 'orchestral' 'plant___weed' 'orchestral' 'tool___screwdriver' 'computer'
+ 'ring' 'tool___hammer' 'plane___giant' 'gun___musket' 'cycle___moto'
+ 'cold_weapon___sword' 'ship___modern' 'bed' 'bottle' 'tool___screwdriver'
+ 'plane___helicopter' 'pen' 'plant___tree' 'plane___backswept_wing'
+ 'table___round' 'door' 'tool___hammer' 'car___common' 'gun___musket'
+ 'plant___tree' 'chair___common' 'chair___sofa_multi-man' 'animal___duck'
+ 'cold_weapon___long' 'plane___giant' 'human_stand' 'chess'
+ 'ship___modern' 'wheel' 'car___truck' 'plant___tree' 'tool___screwdriver'
+ 'gun___submachine' 'insect___fly' 'plane___helicopter' 'insect___polypod'
+ 'computer' 'helmet' 'ring' 'tank' 'plane___giant' 'container'
+ 'chair___swivel' 'animal___duck' 'animal___duck' 'cup' 'pen'
+ 'plane___straight_wing' 'gun___submachine' 'plane___helicopter'
+ 'animal___fish' 'cup' 'zeppelin' 'container' 'ship___galleon'
+ 'cycle___moto' 'chair___common' 'zeppelin' 'animal___fish' 'human_stand'
+ 'ship___modern' 'ship___galleon' 'cold_weapon___long' 'computer'
+ 'cycle___bike' 'computer' 'chair___swivel' 'cup' 'chess'
+ 'plane___backswept_wing' 'clock' 'gun___musket' 'plane___giant'
+ 'animal___dog' 'tank' 'animal___dog' 'plane___forwardswept_wing'
+ 'hydrant' 'missle' 'chair___common' 'cycle___moto' 'clock'
+ 'animal___dinosaur' 'plant___weed' 'chair___sofa_multi-man'
+ 'cycle___bike' 'plane___helicopter' 'car___truck' 'tank'
+ 'cold_weapon___sword' 'plane___giant' 'cycle___moto' 'helmet'
+ 'cycle___moto' 'plane___backswept_wing' 'animal___tetrapods' 'zeppelin'
+ 'animal___fish' 'plant___tree' 'pen' 'chip' 'chess' 'table___round' 'cup'
+ 'bird' 'car___common']
+       mAP|  NDCG@100|     ANMRR|
+   0.22257|   0.14149|   0.77497|
+pr curve: 
+[0.6093890476030596, 0.4649520859792634, 0.3446125042156639, 0.2776347468419153, 0.23084965807135813, 0.19149984598529773, 0.14565720506441732, 0.11895401072913032, 0.09108118059198084, 0.06464963486537136, 0.03461423935571456]
+结果已保存到 ../output/acc/accuracy_10.csv

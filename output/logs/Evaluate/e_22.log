@@ -1,0 +1,44 @@
+nohup: ignoring input
+/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py:137: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+/home/xyzhang/project/Distillation/src/evaluate.py:267: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/{args.loss}/best_model_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+/home/xyzhang/project/Distillation/src/evaluate.py:305: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+
+init ALEXNET model...
+
+Loading pre-trained model from ../models/exp/train_models/OS-MN40-core/MV_AlexNet/best_model_lr_1e-06_batch_16.pth...
+Pre-trained features loaded successfully.
+Extracting query features:   0%|          | 0/160 [00:00<?, ?it/s]Extracting query features:   1%|          | 1/160 [00:00<00:22,  7.12it/s]Extracting query features:   8%|▊         | 13/160 [00:00<00:02, 61.70it/s]Extracting query features:  16%|█▌        | 25/160 [00:00<00:01, 84.79it/s]Extracting query features:  22%|██▎       | 36/160 [00:00<00:01, 92.57it/s]Extracting query features:  30%|███       | 48/160 [00:00<00:01, 101.68it/s]Extracting query features:  38%|███▊      | 60/160 [00:00<00:00, 107.00it/s]Extracting query features:  46%|████▌     | 73/160 [00:00<00:00, 111.75it/s]Extracting query features:  53%|█████▎    | 85/160 [00:00<00:00, 113.59it/s]Extracting query features:  61%|██████    | 97/160 [00:00<00:00, 115.04it/s]Extracting query features:  68%|██████▊   | 109/160 [00:01<00:00, 115.84it/s]Extracting query features:  76%|███████▋  | 122/160 [00:01<00:00, 117.41it/s]Extracting query features:  84%|████████▍ | 135/160 [00:01<00:00, 119.62it/s]Extracting query features:  92%|█████████▎| 148/160 [00:01<00:00, 121.42it/s]Extracting query features: 100%|██████████| 160/160 [00:01<00:00, 108.15it/s]
+features torch.Size([9329, 50, 768])
+features_after torch.Size([9329, 38400])
+query_labels ['curtain' 'door' 'dresser' 'radio' 'door' 'person' 'sofa' 'range_hood'
+ 'sofa' 'car' 'tent' 'radio' 'vase' 'bowl' 'bottle' 'curtain' 'sofa'
+ 'bowl' 'dresser' 'tent' 'tent' 'cone' 'curtain' 'bottle' 'cup' 'bathtub'
+ 'stairs' 'bathtub' 'radio' 'car' 'desk' 'stairs' 'lamp' 'cone' 'chair'
+ 'plant' 'range_hood' 'car' 'tv_stand' 'door' 'tv_stand' 'plant' 'vase'
+ 'stool' 'bowl' 'xbox' 'tv_stand' 'xbox' 'guitar' 'dresser' 'desk' 'bed'
+ 'car' 'mantel' 'mantel' 'bench' 'chair' 'mantel' 'tent' 'toilet'
+ 'bookshelf' 'laptop' 'piano' 'curtain' 'wardrobe' 'car' 'toilet' 'cup'
+ 'laptop' 'bottle' 'cone' 'piano' 'cone' 'piano' 'vase' 'guitar' 'bench'
+ 'wardrobe' 'tent' 'stairs' 'dresser' 'chair' 'sofa' 'xbox' 'radio'
+ 'tv_stand' 'cup' 'curtain' 'guitar' 'door' 'bench' 'bookshelf' 'bed'
+ 'bookshelf' 'cup' 'bench' 'bed' 'xbox' 'mantel' 'stool' 'desk' 'cup'
+ 'bed' 'bench' 'cone' 'door' 'person' 'piano' 'stool' 'bathtub' 'person'
+ 'lamp' 'plant' 'lamp' 'range_hood' 'wardrobe' 'bed' 'vase' 'desk' 'chair'
+ 'radio' 'dresser' 'person' 'lamp' 'xbox' 'toilet' 'bathtub' 'laptop'
+ 'laptop' 'sofa' 'stool' 'guitar' 'guitar' 'lamp' 'bowl' 'tv_stand'
+ 'stool' 'range_hood' 'person' 'toilet' 'bowl' 'vase' 'plant' 'wardrobe'
+ 'laptop' 'plant' 'mantel' 'bottle' 'stairs' 'toilet' 'wardrobe' 'chair'
+ 'piano' 'bathtub' 'desk' 'bookshelf' 'range_hood' 'bookshelf' 'stairs'
+ 'bottle']
+       mAP|  NDCG@100|     ANMRR|
+   0.43709|   0.57431|   0.56028|
+pr curve: 
+[0.8800440199817565, 0.6765083167414909, 0.5924475190338888, 0.5354623212317013, 0.4820308941917567, 0.43264101023784196, 0.3865735514132719, 0.3358705375164347, 0.2799216929097103, 0.20431290699160715, 0.057948144165098095]
+结果已保存到 ../output/accuracy_09.csv

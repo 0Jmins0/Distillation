@@ -1,0 +1,191 @@
+nohup: ignoring input
+/home/xyzhang/project/Distillation/src/evaluate.py:314: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+Extracting query features:   0%|          | 0/160 [00:00<?, ?it/s]Extracting query features:   1%|          | 1/160 [00:00<00:48,  3.29it/s]Extracting query features:   1%|▏         | 2/160 [00:00<00:32,  4.84it/s]Extracting query features:   2%|▏         | 3/160 [00:00<00:27,  5.65it/s]Extracting query features:   2%|▎         | 4/160 [00:00<00:25,  6.20it/s]Extracting query features:   3%|▎         | 5/160 [00:00<00:23,  6.62it/s]Extracting query features:   4%|▍         | 6/160 [00:00<00:22,  6.90it/s]Extracting query features:   4%|▍         | 7/160 [00:01<00:21,  7.02it/s]Extracting query features:   5%|▌         | 8/160 [00:01<00:21,  7.09it/s]Extracting query features:   6%|▌         | 9/160 [00:01<00:21,  7.15it/s]Extracting query features:   6%|▋         | 10/160 [00:01<00:20,  7.18it/s]Extracting query features:   7%|▋         | 11/160 [00:01<00:20,  7.21it/s]Extracting query features:   8%|▊         | 12/160 [00:01<00:20,  7.30it/s]Extracting query features:   8%|▊         | 13/160 [00:01<00:20,  7.29it/s]Extracting query features:   9%|▉         | 14/160 [00:02<00:20,  7.28it/s]Extracting query features:   9%|▉         | 15/160 [00:02<00:19,  7.27it/s]Extracting query features:  10%|█         | 16/160 [00:02<00:19,  7.27it/s]Extracting query features:  11%|█         | 17/160 [00:02<00:19,  7.26it/s]Extracting query features:  11%|█▏        | 18/160 [00:02<00:19,  7.26it/s]Extracting query features:  12%|█▏        | 19/160 [00:02<00:19,  7.26it/s]Extracting query features:  12%|█▎        | 20/160 [00:02<00:19,  7.25it/s]Extracting query features:  13%|█▎        | 21/160 [00:03<00:19,  7.25it/s]Extracting query features:  14%|█▍        | 22/160 [00:03<00:19,  7.26it/s]Extracting query features:  14%|█▍        | 23/160 [00:03<00:18,  7.26it/s]Extracting query features:  15%|█▌        | 24/160 [00:03<00:18,  7.26it/s]Extracting query features:  16%|█▌        | 25/160 [00:03<00:18,  7.25it/s]Extracting query features:  16%|█▋        | 26/160 [00:03<00:18,  7.25it/s]Extracting query features:  17%|█▋        | 27/160 [00:03<00:18,  7.24it/s]Extracting query features:  18%|█▊        | 28/160 [00:04<00:18,  7.25it/s]Extracting query features:  18%|█▊        | 29/160 [00:04<00:17,  7.32it/s]Extracting query features:  19%|█▉        | 30/160 [00:04<00:17,  7.37it/s]Extracting query features:  19%|█▉        | 31/160 [00:04<00:17,  7.41it/s]Extracting query features:  20%|██        | 32/160 [00:04<00:17,  7.37it/s]Extracting query features:  21%|██        | 33/160 [00:04<00:17,  7.35it/s]Extracting query features:  21%|██▏       | 34/160 [00:04<00:17,  7.33it/s]Extracting query features:  22%|██▏       | 35/160 [00:04<00:17,  7.32it/s]Extracting query features:  22%|██▎       | 36/160 [00:05<00:16,  7.31it/s]Extracting query features:  23%|██▎       | 37/160 [00:05<00:16,  7.30it/s]Extracting query features:  24%|██▍       | 38/160 [00:05<00:16,  7.30it/s]Extracting query features:  24%|██▍       | 39/160 [00:05<00:16,  7.30it/s]Extracting query features:  25%|██▌       | 40/160 [00:05<00:16,  7.38it/s]Extracting query features:  26%|██▌       | 41/160 [00:05<00:16,  7.35it/s]Extracting query features:  26%|██▋       | 42/160 [00:05<00:15,  7.38it/s]Extracting query features:  27%|██▋       | 43/160 [00:06<00:16,  7.29it/s]Extracting query features:  28%|██▊       | 44/160 [00:06<00:15,  7.29it/s]Extracting query features:  28%|██▊       | 45/160 [00:06<00:15,  7.29it/s]Extracting query features:  29%|██▉       | 46/160 [00:06<00:15,  7.25it/s]Extracting query features:  29%|██▉       | 47/160 [00:06<00:15,  7.34it/s]Extracting query features:  30%|███       | 48/160 [00:06<00:15,  7.33it/s]Extracting query features:  31%|███       | 49/160 [00:06<00:15,  7.39it/s]Extracting query features:  31%|███▏      | 50/160 [00:07<00:14,  7.48it/s]Extracting query features:  32%|███▏      | 51/160 [00:07<00:14,  7.58it/s]Extracting query features:  32%|███▎      | 52/160 [00:07<00:14,  7.66it/s]Extracting query features:  33%|███▎      | 53/160 [00:07<00:13,  7.67it/s]Extracting query features:  34%|███▍      | 54/160 [00:07<00:14,  7.50it/s]Extracting query features:  34%|███▍      | 55/160 [00:07<00:14,  7.31it/s]Extracting query features:  35%|███▌      | 56/160 [00:07<00:14,  7.16it/s]Extracting query features:  36%|███▌      | 57/160 [00:07<00:14,  7.04it/s]Extracting query features:  36%|███▋      | 58/160 [00:08<00:14,  6.98it/s]Extracting query features:  37%|███▋      | 59/160 [00:08<00:14,  6.92it/s]Extracting query features:  38%|███▊      | 60/160 [00:08<00:14,  6.90it/s]Extracting query features:  38%|███▊      | 61/160 [00:08<00:14,  6.89it/s]Extracting query features:  39%|███▉      | 62/160 [00:08<00:14,  6.86it/s]Extracting query features:  39%|███▉      | 63/160 [00:08<00:14,  6.88it/s]Extracting query features:  40%|████      | 64/160 [00:08<00:14,  6.85it/s]Extracting query features:  41%|████      | 65/160 [00:09<00:13,  6.82it/s]Extracting query features:  41%|████▏     | 66/160 [00:09<00:13,  6.83it/s]Extracting query features:  42%|████▏     | 67/160 [00:09<00:13,  6.87it/s]Extracting query features:  42%|████▎     | 68/160 [00:09<00:13,  6.88it/s]Extracting query features:  43%|████▎     | 69/160 [00:09<00:13,  6.90it/s]Extracting query features:  44%|████▍     | 70/160 [00:09<00:12,  6.98it/s]Extracting query features:  44%|████▍     | 71/160 [00:09<00:12,  7.01it/s]Extracting query features:  45%|████▌     | 72/160 [00:10<00:12,  7.04it/s]Extracting query features:  46%|████▌     | 73/160 [00:10<00:12,  7.06it/s]Extracting query features:  46%|████▋     | 74/160 [00:10<00:12,  7.07it/s]Extracting query features:  47%|████▋     | 75/160 [00:10<00:12,  7.08it/s]Extracting query features:  48%|████▊     | 76/160 [00:10<00:11,  7.08it/s]Extracting query features:  48%|████▊     | 77/160 [00:10<00:11,  7.05it/s]Extracting query features:  49%|████▉     | 78/160 [00:10<00:11,  7.02it/s]Extracting query features:  49%|████▉     | 79/160 [00:11<00:11,  6.97it/s]Extracting query features:  50%|█████     | 80/160 [00:11<00:11,  6.90it/s]Extracting query features:  51%|█████     | 81/160 [00:11<00:11,  6.90it/s]Extracting query features:  51%|█████▏    | 82/160 [00:11<00:11,  6.83it/s]Extracting query features:  52%|█████▏    | 83/160 [00:11<00:10,  7.53it/s]Extracting query features:  53%|█████▎    | 85/160 [00:11<00:08,  8.59it/s]Extracting query features:  54%|█████▍    | 87/160 [00:12<00:08,  9.12it/s]Extracting query features:  55%|█████▌    | 88/160 [00:12<00:07,  9.24it/s]Extracting query features:  56%|█████▋    | 90/160 [00:12<00:07,  9.51it/s]Extracting query features:  57%|█████▋    | 91/160 [00:12<00:07,  9.56it/s]Extracting query features:  58%|█████▊    | 93/160 [00:12<00:06,  9.76it/s]Extracting query features:  59%|█████▉    | 94/160 [00:12<00:06,  9.80it/s]Extracting query features:  59%|█████▉    | 95/160 [00:12<00:06,  9.82it/s]Extracting query features:  61%|██████    | 97/160 [00:13<00:06,  9.93it/s]Extracting query features:  61%|██████▏   | 98/160 [00:13<00:06,  9.88it/s]Extracting query features:  62%|██████▏   | 99/160 [00:13<00:06,  9.91it/s]Extracting query features:  62%|██████▎   | 100/160 [00:13<00:06,  9.92it/s]Extracting query features:  64%|██████▍   | 102/160 [00:13<00:05,  9.96it/s]Extracting query features:  64%|██████▍   | 103/160 [00:13<00:05,  9.97it/s]Extracting query features:  66%|██████▌   | 105/160 [00:13<00:05, 10.03it/s]Extracting query features:  67%|██████▋   | 107/160 [00:14<00:05, 10.07it/s]Extracting query features:  68%|██████▊   | 109/160 [00:14<00:05, 10.06it/s]Extracting query features:  69%|██████▉   | 111/160 [00:14<00:04, 10.01it/s]Extracting query features:  71%|███████   | 113/160 [00:14<00:04, 10.10it/s]Extracting query features:  72%|███████▏  | 115/160 [00:14<00:04, 10.19it/s]Extracting query features:  73%|███████▎  | 117/160 [00:15<00:04, 10.19it/s]Extracting query features:  74%|███████▍  | 119/160 [00:15<00:03, 10.97it/s]Extracting query features:  76%|███████▌  | 121/160 [00:15<00:03, 12.68it/s]Extracting query features:  77%|███████▋  | 123/160 [00:15<00:02, 14.16it/s]Extracting query features:  78%|███████▊  | 125/160 [00:15<00:02, 15.42it/s]Extracting query features:  79%|███████▉  | 127/160 [00:15<00:02, 16.38it/s]Extracting query features:  81%|████████  | 129/160 [00:15<00:01, 17.15it/s]Extracting query features:  82%|████████▏ | 131/160 [00:15<00:01, 17.88it/s]Extracting query features:  83%|████████▎ | 133/160 [00:15<00:01, 18.43it/s]Extracting query features:  84%|████████▍ | 135/160 [00:16<00:01, 18.88it/s]Extracting query features:  86%|████████▋ | 138/160 [00:16<00:01, 19.30it/s]Extracting query features:  88%|████████▊ | 141/160 [00:16<00:00, 19.54it/s]Extracting query features:  89%|████████▉ | 143/160 [00:16<00:00, 19.64it/s]Extracting query features:  91%|█████████ | 145/160 [00:16<00:00, 19.70it/s]Extracting query features:  92%|█████████▏| 147/160 [00:16<00:00, 19.66it/s]Extracting query features:  93%|█████████▎| 149/160 [00:16<00:00, 19.68it/s]Extracting query features:  94%|█████████▍| 151/160 [00:16<00:00, 19.75it/s]Extracting query features:  96%|█████████▌| 153/160 [00:16<00:00, 19.80it/s]Extracting query features:  97%|█████████▋| 155/160 [00:17<00:00, 19.79it/s]Extracting query features:  98%|█████████▊| 157/160 [00:17<00:00, 19.83it/s]Extracting query features:  99%|█████████▉| 159/160 [00:17<00:00, 19.86it/s]Extracting query features: 100%|██████████| 160/160 [00:17<00:00,  9.26it/s]
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+torch.Size([12, 3, 224, 224])
+features torch.Size([9329, 1, 768])
+features_after torch.Size([9329, 768])
+query_labels ['curtain' 'door' 'dresser' 'radio' 'door' 'person' 'sofa' 'range_hood'
+ 'sofa' 'car' 'tent' 'radio' 'vase' 'bowl' 'bottle' 'curtain' 'sofa'
+ 'bowl' 'dresser' 'tent' 'tent' 'cone' 'curtain' 'bottle' 'cup' 'bathtub'
+ 'stairs' 'bathtub' 'radio' 'car' 'desk' 'stairs' 'lamp' 'cone' 'chair'
+ 'plant' 'range_hood' 'car' 'tv_stand' 'door' 'tv_stand' 'plant' 'vase'
+ 'stool' 'bowl' 'xbox' 'tv_stand' 'xbox' 'guitar' 'dresser' 'desk' 'bed'
+ 'car' 'mantel' 'mantel' 'bench' 'chair' 'mantel' 'tent' 'toilet'
+ 'bookshelf' 'laptop' 'piano' 'curtain' 'wardrobe' 'car' 'toilet' 'cup'
+ 'laptop' 'bottle' 'cone' 'piano' 'cone' 'piano' 'vase' 'guitar' 'bench'
+ 'wardrobe' 'tent' 'stairs' 'dresser' 'chair' 'sofa' 'xbox' 'radio'
+ 'tv_stand' 'cup' 'curtain' 'guitar' 'door' 'bench' 'bookshelf' 'bed'
+ 'bookshelf' 'cup' 'bench' 'bed' 'xbox' 'mantel' 'stool' 'desk' 'cup'
+ 'bed' 'bench' 'cone' 'door' 'person' 'piano' 'stool' 'bathtub' 'person'
+ 'lamp' 'plant' 'lamp' 'range_hood' 'wardrobe' 'bed' 'vase' 'desk' 'chair'
+ 'radio' 'dresser' 'person' 'lamp' 'xbox' 'toilet' 'bathtub' 'laptop'
+ 'laptop' 'sofa' 'stool' 'guitar' 'guitar' 'lamp' 'bowl' 'tv_stand'
+ 'stool' 'range_hood' 'person' 'toilet' 'bowl' 'vase' 'plant' 'wardrobe'
+ 'laptop' 'plant' 'mantel' 'bottle' 'stairs' 'toilet' 'wardrobe' 'chair'
+ 'piano' 'bathtub' 'desk' 'bookshelf' 'range_hood' 'bookshelf' 'stairs'
+ 'bottle']
+       mAP|  NDCG@100|     ANMRR|
+   0.55475|   0.69344|   0.45527|
+pr curve: 
+[0.9224968861522367, 0.8083142555134162, 0.7398268531049423, 0.6875936447043444, 0.6331625385852997, 0.5731263675147243, 0.5066426652215532, 0.443446615045088, 0.3747664966915062, 0.27508220018291657, 0.07691089304450845]
+结果已保存到 ../output/acc/accuracy_09.csv

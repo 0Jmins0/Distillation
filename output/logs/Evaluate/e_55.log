@@ -1,0 +1,35 @@
+nohup: ignoring input
+/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py:137: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+/home/xyzhang/project/Distillation/src/evaluate.py:271: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/{args.loss}/best_model_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+/home/xyzhang/project/Distillation/src/evaluate.py:309: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+
+init ALEXNET model...
+
+Loading pre-trained model from ../models/exp/train_models/MN40-DS/MV_AlexNet/best_model_lr_1e-06_batch_16.pth...
+Pre-trained features loaded successfully.
+Extracting query features:   0%|          | 0/80 [00:00<?, ?it/s]Extracting query features:   1%|▏         | 1/80 [00:00<00:15,  5.21it/s]Extracting query features:  12%|█▎        | 10/80 [00:00<00:01, 39.74it/s]Extracting query features:  24%|██▍       | 19/80 [00:00<00:01, 56.80it/s]Extracting query features:  35%|███▌      | 28/80 [00:00<00:00, 65.68it/s]Extracting query features:  46%|████▋     | 37/80 [00:00<00:00, 71.06it/s]Extracting query features:  57%|█████▊    | 46/80 [00:00<00:00, 75.38it/s]Extracting query features:  70%|███████   | 56/80 [00:00<00:00, 80.19it/s]Extracting query features:  81%|████████▏ | 65/80 [00:00<00:00, 82.85it/s]Extracting query features:  92%|█████████▎| 74/80 [00:01<00:00, 84.75it/s]Extracting query features: 100%|██████████| 80/80 [00:01<00:00, 71.04it/s]
+features torch.Size([1199, 50, 768])
+features_after torch.Size([1199, 38400])
+query_labels ['vase' 'car' 'monitor' 'bottle' 'mantel' 'night_stand' 'keyboard'
+ 'wardrobe' 'bathtub' 'dresser' 'dresser' 'bottle' 'lamp' 'chair' 'mantel'
+ 'curtain' 'guitar' 'curtain' 'laptop' 'bathtub' 'mantel' 'guitar'
+ 'monitor' 'cone' 'car' 'bathtub' 'bench' 'bottle' 'bed' 'wardrobe'
+ 'monitor' 'laptop' 'vase' 'vase' 'bench' 'person' 'lamp' 'curtain' 'car'
+ 'mantel' 'dresser' 'bed' 'desk' 'bottle' 'desk' 'dresser' 'chair' 'chair'
+ 'keyboard' 'monitor' 'chair' 'night_stand' 'night_stand' 'person'
+ 'curtain' 'laptop' 'keyboard' 'car' 'night_stand' 'bench' 'vase'
+ 'keyboard' 'person' 'laptop' 'person' 'bench' 'desk' 'lamp' 'cone' 'bed'
+ 'bathtub' 'lamp' 'wardrobe' 'wardrobe' 'guitar' 'guitar' 'cone' 'bed'
+ 'cone' 'desk']
+       mAP|  NDCG@100|     ANMRR|
+   0.49806|   0.39254|   0.51154|
+pr curve: 
+[0.9122046552481334, 0.7555336787835308, 0.64886619724905, 0.5964637789919359, 0.5389266819886466, 0.4958562204293829, 0.4468518777991159, 0.3964438956722761, 0.3420838672477174, 0.25888923472171943, 0.13975480942438262]
+结果已保存到 ../output/accuracy_09.csv

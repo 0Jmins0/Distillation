@@ -48,6 +48,27 @@ nohup python train.py --train_data MN40-DS --model_name MV_AlexNet --lr 1e-6 --b
 nohup python train.py --train_data MN40-DS --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 > 32.log 2>&1 &
 nohup python train.py --train_data MN40-DS --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss  > 33.log 2>&1 &
 
+
+## MV_AlexNet_dis_Pre learn from DINOv2_B14
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 > 34.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 > 35.log 2>&1 &
+nohup python train.py --train_data OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 > 36.log 2>&1 &
+nohup python train.py --train_data OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 > 37.log 2>&1 &
+
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 38.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 39.log 2>&1 &
+nohup python train.py --train_data OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 40.log 2>&1 &
+nohup python train.py --train_data OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 41.log 2>&1 &
+
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 43.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 42.log 2>&1 &
+nohup python train.py --train_data OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 44.log 2>&1 &
+nohup python train.py --train_data OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 45.log 2>&1 &
+
+nohup python train.py --train_data OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 46.log 2>&1 &
+nohup python train.py --train_data OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16  --model_T DINOv2_B14 --loss RelationDisLoss > 47.log 2>&1 &
+
+
 # feature
 ## Pretrain
 nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core  --model_name MV_AlexNet --lr 1e-6 --batch_size 4 > f_1.log 2>&1 &
@@ -136,6 +157,37 @@ nohup python feature_extraction.py --train_data MN40-DS --test_dataset MN40-DU -
 nohup python feature_extraction.py --test_dataset MN40-DU --model_name MV_CLIP_without_adpter > f_60.log 2>&1 &
 nohup python feature_extraction.py --test_dataset MN40-DS --model_name MV_CLIP_without_adpter > f_59.log 2>&1 &
 
+## MV_DINOv2_without_adpter
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_DINOv2_without_adapter > f_63.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_DINOv2_without_adapter > f_64.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_DINOv2_without_adapter > f_65.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_DINOv2_without_adapter > f_66.log 2>&1 &
+
+## MV_AlexNet_dis_Pre learn from DINOv2_B14
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 > f_67.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 > f_68.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 > f_69.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 > f_70.log 2>&1 &
+
+
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_71.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_72.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_73.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_74.log 2>&1 &
+
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_75.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_76.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_77.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_78.log 2>&1 &
+
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_79.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_80.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_81.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_82.log 2>&1 &
+
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-4 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_83.log 2>&1 &
+nohup python feature_extraction.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-5 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss > f_84.log 2>&1 &
+
 # eva
 ## MV_AlexNet
 nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet --lr 1e-6 --batch_size 4 --order 1 > e_1.log 2>&1 &
@@ -218,8 +270,8 @@ nohup python evaluate.py --train_data MN40-DS --test_dataset MN40-DS --model_nam
 nohup python evaluate.py --train_data MN40-DS --test_dataset MN40-DU --model_name MV_AlexNet --lr 1e-6 --batch_size 16 --order 58 > e_58.log 2>&1 &
 nohup python evaluate.py --train_data MN40-DS --test_dataset MN40-DS --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --order 55 > e_55.log 2>&1 &
 nohup python evaluate.py --train_data MN40-DS --test_dataset MN40-DU --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --order 56 > e_56.log 2>&1 &
-nohup python feature_extraction.py --train_data MN40-DS --test_dataset MN40-DS --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --order 61 > e_61.log 2>&1 &
-nohup python feature_extraction.py --train_data MN40-DS --test_dataset MN40-DU --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --order 62 > e_62.log 2>&1 &
+nohup python evaluate.py --train_data MN40-DS --test_dataset MN40-DS --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --order 61 > e_61.log 2>&1 &
+nohup python evaluate.py --train_data MN40-DS --test_dataset MN40-DU --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --order 62 > e_62.log 2>&1 &
 nohup python evaluate.py --test_dataset MN40-DU --model_name MV_CLIP_without_adpter --order 60 > e_60.log 2>&1 &
 nohup python evaluate.py --test_dataset MN40-DS --model_name MV_CLIP_without_adpter --order 59 > e_59.log 2>&1 &
 
@@ -241,3 +293,34 @@ python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_n
 python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --rGL 0.8 --rOI 0.8
 python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --rGL 0.8 --rOI 0.2
 python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --loss RelationDisLoss --rGL 0.8 --rOI 0
+
+
+## MV_DINOv2_without_adpter
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_DINOv2_without_adapter --order 63 > e_63.log 2>&1 &
+nohup python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_DINOv2_without_adapter --order 64 > e_64.log 2>&1 &
+nohup python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_DINOv2_without_adapter --order 65 > e_65.log 2>&1 &
+nohup python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_DINOv2_without_adapter --order 66 > e_66.log 2>&1 &
+
+## MV_AlexNet_dis_Pre learn from DINOv2_B14
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --order 67 > e_67.log 2>&1 &
+nohup python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --order 68 > e_68.log 2>&1 &
+nohup python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --order 69 > e_69.log 2>&1 &
+nohup python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --order 70 > e_70.log 2>&1 &
+
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss  --order 71 > e_71.log 2>&1 &
+nohup python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 72 > e_72.log 2>&1 &
+nohup python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 73 > e_73.log 2>&1 &
+nohup python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-6 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 74 > e_74.log 2>&1 &
+
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 75 > e_75.log 2>&1 &
+nohup python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 76 > e_76.log 2>&1 &
+nohup python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 77 > e_77.log 2>&1 &
+nohup python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-3 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 78 > e_78.log 2>&1 &
+
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 79 > e_79.log 2>&1 &
+nohup python evaluate.py --train_data OS-ESB-core --test_dataset OS-ESB-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 80 > e_80.log 2>&1 &
+nohup python evaluate.py --train_data OS-NTU-core --test_dataset OS-NTU-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 81 > e_81.log 2>&1 &
+nohup python evaluate.py --train_data OS-MN40-core --test_dataset OS-MN40-core --model_name MV_AlexNet_dis_Pre --lr 1e-2 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 82 > e_82.log 2>&1 &
+
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-4 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 83 > e_83.log 2>&1 &
+nohup python evaluate.py --train_data OS-ABO-core --test_dataset OS-ABO-core --model_name MV_AlexNet_dis_Pre --lr 1e-5 --batch_size 16 --model_T DINOv2_B14 --loss RelationDisLoss --order 84 > e_84.log 2>&1 &

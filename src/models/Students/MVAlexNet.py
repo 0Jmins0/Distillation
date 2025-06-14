@@ -79,8 +79,8 @@ class AlexNet_Adapter(nn.Module):
                 nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1)  # 保持通道数
             )
             input_size = 16 * 16 * 256
-            self.feature_dim = 1024
-        else:
+            self.feature_dim = 768
+        elif target_size == (7,7):
             self.adapter = nn.Conv2d(256,256,kernel_size=3,stride=2,padding=1)
             input_size = 7 * 7 * 256
             self.feature_dim = 768
@@ -111,7 +111,7 @@ class AlexNet_Adapter(nn.Module):
         return combined_feature 
 
 class MV_AlexNet(nn.Module):
-    def __init__(self, num_views = 15, is_dis = False, is_pre = True,target_sieze = (7,7),batch_size = 4, PretrainedModel_dir = None):
+    def __init__(self, num_views = 15, is_dis = False, is_pre = True,target_size = (7,7),batch_size = 4, PretrainedModel_dir = None):
         # 初始化函数，设置默认参数num_viewsm为15
         super(MV_AlexNet, self).__init__()
         base_model_name = "ALEXNET"
@@ -124,12 +124,12 @@ class MV_AlexNet(nn.Module):
             self.retrieval = BaseRetrievalNet(base_model_name)
         elif is_pre == False:
             self.features = BaseFeatureNet(num_views = num_views, base_model_name = base_model_name,  pretrained = True)
-            self.retrieval = AlexNet_Adapter(target_sieze, batch_size)
+            self.retrieval = AlexNet_Adapter(target_size, batch_size)
         else:
             self.features = self.load_pretrained_model(num_views, PretrainedModel_dir)
             for param in self.features.parameters():
                 param.requires_grad = False
-            self.retrieval = AlexNet_Adapter(target_sieze, batch_size)
+            self.retrieval = AlexNet_Adapter(target_size, batch_size)
 
     def load_pretrained_model(self, num_views, model_path):
         # 加载预训练模型的权重

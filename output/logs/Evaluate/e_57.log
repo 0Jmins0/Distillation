@@ -1,0 +1,31 @@
+nohup: ignoring input
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/home/xyzhang/project/Distillation/src/evaluate.py:275: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/best_model_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+/home/xyzhang/project/Distillation/src/evaluate.py:309: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+
+init ALEXNET model...
+
+Extracting query features:   0%|          | 0/80 [00:00<?, ?it/s]Extracting query features:   1%|▏         | 1/80 [00:00<00:16,  4.81it/s]Extracting query features:  12%|█▎        | 10/80 [00:00<00:01, 38.30it/s]Extracting query features:  24%|██▍       | 19/80 [00:00<00:01, 55.02it/s]Extracting query features:  35%|███▌      | 28/80 [00:00<00:00, 64.02it/s]Extracting query features:  48%|████▊     | 38/80 [00:00<00:00, 73.46it/s]Extracting query features:  60%|██████    | 48/80 [00:00<00:00, 79.71it/s]Extracting query features:  72%|███████▎  | 58/80 [00:00<00:00, 84.58it/s]Extracting query features:  84%|████████▍ | 67/80 [00:00<00:00, 85.28it/s]Extracting query features:  95%|█████████▌| 76/80 [00:01<00:00, 86.24it/s]Extracting query features: 100%|██████████| 80/80 [00:01<00:00, 72.23it/s]
+features torch.Size([1199, 256])
+features_after torch.Size([1199, 256])
+query_labels ['vase' 'car' 'monitor' 'bottle' 'mantel' 'night_stand' 'keyboard'
+ 'wardrobe' 'bathtub' 'dresser' 'dresser' 'bottle' 'lamp' 'chair' 'mantel'
+ 'curtain' 'guitar' 'curtain' 'laptop' 'bathtub' 'mantel' 'guitar'
+ 'monitor' 'cone' 'car' 'bathtub' 'bench' 'bottle' 'bed' 'wardrobe'
+ 'monitor' 'laptop' 'vase' 'vase' 'bench' 'person' 'lamp' 'curtain' 'car'
+ 'mantel' 'dresser' 'bed' 'desk' 'bottle' 'desk' 'dresser' 'chair' 'chair'
+ 'keyboard' 'monitor' 'chair' 'night_stand' 'night_stand' 'person'
+ 'curtain' 'laptop' 'keyboard' 'car' 'night_stand' 'bench' 'vase'
+ 'keyboard' 'person' 'laptop' 'person' 'bench' 'desk' 'lamp' 'cone' 'bed'
+ 'bathtub' 'lamp' 'wardrobe' 'wardrobe' 'guitar' 'guitar' 'cone' 'bed'
+ 'cone' 'desk']
+       mAP|  NDCG@100|     ANMRR|
+   0.68521|   0.49435|   0.34426|
+pr curve: 
+[0.9010526535521148, 0.8214957111756709, 0.7838982563563865, 0.744061395010224, 0.7290947090468127, 0.7041887600845389, 0.669564920969979, 0.6399999239811065, 0.5959134988652149, 0.5307439511162467, 0.34988090776278985]
+结果已保存到 ../output/accuracy_09.csv

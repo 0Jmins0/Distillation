@@ -1,0 +1,44 @@
+nohup: ignoring input
+Extracting features:   0%|          | 0/40 [00:00<?, ?batch/s]Extracting features:   2%|▎         | 1/40 [00:04<02:48,  4.32s/batch]Extracting features:   5%|▌         | 2/40 [00:08<02:38,  4.16s/batch]Extracting features:   8%|▊         | 3/40 [00:12<02:31,  4.10s/batch]Extracting features:  10%|█         | 4/40 [00:16<02:26,  4.06s/batch]Extracting features:  12%|█▎        | 5/40 [00:20<02:21,  4.05s/batch]Extracting features:  15%|█▌        | 6/40 [00:24<02:17,  4.04s/batch]Extracting features:  18%|█▊        | 7/40 [00:28<02:10,  3.97s/batch]Extracting features:  20%|██        | 8/40 [00:31<01:58,  3.71s/batch]Extracting features:  22%|██▎       | 9/40 [00:34<01:49,  3.53s/batch]Extracting features:  25%|██▌       | 10/40 [00:37<01:42,  3.41s/batch]Extracting features:  28%|██▊       | 11/40 [00:41<01:38,  3.39s/batch]Extracting features:  30%|███       | 12/40 [00:44<01:38,  3.51s/batch]Extracting features:  32%|███▎      | 13/40 [00:48<01:38,  3.64s/batch]Extracting features:  35%|███▌      | 14/40 [00:52<01:37,  3.73s/batch]Extracting features:  38%|███▊      | 15/40 [00:56<01:32,  3.70s/batch]Extracting features:  40%|████      | 16/40 [00:59<01:23,  3.46s/batch]Extracting features:  42%|████▎     | 17/40 [01:02<01:15,  3.28s/batch]Extracting features:  45%|████▌     | 18/40 [01:04<01:09,  3.15s/batch]Extracting features:  48%|████▊     | 19/40 [01:07<01:04,  3.05s/batch]Extracting features:  50%|█████     | 20/40 [01:10<00:59,  2.99s/batch]Extracting features:  52%|█████▎    | 21/40 [01:13<00:55,  2.93s/batch]Extracting features:  55%|█████▌    | 22/40 [01:16<00:51,  2.86s/batch]Extracting features:  57%|█████▊    | 23/40 [01:18<00:47,  2.79s/batch]Extracting features:  60%|██████    | 24/40 [01:21<00:43,  2.73s/batch]Extracting features:  62%|██████▎   | 25/40 [01:23<00:40,  2.68s/batch]Extracting features:  65%|██████▌   | 26/40 [01:26<00:36,  2.64s/batch]Extracting features:  68%|██████▊   | 27/40 [01:28<00:33,  2.61s/batch]Extracting features:  70%|███████   | 28/40 [01:31<00:31,  2.58s/batch]Extracting features:  72%|███████▎  | 29/40 [01:33<00:28,  2.56s/batch]Extracting features:  75%|███████▌  | 30/40 [01:36<00:25,  2.53s/batch]Extracting features:  78%|███████▊  | 31/40 [01:38<00:22,  2.52s/batch]Extracting features:  80%|████████  | 32/40 [01:41<00:20,  2.51s/batch]Extracting features:  82%|████████▎ | 33/40 [01:43<00:17,  2.52s/batch]Extracting features:  85%|████████▌ | 34/40 [01:46<00:15,  2.51s/batch]Extracting features:  88%|████████▊ | 35/40 [01:49<00:12,  2.52s/batch]Extracting features:  90%|█████████ | 36/40 [01:51<00:10,  2.53s/batch]Extracting features:  92%|█████████▎| 37/40 [01:54<00:07,  2.54s/batch]Extracting features:  95%|█████████▌| 38/40 [01:56<00:05,  2.54s/batch]Extracting features:  98%|█████████▊| 39/40 [01:59<00:02,  2.54s/batch]Extracting features: 100%|██████████| 40/40 [02:01<00:00,  2.42s/batch]Extracting features: 100%|██████████| 40/40 [02:01<00:00,  3.03s/batch]
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([384, 3, 224, 224])
+torch.Size([276, 3, 224, 224])
+Extracted torch.Size([1271, 1, 768]) batches of features.
+Extracted 1271 image paths.

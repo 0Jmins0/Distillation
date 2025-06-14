@@ -176,7 +176,7 @@ nohup python feature_extraction.py --model_name MV_AlexNet_dis --model_num 14 --
 nohup python evaluate.py --model_name MV_AlexNet_dis --model_num 14 --batch_size 8 &
 
 # 监控loss变化
-tensorboard --logdir=../output/tensorboard_logs
+tensorboard --logdir=../output/tensorboard_logs/exp/
 ```
 
 

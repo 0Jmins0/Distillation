@@ -1,0 +1,183 @@
+nohup: ignoring input
+/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py:137: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+Using device: cuda
+loading train data.......
+finished loading train data.......
+Using DINOv2_B14 as the teacher model
+finished loading train data.......
+Training MV_AlexNet_dis_Pre
+
+init ALEXNET model...
+
+Loading pre-trained model from ../models/exp/train_models/OS-ESB-core/MV_AlexNet/best_model_lr_1e-06_batch_16.pth...
+Pre-trained features loaded successfully.
+No saved model found. Starting training from scratch.
+before train
+Epoch 1/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 1/40:  20%|██        | 1/5 [00:06<00:27,  6.85s/batch]Epoch 1/40:  40%|████      | 2/5 [00:14<00:22,  7.56s/batch]Epoch 1/40:  60%|██████    | 3/5 [00:23<00:15,  8.00s/batch]Epoch 1/40:  80%|████████  | 4/5 [00:31<00:08,  8.15s/batch]Epoch 1/40: 100%|██████████| 5/5 [00:38<00:00,  7.58s/batch]Epoch 1/40: 100%|██████████| 5/5 [00:38<00:00,  7.67s/batch]
+Epoch [1/40], Loss: 1.8986
+Epoch 1/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 1/40:  50%|█████     | 1/2 [00:08<00:08,  8.24s/batch]Epoch 1/40: 100%|██████████| 2/2 [00:10<00:00,  4.65s/batch]Epoch 1/40: 100%|██████████| 2/2 [00:10<00:00,  5.19s/batch]
+Validation Loss: 1.8305
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth
+Epoch 2/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 2/40:  20%|██        | 1/5 [00:08<00:35,  8.80s/batch]Epoch 2/40:  40%|████      | 2/5 [00:17<00:25,  8.47s/batch]Epoch 2/40:  60%|██████    | 3/5 [00:25<00:17,  8.52s/batch]Epoch 2/40:  80%|████████  | 4/5 [00:34<00:08,  8.56s/batch]Epoch 2/40: 100%|██████████| 5/5 [00:40<00:00,  7.75s/batch]Epoch 2/40: 100%|██████████| 5/5 [00:40<00:00,  8.11s/batch]
+Epoch [2/40], Loss: 1.7327
+Epoch 2/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 2/40:  50%|█████     | 1/2 [00:08<00:08,  8.04s/batch]Epoch 2/40: 100%|██████████| 2/2 [00:10<00:00,  4.67s/batch]Epoch 2/40: 100%|██████████| 2/2 [00:10<00:00,  5.18s/batch]
+Validation Loss: 1.6227
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth
+Epoch 3/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 3/40:  20%|██        | 1/5 [00:08<00:34,  8.72s/batch]Epoch 3/40:  40%|████      | 2/5 [00:16<00:25,  8.34s/batch]Epoch 3/40:  60%|██████    | 3/5 [00:25<00:16,  8.40s/batch]Epoch 3/40:  80%|████████  | 4/5 [00:33<00:08,  8.40s/batch]Epoch 3/40: 100%|██████████| 5/5 [00:39<00:00,  7.60s/batch]Epoch 3/40: 100%|██████████| 5/5 [00:39<00:00,  7.97s/batch]
+Epoch [3/40], Loss: 1.6865
+Epoch 3/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 3/40:  50%|█████     | 1/2 [00:07<00:07,  7.97s/batch]Epoch 3/40: 100%|██████████| 2/2 [00:10<00:00,  4.64s/batch]Epoch 3/40: 100%|██████████| 2/2 [00:10<00:00,  5.14s/batch]
+Validation Loss: 1.7064
+Epoch 4/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 4/40:  20%|██        | 1/5 [00:08<00:34,  8.55s/batch]Epoch 4/40:  40%|████      | 2/5 [00:17<00:25,  8.53s/batch]Epoch 4/40:  60%|██████    | 3/5 [00:25<00:17,  8.53s/batch]Epoch 4/40:  80%|████████  | 4/5 [00:34<00:08,  8.52s/batch]Epoch 4/40: 100%|██████████| 5/5 [00:40<00:00,  7.69s/batch]Epoch 4/40: 100%|██████████| 5/5 [00:40<00:00,  8.06s/batch]
+Epoch [4/40], Loss: 1.6460
+Epoch 4/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 4/40:  50%|█████     | 1/2 [00:08<00:08,  8.10s/batch]Epoch 4/40: 100%|██████████| 2/2 [00:10<00:00,  4.69s/batch]Epoch 4/40: 100%|██████████| 2/2 [00:10<00:00,  5.20s/batch]
+Validation Loss: 1.5108
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth
+Epoch 5/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 5/40:  20%|██        | 1/5 [00:08<00:35,  8.86s/batch]Epoch 5/40:  40%|████      | 2/5 [00:16<00:24,  8.27s/batch]Epoch 5/40:  60%|██████    | 3/5 [00:24<00:16,  8.27s/batch]Epoch 5/40:  80%|████████  | 4/5 [00:33<00:08,  8.32s/batch]Epoch 5/40: 100%|██████████| 5/5 [00:39<00:00,  7.61s/batch]Epoch 5/40: 100%|██████████| 5/5 [00:39<00:00,  7.95s/batch]
+Epoch [5/40], Loss: 1.6275
+Epoch 5/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 5/40:  50%|█████     | 1/2 [00:08<00:08,  8.11s/batch]Epoch 5/40: 100%|██████████| 2/2 [00:10<00:00,  4.58s/batch]Epoch 5/40: 100%|██████████| 2/2 [00:10<00:00,  5.11s/batch]
+Validation Loss: 1.6007
+Epoch 6/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 6/40:  20%|██        | 1/5 [00:08<00:34,  8.59s/batch]Epoch 6/40:  40%|████      | 2/5 [00:17<00:25,  8.54s/batch]Epoch 6/40:  60%|██████    | 3/5 [00:25<00:17,  8.55s/batch]Epoch 6/40:  80%|████████  | 4/5 [00:34<00:08,  8.55s/batch]Epoch 6/40: 100%|██████████| 5/5 [00:40<00:00,  7.83s/batch]Epoch 6/40: 100%|██████████| 5/5 [00:40<00:00,  8.15s/batch]
+Epoch [6/40], Loss: 1.5576
+Epoch 6/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 6/40:  50%|█████     | 1/2 [00:08<00:08,  8.10s/batch]Epoch 6/40: 100%|██████████| 2/2 [00:10<00:00,  4.57s/batch]Epoch 6/40: 100%|██████████| 2/2 [00:10<00:00,  5.10s/batch]
+Validation Loss: 1.6164
+Epoch 7/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 7/40:  20%|██        | 1/5 [00:08<00:34,  8.59s/batch]Epoch 7/40:  40%|████      | 2/5 [00:17<00:25,  8.56s/batch]Epoch 7/40:  60%|██████    | 3/5 [00:25<00:17,  8.59s/batch]Epoch 7/40:  80%|████████  | 4/5 [00:34<00:08,  8.59s/batch]Epoch 7/40: 100%|██████████| 5/5 [00:40<00:00,  7.86s/batch]Epoch 7/40: 100%|██████████| 5/5 [00:40<00:00,  8.19s/batch]
+Epoch [7/40], Loss: 1.5680
+Epoch 7/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 7/40:  50%|█████     | 1/2 [00:08<00:08,  8.13s/batch]Epoch 7/40: 100%|██████████| 2/2 [00:10<00:00,  4.63s/batch]Epoch 7/40: 100%|██████████| 2/2 [00:10<00:00,  5.16s/batch]
+Validation Loss: 1.6683
+Epoch 8/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 8/40:  20%|██        | 1/5 [00:08<00:34,  8.65s/batch]Epoch 8/40:  40%|████      | 2/5 [00:17<00:25,  8.63s/batch]Epoch 8/40:  60%|██████    | 3/5 [00:25<00:17,  8.65s/batch]Epoch 8/40:  80%|████████  | 4/5 [00:34<00:08,  8.62s/batch]Epoch 8/40: 100%|██████████| 5/5 [00:41<00:00,  7.86s/batch]Epoch 8/40: 100%|██████████| 5/5 [00:41<00:00,  8.21s/batch]
+Epoch [8/40], Loss: 1.6294
+Epoch 8/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 8/40:  50%|█████     | 1/2 [00:08<00:08,  8.39s/batch]Epoch 8/40: 100%|██████████| 2/2 [00:10<00:00,  4.74s/batch]Epoch 8/40: 100%|██████████| 2/2 [00:10<00:00,  5.29s/batch]
+Validation Loss: 1.5982
+Epoch 9/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 9/40:  20%|██        | 1/5 [00:08<00:34,  8.60s/batch]Epoch 9/40:  40%|████      | 2/5 [00:17<00:25,  8.51s/batch]Epoch 9/40:  60%|██████    | 3/5 [00:25<00:16,  8.27s/batch]Epoch 9/40:  80%|████████  | 4/5 [00:33<00:08,  8.36s/batch]Epoch 9/40: 100%|██████████| 5/5 [00:38<00:00,  7.15s/batch]Epoch 9/40: 100%|██████████| 5/5 [00:38<00:00,  7.70s/batch]
+Epoch [9/40], Loss: 1.5964
+Epoch 9/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 9/40:  50%|█████     | 1/2 [00:04<00:04,  4.08s/batch]Epoch 9/40: 100%|██████████| 2/2 [00:05<00:00,  2.40s/batch]Epoch 9/40: 100%|██████████| 2/2 [00:05<00:00,  2.65s/batch]
+Validation Loss: 1.6475
+Epoch 10/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 10/40:  20%|██        | 1/5 [00:04<00:17,  4.27s/batch]Epoch 10/40:  40%|████      | 2/5 [00:08<00:12,  4.25s/batch]Epoch 10/40:  60%|██████    | 3/5 [00:12<00:08,  4.21s/batch]Epoch 10/40:  80%|████████  | 4/5 [00:16<00:04,  4.24s/batch]Epoch 10/40: 100%|██████████| 5/5 [00:19<00:00,  3.81s/batch]Epoch 10/40: 100%|██████████| 5/5 [00:19<00:00,  4.00s/batch]
+Epoch [10/40], Loss: 1.6066
+Epoch 10/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 10/40:  50%|█████     | 1/2 [00:04<00:04,  4.07s/batch]Epoch 10/40: 100%|██████████| 2/2 [00:05<00:00,  2.40s/batch]Epoch 10/40: 100%|██████████| 2/2 [00:05<00:00,  2.65s/batch]
+Validation Loss: 1.6307
+Epoch 11/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 11/40:  20%|██        | 1/5 [00:04<00:16,  4.24s/batch]Epoch 11/40:  40%|████      | 2/5 [00:08<00:12,  4.19s/batch]Epoch 11/40:  60%|██████    | 3/5 [00:12<00:08,  4.21s/batch]Epoch 11/40:  80%|████████  | 4/5 [00:17<00:04,  4.47s/batch]Epoch 11/40: 100%|██████████| 5/5 [00:21<00:00,  4.44s/batch]Epoch 11/40: 100%|██████████| 5/5 [00:21<00:00,  4.38s/batch]
+Epoch [11/40], Loss: 1.5861
+Epoch 11/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 11/40:  50%|█████     | 1/2 [00:06<00:06,  6.44s/batch]Epoch 11/40: 100%|██████████| 2/2 [00:08<00:00,  3.58s/batch]Epoch 11/40: 100%|██████████| 2/2 [00:08<00:00,  4.01s/batch]
+Validation Loss: 1.6327
+Epoch 12/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 12/40:  20%|██        | 1/5 [00:06<00:25,  6.44s/batch]Epoch 12/40:  40%|████      | 2/5 [00:12<00:19,  6.42s/batch]Epoch 12/40:  60%|██████    | 3/5 [00:19<00:12,  6.41s/batch]Epoch 12/40:  80%|████████  | 4/5 [00:25<00:06,  6.43s/batch]Epoch 12/40: 100%|██████████| 5/5 [00:30<00:00,  5.90s/batch]Epoch 12/40: 100%|██████████| 5/5 [00:30<00:00,  6.13s/batch]
+Epoch [12/40], Loss: 1.5813
+Epoch 12/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 12/40:  50%|█████     | 1/2 [00:06<00:06,  6.49s/batch]Epoch 12/40: 100%|██████████| 2/2 [00:07<00:00,  3.54s/batch]Epoch 12/40: 100%|██████████| 2/2 [00:07<00:00,  3.98s/batch]
+Validation Loss: 1.5674
+Epoch 13/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 13/40:  20%|██        | 1/5 [00:06<00:25,  6.49s/batch]Epoch 13/40:  40%|████      | 2/5 [00:12<00:19,  6.48s/batch]Epoch 13/40:  60%|██████    | 3/5 [00:19<00:12,  6.45s/batch]Epoch 13/40:  80%|████████  | 4/5 [00:25<00:06,  6.44s/batch]Epoch 13/40: 100%|██████████| 5/5 [00:30<00:00,  5.89s/batch]Epoch 13/40: 100%|██████████| 5/5 [00:30<00:00,  6.14s/batch]
+Epoch [13/40], Loss: 1.6156
+Epoch 13/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 13/40:  50%|█████     | 1/2 [00:06<00:06,  6.48s/batch]Epoch 13/40: 100%|██████████| 2/2 [00:07<00:00,  3.47s/batch]Epoch 13/40: 100%|██████████| 2/2 [00:07<00:00,  3.92s/batch]
+Validation Loss: 1.6165
+Epoch 14/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 14/40:  20%|██        | 1/5 [00:06<00:26,  6.70s/batch]Epoch 14/40:  40%|████      | 2/5 [00:13<00:19,  6.55s/batch]Epoch 14/40:  60%|██████    | 3/5 [00:19<00:13,  6.51s/batch]Epoch 14/40:  80%|████████  | 4/5 [00:26<00:06,  6.52s/batch]Epoch 14/40: 100%|██████████| 5/5 [00:30<00:00,  5.88s/batch]Epoch 14/40: 100%|██████████| 5/5 [00:30<00:00,  6.18s/batch]
+Epoch [14/40], Loss: 1.5580
+Epoch 14/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 14/40:  50%|█████     | 1/2 [00:06<00:06,  6.27s/batch]Epoch 14/40: 100%|██████████| 2/2 [00:07<00:00,  3.41s/batch]Epoch 14/40: 100%|██████████| 2/2 [00:07<00:00,  3.84s/batch]
+Validation Loss: 1.6067
+Epoch 15/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 15/40:  20%|██        | 1/5 [00:06<00:25,  6.46s/batch]Epoch 15/40:  40%|████      | 2/5 [00:12<00:19,  6.46s/batch]Epoch 15/40:  60%|██████    | 3/5 [00:19<00:12,  6.49s/batch]Epoch 15/40:  80%|████████  | 4/5 [00:25<00:06,  6.49s/batch]Epoch 15/40: 100%|██████████| 5/5 [00:30<00:00,  5.87s/batch]Epoch 15/40: 100%|██████████| 5/5 [00:30<00:00,  6.14s/batch]
+Epoch [15/40], Loss: 1.6199
+Epoch 15/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 15/40:  50%|█████     | 1/2 [00:06<00:06,  6.15s/batch]Epoch 15/40: 100%|██████████| 2/2 [00:07<00:00,  3.41s/batch]Epoch 15/40: 100%|██████████| 2/2 [00:07<00:00,  3.82s/batch]
+Validation Loss: 1.5506
+Epoch 16/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 16/40:  20%|██        | 1/5 [00:06<00:27,  6.81s/batch]Epoch 16/40:  40%|████      | 2/5 [00:15<00:23,  7.82s/batch]Epoch 16/40:  60%|██████    | 3/5 [00:23<00:16,  8.19s/batch]Epoch 16/40:  80%|████████  | 4/5 [00:32<00:08,  8.37s/batch]Epoch 16/40: 100%|██████████| 5/5 [00:39<00:00,  7.71s/batch]Epoch 16/40: 100%|██████████| 5/5 [00:39<00:00,  7.83s/batch]
+Epoch [16/40], Loss: 1.5600
+Epoch 16/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 16/40:  50%|█████     | 1/2 [00:08<00:08,  8.13s/batch]Epoch 16/40: 100%|██████████| 2/2 [00:09<00:00,  4.32s/batch]Epoch 16/40: 100%|██████████| 2/2 [00:09<00:00,  4.89s/batch]
+Validation Loss: 1.6215
+Epoch 17/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 17/40:  20%|██        | 1/5 [00:08<00:35,  8.79s/batch]Epoch 17/40:  40%|████      | 2/5 [00:17<00:26,  8.72s/batch]Epoch 17/40:  60%|██████    | 3/5 [00:26<00:17,  8.69s/batch]Epoch 17/40:  80%|████████  | 4/5 [00:34<00:08,  8.68s/batch]Epoch 17/40: 100%|██████████| 5/5 [00:41<00:00,  7.93s/batch]Epoch 17/40: 100%|██████████| 5/5 [00:41<00:00,  8.28s/batch]
+Epoch [17/40], Loss: 1.5542
+Epoch 17/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 17/40:  50%|█████     | 1/2 [00:08<00:08,  8.06s/batch]Epoch 17/40: 100%|██████████| 2/2 [00:09<00:00,  4.39s/batch]Epoch 17/40: 100%|██████████| 2/2 [00:09<00:00,  4.94s/batch]
+Validation Loss: 1.5040
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth
+Epoch 18/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 18/40:  20%|██        | 1/5 [00:08<00:34,  8.54s/batch]Epoch 18/40:  40%|████      | 2/5 [00:17<00:25,  8.56s/batch]Epoch 18/40:  60%|██████    | 3/5 [00:25<00:17,  8.56s/batch]Epoch 18/40:  80%|████████  | 4/5 [00:34<00:08,  8.56s/batch]Epoch 18/40: 100%|██████████| 5/5 [00:40<00:00,  7.90s/batch]Epoch 18/40: 100%|██████████| 5/5 [00:40<00:00,  8.19s/batch]
+Epoch [18/40], Loss: 1.5775
+Epoch 18/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 18/40:  50%|█████     | 1/2 [00:08<00:08,  8.02s/batch]Epoch 18/40: 100%|██████████| 2/2 [00:10<00:00,  4.53s/batch]Epoch 18/40: 100%|██████████| 2/2 [00:10<00:00,  5.05s/batch]
+Validation Loss: 1.5867
+Epoch 19/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 19/40:  20%|██        | 1/5 [00:08<00:33,  8.29s/batch]Epoch 19/40:  40%|████      | 2/5 [00:16<00:25,  8.40s/batch]Epoch 19/40:  60%|██████    | 3/5 [00:25<00:17,  8.53s/batch]Epoch 19/40:  80%|████████  | 4/5 [00:34<00:08,  8.65s/batch]Epoch 19/40: 100%|██████████| 5/5 [00:41<00:00,  8.01s/batch]Epoch 19/40: 100%|██████████| 5/5 [00:41<00:00,  8.23s/batch]
+Epoch [19/40], Loss: 1.5641
+Epoch 19/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 19/40:  50%|█████     | 1/2 [00:08<00:08,  8.17s/batch]Epoch 19/40: 100%|██████████| 2/2 [00:10<00:00,  4.50s/batch]Epoch 19/40: 100%|██████████| 2/2 [00:10<00:00,  5.05s/batch]
+Validation Loss: 1.5021
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth
+Epoch 20/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 20/40:  20%|██        | 1/5 [00:08<00:33,  8.49s/batch]Epoch 20/40:  40%|████      | 2/5 [00:17<00:25,  8.51s/batch]Epoch 20/40:  60%|██████    | 3/5 [00:25<00:17,  8.52s/batch]Epoch 20/40:  80%|████████  | 4/5 [00:34<00:08,  8.50s/batch]Epoch 20/40: 100%|██████████| 5/5 [00:40<00:00,  7.83s/batch]Epoch 20/40: 100%|██████████| 5/5 [00:40<00:00,  8.13s/batch]
+Epoch [20/40], Loss: 1.5240
+Epoch 20/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 20/40:  50%|█████     | 1/2 [00:08<00:08,  8.30s/batch]Epoch 20/40: 100%|██████████| 2/2 [00:10<00:00,  4.72s/batch]Epoch 20/40: 100%|██████████| 2/2 [00:10<00:00,  5.26s/batch]
+Validation Loss: 1.5712
+Epoch 21/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 21/40:  20%|██        | 1/5 [00:08<00:34,  8.56s/batch]Epoch 21/40:  40%|████      | 2/5 [00:16<00:25,  8.48s/batch]Epoch 21/40:  60%|██████    | 3/5 [00:24<00:16,  8.16s/batch]Epoch 21/40:  80%|████████  | 4/5 [00:33<00:08,  8.20s/batch]Epoch 21/40: 100%|██████████| 5/5 [00:40<00:00,  7.79s/batch]Epoch 21/40: 100%|██████████| 5/5 [00:40<00:00,  8.02s/batch]
+Epoch [21/40], Loss: 1.5664
+Epoch 21/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 21/40:  50%|█████     | 1/2 [00:08<00:08,  8.29s/batch]Epoch 21/40: 100%|██████████| 2/2 [00:09<00:00,  4.22s/batch]Epoch 21/40: 100%|██████████| 2/2 [00:09<00:00,  4.83s/batch]
+Validation Loss: 1.5780
+Epoch 22/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 22/40:  20%|██        | 1/5 [00:08<00:33,  8.46s/batch]Epoch 22/40:  40%|████      | 2/5 [00:17<00:26,  8.68s/batch]Epoch 22/40:  60%|██████    | 3/5 [00:26<00:17,  8.75s/batch]Epoch 22/40:  80%|████████  | 4/5 [00:34<00:08,  8.79s/batch]Epoch 22/40: 100%|██████████| 5/5 [00:41<00:00,  7.93s/batch]Epoch 22/40: 100%|██████████| 5/5 [00:41<00:00,  8.28s/batch]
+Epoch [22/40], Loss: 1.5481
+Epoch 22/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 22/40:  50%|█████     | 1/2 [00:08<00:08,  8.17s/batch]Epoch 22/40: 100%|██████████| 2/2 [00:10<00:00,  4.45s/batch]Epoch 22/40: 100%|██████████| 2/2 [00:10<00:00,  5.01s/batch]
+Validation Loss: 1.5381
+Epoch 23/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 23/40:  20%|██        | 1/5 [00:08<00:34,  8.69s/batch]Epoch 23/40:  40%|████      | 2/5 [00:17<00:26,  8.84s/batch]Epoch 23/40:  60%|██████    | 3/5 [00:26<00:17,  8.93s/batch]Epoch 23/40:  80%|████████  | 4/5 [00:35<00:08,  8.99s/batch]Epoch 23/40: 100%|██████████| 5/5 [00:42<00:00,  8.16s/batch]Epoch 23/40: 100%|██████████| 5/5 [00:42<00:00,  8.49s/batch]
+Epoch [23/40], Loss: 1.5446
+Epoch 23/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 23/40:  50%|█████     | 1/2 [00:07<00:07,  7.94s/batch]Epoch 23/40: 100%|██████████| 2/2 [00:10<00:00,  4.50s/batch]Epoch 23/40: 100%|██████████| 2/2 [00:10<00:00,  5.01s/batch]
+Validation Loss: 1.6488
+Epoch 24/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 24/40:  20%|██        | 1/5 [00:08<00:34,  8.67s/batch]Epoch 24/40:  40%|████      | 2/5 [00:17<00:25,  8.60s/batch]Epoch 24/40:  60%|██████    | 3/5 [00:25<00:17,  8.52s/batch]Epoch 24/40:  80%|████████  | 4/5 [00:34<00:08,  8.48s/batch]Epoch 24/40: 100%|██████████| 5/5 [00:40<00:00,  7.63s/batch]Epoch 24/40: 100%|██████████| 5/5 [00:40<00:00,  8.04s/batch]
+Epoch [24/40], Loss: 1.5766
+Epoch 24/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 24/40:  50%|█████     | 1/2 [00:07<00:07,  7.82s/batch]Epoch 24/40: 100%|██████████| 2/2 [00:09<00:00,  4.44s/batch]Epoch 24/40: 100%|██████████| 2/2 [00:09<00:00,  4.95s/batch]
+Validation Loss: 1.5963
+Epoch 25/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 25/40:  20%|██        | 1/5 [00:08<00:34,  8.56s/batch]Epoch 25/40:  40%|████      | 2/5 [00:17<00:25,  8.57s/batch]Epoch 25/40:  60%|██████    | 3/5 [00:25<00:16,  8.48s/batch]Epoch 25/40:  80%|████████  | 4/5 [00:33<00:08,  8.47s/batch]Epoch 25/40: 100%|██████████| 5/5 [00:40<00:00,  7.70s/batch]Epoch 25/40: 100%|██████████| 5/5 [00:40<00:00,  8.06s/batch]
+Epoch [25/40], Loss: 1.5751
+Epoch 25/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 25/40:  50%|█████     | 1/2 [00:08<00:08,  8.02s/batch]Epoch 25/40: 100%|██████████| 2/2 [00:10<00:00,  4.53s/batch]Epoch 25/40: 100%|██████████| 2/2 [00:10<00:00,  5.05s/batch]
+Validation Loss: 1.6492
+Epoch 26/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 26/40:  20%|██        | 1/5 [00:08<00:34,  8.73s/batch]Epoch 26/40:  40%|████      | 2/5 [00:17<00:26,  8.69s/batch]Epoch 26/40:  60%|██████    | 3/5 [00:25<00:17,  8.58s/batch]Epoch 26/40:  80%|████████  | 4/5 [00:34<00:08,  8.46s/batch]Epoch 26/40: 100%|██████████| 5/5 [00:40<00:00,  7.68s/batch]Epoch 26/40: 100%|██████████| 5/5 [00:40<00:00,  8.08s/batch]
+Epoch [26/40], Loss: 1.6064
+Epoch 26/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 26/40:  50%|█████     | 1/2 [00:08<00:08,  8.06s/batch]Epoch 26/40: 100%|██████████| 2/2 [00:10<00:00,  4.62s/batch]Epoch 26/40: 100%|██████████| 2/2 [00:10<00:00,  5.13s/batch]
+Validation Loss: 1.6043
+Epoch 27/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 27/40:  20%|██        | 1/5 [00:08<00:35,  8.92s/batch]Epoch 27/40:  40%|████      | 2/5 [00:17<00:25,  8.61s/batch]Epoch 27/40:  60%|██████    | 3/5 [00:25<00:17,  8.57s/batch]Epoch 27/40:  80%|████████  | 4/5 [00:34<00:08,  8.57s/batch]Epoch 27/40: 100%|██████████| 5/5 [00:40<00:00,  7.75s/batch]Epoch 27/40: 100%|██████████| 5/5 [00:40<00:00,  8.14s/batch]
+Epoch [27/40], Loss: 1.5807
+Epoch 27/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 27/40:  50%|█████     | 1/2 [00:08<00:08,  8.06s/batch]Epoch 27/40: 100%|██████████| 2/2 [00:10<00:00,  4.55s/batch]Epoch 27/40: 100%|██████████| 2/2 [00:10<00:00,  5.08s/batch]
+Validation Loss: 1.5943
+Epoch 28/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 28/40:  20%|██        | 1/5 [00:08<00:34,  8.72s/batch]Epoch 28/40:  40%|████      | 2/5 [00:17<00:25,  8.62s/batch]Epoch 28/40:  60%|██████    | 3/5 [00:25<00:17,  8.60s/batch]Epoch 28/40:  80%|████████  | 4/5 [00:34<00:08,  8.61s/batch]Epoch 28/40: 100%|██████████| 5/5 [00:40<00:00,  7.78s/batch]Epoch 28/40: 100%|██████████| 5/5 [00:40<00:00,  8.16s/batch]
+Epoch [28/40], Loss: 1.5983
+Epoch 28/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 28/40:  50%|█████     | 1/2 [00:07<00:07,  7.99s/batch]Epoch 28/40: 100%|██████████| 2/2 [00:10<00:00,  4.50s/batch]Epoch 28/40: 100%|██████████| 2/2 [00:10<00:00,  5.03s/batch]
+Validation Loss: 1.6239
+Epoch 29/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 29/40:  20%|██        | 1/5 [00:08<00:34,  8.66s/batch]Epoch 29/40:  40%|████      | 2/5 [00:17<00:25,  8.60s/batch]Epoch 29/40:  60%|██████    | 3/5 [00:25<00:17,  8.63s/batch]Epoch 29/40:  80%|████████  | 4/5 [00:34<00:08,  8.62s/batch]Epoch 29/40: 100%|██████████| 5/5 [00:40<00:00,  7.78s/batch]Epoch 29/40: 100%|██████████| 5/5 [00:40<00:00,  8.16s/batch]
+Epoch [29/40], Loss: 1.5615
+Epoch 29/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 29/40:  50%|█████     | 1/2 [00:08<00:08,  8.05s/batch]Epoch 29/40: 100%|██████████| 2/2 [00:10<00:00,  4.55s/batch]Epoch 29/40: 100%|██████████| 2/2 [00:10<00:00,  5.07s/batch]
+Validation Loss: 1.6358
+Epoch 30/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 30/40:  20%|██        | 1/5 [00:08<00:34,  8.68s/batch]Epoch 30/40:  40%|████      | 2/5 [00:17<00:26,  8.67s/batch]Epoch 30/40:  60%|██████    | 3/5 [00:26<00:17,  8.68s/batch]Epoch 30/40:  80%|████████  | 4/5 [00:34<00:08,  8.66s/batch]Epoch 30/40: 100%|██████████| 5/5 [00:41<00:00,  7.83s/batch]Epoch 30/40: 100%|██████████| 5/5 [00:41<00:00,  8.21s/batch]
+Epoch [30/40], Loss: 1.5535
+Epoch 30/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 30/40:  50%|█████     | 1/2 [00:08<00:08,  8.03s/batch]Epoch 30/40: 100%|██████████| 2/2 [00:10<00:00,  4.53s/batch]Epoch 30/40: 100%|██████████| 2/2 [00:10<00:00,  5.06s/batch]
+Validation Loss: 1.6052
+Epoch 31/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 31/40:  20%|██        | 1/5 [00:08<00:34,  8.70s/batch]Epoch 31/40:  40%|████      | 2/5 [00:17<00:26,  8.70s/batch]Epoch 31/40:  60%|██████    | 3/5 [00:26<00:17,  8.71s/batch]Epoch 31/40:  80%|████████  | 4/5 [00:34<00:08,  8.71s/batch]Epoch 31/40: 100%|██████████| 5/5 [00:41<00:00,  7.84s/batch]Epoch 31/40: 100%|██████████| 5/5 [00:41<00:00,  8.22s/batch]
+Epoch [31/40], Loss: 1.5360
+Epoch 31/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 31/40:  50%|█████     | 1/2 [00:07<00:07,  7.98s/batch]Epoch 31/40: 100%|██████████| 2/2 [00:10<00:00,  4.52s/batch]Epoch 31/40: 100%|██████████| 2/2 [00:10<00:00,  5.04s/batch]
+Validation Loss: 1.5804
+Epoch 32/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 32/40:  20%|██        | 1/5 [00:08<00:34,  8.71s/batch]Epoch 32/40:  40%|████      | 2/5 [00:17<00:25,  8.65s/batch]Epoch 32/40:  60%|██████    | 3/5 [00:25<00:17,  8.53s/batch]Epoch 32/40:  80%|████████  | 4/5 [00:33<00:08,  8.44s/batch]Epoch 32/40: 100%|██████████| 5/5 [00:40<00:00,  7.66s/batch]Epoch 32/40: 100%|██████████| 5/5 [00:40<00:00,  8.06s/batch]
+Epoch [32/40], Loss: 1.5447
+Epoch 32/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 32/40:  50%|█████     | 1/2 [00:08<00:08,  8.07s/batch]Epoch 32/40: 100%|██████████| 2/2 [00:10<00:00,  4.62s/batch]Epoch 32/40: 100%|██████████| 2/2 [00:10<00:00,  5.14s/batch]
+Validation Loss: 1.6132
+Epoch 33/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 33/40:  20%|██        | 1/5 [00:08<00:35,  8.96s/batch]Epoch 33/40:  40%|████      | 2/5 [00:17<00:26,  8.74s/batch]Epoch 33/40:  60%|██████    | 3/5 [00:26<00:17,  8.64s/batch]Epoch 33/40:  80%|████████  | 4/5 [00:34<00:08,  8.61s/batch]Epoch 33/40: 100%|██████████| 5/5 [00:41<00:00,  7.81s/batch]Epoch 33/40: 100%|██████████| 5/5 [00:41<00:00,  8.20s/batch]
+Epoch [33/40], Loss: 1.5701
+Epoch 33/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 33/40:  50%|█████     | 1/2 [00:07<00:07,  7.40s/batch]Epoch 33/40: 100%|██████████| 2/2 [00:09<00:00,  4.29s/batch]Epoch 33/40: 100%|██████████| 2/2 [00:09<00:00,  4.76s/batch]
+Validation Loss: 1.4934
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth
+Epoch 34/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 34/40:  20%|██        | 1/5 [00:08<00:33,  8.43s/batch]Epoch 34/40:  40%|████      | 2/5 [00:16<00:25,  8.47s/batch]Epoch 34/40:  60%|██████    | 3/5 [00:25<00:16,  8.48s/batch]Epoch 34/40:  80%|████████  | 4/5 [00:33<00:08,  8.47s/batch]Epoch 34/40: 100%|██████████| 5/5 [00:40<00:00,  7.72s/batch]Epoch 34/40: 100%|██████████| 5/5 [00:40<00:00,  8.05s/batch]
+Epoch [34/40], Loss: 1.5296
+Epoch 34/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 34/40:  50%|█████     | 1/2 [00:07<00:07,  7.83s/batch]Epoch 34/40: 100%|██████████| 2/2 [00:10<00:00,  4.52s/batch]Epoch 34/40: 100%|██████████| 2/2 [00:10<00:00,  5.02s/batch]
+Validation Loss: 1.5560
+Epoch 35/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 35/40:  20%|██        | 1/5 [00:08<00:33,  8.42s/batch]Epoch 35/40:  40%|████      | 2/5 [00:16<00:25,  8.46s/batch]Epoch 35/40:  60%|██████    | 3/5 [00:25<00:16,  8.49s/batch]Epoch 35/40:  80%|████████  | 4/5 [00:33<00:08,  8.50s/batch]Epoch 35/40: 100%|██████████| 5/5 [00:40<00:00,  7.77s/batch]Epoch 35/40: 100%|██████████| 5/5 [00:40<00:00,  8.08s/batch]
+Epoch [35/40], Loss: 1.5536
+Epoch 35/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 35/40:  50%|█████     | 1/2 [00:07<00:07,  7.90s/batch]Epoch 35/40: 100%|██████████| 2/2 [00:10<00:00,  4.56s/batch]Epoch 35/40: 100%|██████████| 2/2 [00:10<00:00,  5.06s/batch]
+Validation Loss: 1.5983
+Epoch 36/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 36/40:  20%|██        | 1/5 [00:08<00:33,  8.42s/batch]Epoch 36/40:  40%|████      | 2/5 [00:16<00:25,  8.34s/batch]Epoch 36/40:  60%|██████    | 3/5 [00:25<00:16,  8.45s/batch]Epoch 36/40:  80%|████████  | 4/5 [00:33<00:08,  8.53s/batch]Epoch 36/40: 100%|██████████| 5/5 [00:40<00:00,  7.85s/batch]Epoch 36/40: 100%|██████████| 5/5 [00:40<00:00,  8.12s/batch]
+Epoch [36/40], Loss: 1.5675
+Epoch 36/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 36/40:  50%|█████     | 1/2 [00:08<00:08,  8.14s/batch]Epoch 36/40: 100%|██████████| 2/2 [00:10<00:00,  4.52s/batch]Epoch 36/40: 100%|██████████| 2/2 [00:10<00:00,  5.06s/batch]
+Validation Loss: 1.5635
+Epoch 37/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 37/40:  20%|██        | 1/5 [00:08<00:34,  8.66s/batch]Epoch 37/40:  40%|████      | 2/5 [00:17<00:26,  8.75s/batch]Epoch 37/40:  60%|██████    | 3/5 [00:26<00:17,  8.78s/batch]Epoch 37/40:  80%|████████  | 4/5 [00:35<00:08,  8.81s/batch]Epoch 37/40: 100%|██████████| 5/5 [00:42<00:00,  8.14s/batch]Epoch 37/40: 100%|██████████| 5/5 [00:42<00:00,  8.42s/batch]
+Epoch [37/40], Loss: 1.5573
+Epoch 37/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 37/40:  50%|█████     | 1/2 [00:07<00:07,  7.84s/batch]Epoch 37/40: 100%|██████████| 2/2 [00:09<00:00,  4.42s/batch]Epoch 37/40: 100%|██████████| 2/2 [00:09<00:00,  4.93s/batch]
+Validation Loss: 1.6177
+Epoch 38/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 38/40:  20%|██        | 1/5 [00:08<00:34,  8.59s/batch]Epoch 38/40:  40%|████      | 2/5 [00:17<00:26,  8.72s/batch]Epoch 38/40:  60%|██████    | 3/5 [00:25<00:16,  8.46s/batch]Epoch 38/40:  80%|████████  | 4/5 [00:34<00:08,  8.54s/batch]Epoch 38/40: 100%|██████████| 5/5 [00:40<00:00,  7.83s/batch]Epoch 38/40: 100%|██████████| 5/5 [00:40<00:00,  8.15s/batch]
+Epoch [38/40], Loss: 1.5494
+Epoch 38/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 38/40:  50%|█████     | 1/2 [00:08<00:08,  8.00s/batch]Epoch 38/40: 100%|██████████| 2/2 [00:10<00:00,  4.57s/batch]Epoch 38/40: 100%|██████████| 2/2 [00:10<00:00,  5.09s/batch]
+Validation Loss: 1.5294
+Epoch 39/40:   0%|          | 0/5 [00:00<?, ?batch/s]Epoch 39/40:  20%|██        | 1/5 [00:08<00:34,  8.58s/batch]Epoch 39/40:  40%|████      | 2/5 [00:17<00:25,  8.63s/batch]Epoch 39/40:  60%|██████    | 3/5 [00:25<00:17,  8.64s/batch]Epoch 39/40:  80%|████████  | 4/5 [00:34<00:08,  8.64s/batch]Epoch 39/40: 100%|██████████| 5/5 [00:41<00:00,  7.88s/batch]Epoch 39/40: 100%|██████████| 5/5 [00:41<00:00,  8.21s/batch]
+Epoch [39/40], Loss: 1.5401
+Epoch 39/40:   0%|          | 0/2 [00:00<?, ?batch/s]Epoch 39/40:  50%|█████     | 1/2 [00:07<00:07,  7.96s/batch]Epoch 39/40: 100%|██████████| 2/2 [00:10<00:00,  4.57s/batch]Epoch 39/40: 100%|██████████| 2/2 [00:10<00:00,  5.08s/batch]
+Validation Loss: 1.4803
+Saved best model to ../models/exp/train_models/OS-ESB-core/MV_AlexNet_dis_Pre/DINOv2_B14/RelationDisLoss/best_model_lr_0.001_batch_16_rGL_0.8_rOI_0.8.pth

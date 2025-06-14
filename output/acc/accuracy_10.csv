@@ -1,0 +1,23 @@
+order,Model,Model_T,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset,loss,rGL,rOI,average_inference_time,mAP,ndcg@100,anmrr
+67,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0031,0.3957,0.4530,0.5984
+68,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ESB-core,OS-ESB-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0043,0.3776,0.1825,0.6335
+72,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0045,0.3775,0.1825,0.6335
+76,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.001,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0030,0.3403,0.1652,0.6543
+80,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.01,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0033,0.3018,0.1538,0.6971
+77,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.001,16,12,OS-NTU-core,OS-NTU-core,RelationDisLoss,0.8,0.8,0.0024,0.2226,0.1415,0.7750
+78,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.001,16,12,OS-MN40-core,OS-MN40-core,RelationDisLoss,0.8,0.8,0.0029,0.2917,0.4375,0.6860
+76,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.001,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0071,0.3346,0.1630,0.6636
+80,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.01,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0072,0.2982,0.1535,0.7061
+76,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.001,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0050,0.3366,0.1653,0.6616
+80,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.01,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0050,0.3043,0.1545,0.6972
+68,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ESB-core,OS-ESB-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0054,0.3776,0.1825,0.6335
+72,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ESB-core,OS-ESB-core,RelationDisLoss,0.8,0.8,0.0053,0.3775,0.1825,0.6335
+69,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-NTU-core,OS-NTU-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0039,0.2896,0.1643,0.7049
+67,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0055,0.3957,0.4530,0.5984
+73,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-NTU-core,OS-NTU-core,RelationDisLoss,0.8,0.8,0.0041,0.2894,0.1642,0.7053
+71,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0031,0.3890,0.4520,0.6032
+75,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.001,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0033,0.2896,0.3539,0.7062
+79,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.01,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0036,0.2881,0.3518,0.6957
+71,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0032,0.3750,0.4448,0.6153
+83,MV_AlexNet_dis_Pre,DINOv2_B14,66,0.0001,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0036,0.3164,0.3862,0.6736
+84,MV_AlexNet_dis_Pre,DINOv2_B14,66,1e-05,16,12,OS-ABO-core,OS-ABO-core,RelationDisLoss,0.8,0.8,0.0037,0.3296,0.4087,0.6636

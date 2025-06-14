@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/xyzhang/project/Distillation/src/feature_extraction.py", line 12, in <module>
+    from models.Teachers.DINOv2 import MV_DINOv2, MV_DINOv2_without_adapter
+  File "/home/xyzhang/project/Distillation/src/models/Teachers/DINOv2.py", line 3, in <module>
+    from transformers import DINOv2Model, DINOv2Processor
+ImportError: cannot import name 'DINOv2Model' from 'transformers' (/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/transformers/__init__.py)

@@ -1,0 +1,135 @@
+nohup: ignoring input
+/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py:137: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(model_path, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+/home/xyzhang/project/Distillation/src/evaluate.py:282: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/{args.model_T}/{args.loss}/best_model_lr_{args.lr}_batch_{args.batch_size}_rGL_{args.rGL}_rOI_{args.rOI}.pth")['model_state_dict'])
+/home/xyzhang/project/Distillation/src/evaluate.py:318: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+
+init ALEXNET model...
+
+Loading pre-trained model from ../models/exp/train_models/OS-ESB-core/MV_AlexNet/best_model_lr_1e-06_batch_16.pth...
+Pre-trained features loaded successfully.
+Extracting query features:   0%|          | 0/120 [00:00<?, ?it/s]Extracting query features:   1%|          | 1/120 [00:00<00:31,  3.84it/s]Extracting query features:   8%|▊         | 9/120 [00:00<00:03, 29.69it/s]Extracting query features:  14%|█▍        | 17/120 [00:00<00:02, 46.10it/s]Extracting query features:  22%|██▏       | 26/120 [00:00<00:01, 58.50it/s]Extracting query features:  29%|██▉       | 35/120 [00:00<00:01, 66.86it/s]Extracting query features:  37%|███▋      | 44/120 [00:00<00:01, 71.36it/s]Extracting query features:  43%|████▎     | 52/120 [00:00<00:00, 69.42it/s]Extracting query features:  51%|█████     | 61/120 [00:01<00:00, 73.55it/s]Extracting query features:  57%|█████▊    | 69/120 [00:01<00:00, 72.83it/s]Extracting query features:  65%|██████▌   | 78/120 [00:01<00:00, 75.38it/s]Extracting query features:  72%|███████▎  | 87/120 [00:01<00:00, 77.19it/s]Extracting query features:  80%|████████  | 96/120 [00:01<00:00, 77.54it/s]Extracting query features:  87%|████████▋ | 104/120 [00:01<00:00, 74.18it/s]Extracting query features:  95%|█████████▌| 114/120 [00:01<00:00, 80.07it/s]Extracting query features: 100%|██████████| 120/120 [00:01<00:00, 68.01it/s]
+features torch.Size([452, 257, 768])
+features_after torch.Size([452, 197376])
+query_labels ['solid of revolution___discs' 'rectangular-cubic prism___handles'
+ 'rectangular-cubic prism___miscellaneous'
+ 'rectangular-cubic prism___small machined blocks'
+ 'rectangular-cubic prism___long machine elements'
+ 'rectangular-cubic prism___thick slotted plates'
+ 'solid of revolution___discs'
+ 'rectangular-cubic prism___thick slotted plates'
+ 'solid of revolution___gear like parts'
+ 'solid of revolution___flange like parts'
+ 'solid of revolution___flange like parts'
+ 'rectangular-cubic prism___handles'
+ 'rectangular-cubic prism___slender links'
+ 'solid of revolution___flange like parts'
+ 'solid of revolution___miscellaneous'
+ 'solid of revolution___round change at end' 'solid of revolution___discs'
+ 'rectangular-cubic prism___t shaped parts'
+ 'rectangular-cubic prism___prismatic stock'
+ 'solid of revolution___bearing like parts'
+ 'solid of revolution___cylindrical parts'
+ 'solid of revolution___cylindrical parts'
+ 'solid of revolution___pulley like parts'
+ 'rectangular-cubic prism___long machine elements'
+ 'rectangular-cubic prism___thick plates'
+ 'rectangular-cubic prism___thick slotted plates'
+ 'rectangular-cubic prism___small machined blocks'
+ 'solid of revolution___cylindrical parts'
+ 'flat-thin wallcomponents___bracket like parts'
+ 'rectangular-cubic prism___machined plates'
+ 'solid of revolution___miscellaneous'
+ 'flat-thin wallcomponents___thin plates'
+ 'rectangular-cubic prism___small machined blocks'
+ 'solid of revolution___gear like parts'
+ 'rectangular-cubic prism___t shaped parts'
+ 'solid of revolution___round change at end'
+ 'solid of revolution___miscellaneous'
+ 'solid of revolution___bearing like parts'
+ 'flat-thin wallcomponents___bracket like parts'
+ 'solid of revolution___flange like parts'
+ 'solid of revolution___long pins'
+ 'rectangular-cubic prism___machined plates'
+ 'rectangular-cubic prism___handles'
+ 'rectangular-cubic prism___u shaped parts'
+ 'solid of revolution___long pins' 'solid of revolution___gear like parts'
+ 'solid of revolution___cylindrical parts'
+ 'rectangular-cubic prism___machined plates'
+ 'flat-thin wallcomponents___thin plates'
+ 'flat-thin wallcomponents___bracket like parts'
+ 'solid of revolution___pulley like parts'
+ 'solid of revolution___long pins'
+ 'rectangular-cubic prism___thick plates'
+ 'solid of revolution___pulley like parts'
+ 'rectangular-cubic prism___slender links'
+ 'rectangular-cubic prism___miscellaneous'
+ 'rectangular-cubic prism___thick plates'
+ 'rectangular-cubic prism___handles'
+ 'rectangular-cubic prism___t shaped parts'
+ 'rectangular-cubic prism___small machined blocks'
+ 'rectangular-cubic prism___long machine elements'
+ 'rectangular-cubic prism___long machine elements'
+ 'solid of revolution___cylindrical parts' 'solid of revolution___discs'
+ 'solid of revolution___long pins' 'solid of revolution___discs'
+ 'rectangular-cubic prism___thick plates'
+ 'solid of revolution___bolt like parts'
+ 'rectangular-cubic prism___miscellaneous'
+ 'solid of revolution___flange like parts'
+ 'rectangular-cubic prism___slender links'
+ 'rectangular-cubic prism___thick slotted plates'
+ 'solid of revolution___gear like parts'
+ 'rectangular-cubic prism___u shaped parts'
+ 'flat-thin wallcomponents___thin plates'
+ 'solid of revolution___pulley like parts'
+ 'rectangular-cubic prism___t shaped parts'
+ 'solid of revolution___bearing like parts' 'solid of revolution___nuts'
+ 'rectangular-cubic prism___miscellaneous'
+ 'rectangular-cubic prism___prismatic stock'
+ 'solid of revolution___round change at end'
+ 'solid of revolution___long pins'
+ 'rectangular-cubic prism___prismatic stock' 'solid of revolution___nuts'
+ 'solid of revolution___bolt like parts'
+ 'rectangular-cubic prism___slender links'
+ 'rectangular-cubic prism___thick slotted plates'
+ 'solid of revolution___round change at end'
+ 'solid of revolution___gear like parts'
+ 'flat-thin wallcomponents___bracket like parts'
+ 'rectangular-cubic prism___thick plates'
+ 'solid of revolution___bearing like parts'
+ 'solid of revolution___bolt like parts'
+ 'rectangular-cubic prism___small machined blocks'
+ 'rectangular-cubic prism___u shaped parts' 'solid of revolution___nuts'
+ 'rectangular-cubic prism___prismatic stock' 'solid of revolution___nuts'
+ 'solid of revolution___bolt like parts'
+ 'rectangular-cubic prism___u shaped parts'
+ 'rectangular-cubic prism___handles'
+ 'rectangular-cubic prism___slender links'
+ 'rectangular-cubic prism___machined plates'
+ 'solid of revolution___bearing like parts'
+ 'rectangular-cubic prism___machined plates'
+ 'solid of revolution___round change at end'
+ 'rectangular-cubic prism___miscellaneous'
+ 'rectangular-cubic prism___t shaped parts'
+ 'rectangular-cubic prism___u shaped parts'
+ 'flat-thin wallcomponents___bracket like parts'
+ 'solid of revolution___nuts'
+ 'rectangular-cubic prism___long machine elements'
+ 'solid of revolution___bolt like parts'
+ 'rectangular-cubic prism___prismatic stock'
+ 'solid of revolution___miscellaneous'
+ 'flat-thin wallcomponents___thin plates'
+ 'solid of revolution___miscellaneous'
+ 'flat-thin wallcomponents___thin plates'
+ 'solid of revolution___pulley like parts']
+       mAP|  NDCG@100|     ANMRR|
+   0.30428|   0.15446|   0.69716|
+pr curve: 
+[0.782693678853517, 0.6622018519631627, 0.5143978620732853, 0.39959834952782464, 0.27779441049848413, 0.22477844992155843, 0.17999298704051944, 0.15526624686157978, 0.10913991101431865, 0.09126886142150042, 0.08236245134553692]
+结果已保存到 ../output/acc/accuracy_10.csv

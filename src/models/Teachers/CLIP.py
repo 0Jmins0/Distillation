@@ -94,7 +94,7 @@ class MV_CLIP_without_adpter(nn.Module):
 
     def forward(self, x):
         # x: (batch_size * num_views, C, H, W)
-        # print(x.shape)
+        print(x.shape) #[12, 3, 224, 224]
         N, C, H, W = x.size()   
         x = x.view(-1, self.num_views,C, H, W)
         # 调整维度顺序，将视图维度（num_views）移到通道维度（C）之后，然后将张量重新整形为(N * num_views, C, H, W)。
@@ -108,13 +108,13 @@ class MV_CLIP_without_adpter(nn.Module):
         clip_output = self.clip_model(x)
         features = clip_output.last_hidden_state 
         
-        # print("T_before_pool", features.shape) #(480,50,768)
+        print("T_before_pool", features.shape) #[12, 50, 768]
         # 视角池化
         features = features.view(-1, self.num_views, features.shape[1], features.size(-1))
         features = features[:,:,0:1,:] # 取第一个视图的特征
-        # print("T_after_pool", features.shape) #(480,50,256)
+        print("T_after_pool", features.shape) #[1, 12, 1, 768]
         # 对每个样本的视图特征最大池化，保留每个样本的最显著特征
         # 最终(N, hidden_size)
         features = torch.max(features, dim = 1)[0] 
-        # print("T",features.shape)
+        print("T",features.shape) #[1, 1, 768]
         return features # (32,50,768)

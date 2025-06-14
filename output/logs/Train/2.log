@@ -1,0 +1,32 @@
+nohup: ignoring input
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Using device: cuda
+loading train data.......
+finished loading train data.......
+finished loading train data.......
+Training MV_AlexNet
+
+init ALEXNET model...
+
+No saved model found. Starting training from scratch.
+before train
+Epoch 1/40:   0%|          | 0/136 [00:00<?, ?batch/s]Epoch 1/40:   1%|          | 1/136 [00:00<01:58,  1.14batch/s]Epoch 1/40:   1%|▏         | 2/136 [00:01<01:31,  1.46batch/s]Epoch 1/40:   2%|▏         | 3/136 [00:02<01:36,  1.38batch/s]Epoch 1/40:   2%|▏         | 3/136 [00:02<01:57,  1.13batch/s]
+Traceback (most recent call last):
+  File "/home/xyzhang/project/Distillation/src/train.py", line 198, in <module>
+    negative_features = model(negative_images)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py", line 156, in forward
+    x = self.features(x)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/xyzhang/project/Distillation/src/models/Students/MVAlexNet.py", line 33, in forward
+    x = x.permute(0,2,1,3,4).contiguous().view(-1, C, H, W)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 56.00 MiB. GPU 0 has a total capacity of 23.69 GiB of which 14.19 MiB is free. Process 499389 has 11.25 GiB memory in use. Process 500626 has 3.23 GiB memory in use. Including non-PyTorch memory, this process has 1.93 GiB memory in use. Process 500623 has 2.43 GiB memory in use. Process 500625 has 4.81 GiB memory in use. Of the allocated memory 1.56 GiB is allocated by PyTorch, and 55.50 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

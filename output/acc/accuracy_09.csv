@@ -52,7 +52,7 @@ order,Model,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset
 52,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ESB-core,OS-ESB-core,CombineLoss,0.8,0.8,0.0028,0.0702,0.0392,0.9650
 53,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-NTU-core,OS-NTU-core,CombineLoss,0.8,0.8,0.0023,0.0363,0.0221,0.9741
 51,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,CombineLoss,0.8,0.8,0.0034,0.0808,0.0674,0.9386
-54,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-MN40-core,OS-MN40-core,CombineLoss,0.8,0.8,0.0029,0.0370,0.0161,0.982714,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0027,0.3991,0.4540,0.5948
+54,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-MN40-core,OS-MN40-core,CombineLoss,0.8,0.8,0.0029,0.0370,0.0161,0.982714
 14,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0027,0.3991,0.4540,0.5948
 14,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0027,0.3991,0.4540,0.5948
 22,MV_AlexNet_dis_Pre,66,1e-06,16,12,OS-MN40-core,OS-MN40-core,SimpleFeatureDistillationLoss,0.8,0.8,0.0020,0.4371,0.5743,0.5603
@@ -65,3 +65,8 @@ order,Model,Epochs,Learning Rate,Batch Size,num_views,Train Dataset,test_dataset
 55,MV_AlexNet_dis_Pre,66,1e-06,16,12,MN40-DS,MN40-DS,SimpleFeatureDistillationLoss,0.8,0.8,0.0042,0.4981,0.3925,0.5115
 62,MV_AlexNet_dis_Pre,66,1e-06,16,12,MN40-DS,MN40-DU,RelationDisLoss,0.8,0.8,0.0030,0.3599,0.2893,0.6332
 61,MV_AlexNet_dis_Pre,66,1e-06,16,12,MN40-DS,MN40-DS,RelationDisLoss,0.8,0.8,0.0030,0.4884,0.3884,0.5211
+27,MV_CLIP_without_adpter,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,TripleLoss,0.8,0.8,0.0108,0.4243,0.4567,0.5726
+63,MV_DINOv2_without_adapter,66,1e-06,16,12,OS-ABO-core,OS-ABO-core,TripleLoss,0.8,0.8,0.1287,0.5296,0.5383,0.4828
+64,MV_DINOv2_without_adapter,66,1e-06,16,12,OS-ESB-core,OS-ESB-core,TripleLoss,0.8,0.8,0.1171,0.5022,0.2171,0.5315
+66,MV_DINOv2_without_adapter,66,1e-06,16,12,OS-MN40-core,OS-MN40-core,TripleLoss,0.8,0.8,0.0980,0.5547,0.6934,0.4553
+65,MV_DINOv2_without_adapter,66,1e-06,16,12,OS-NTU-core,OS-NTU-core,TripleLoss,0.8,0.8,0.0422,0.4624,0.2241,0.5511

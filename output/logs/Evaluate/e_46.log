@@ -1,0 +1,20 @@
+nohup: ignoring input
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xyzhang/anaconda3/envs/Distillation/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/home/xyzhang/project/Distillation/src/evaluate.py:270: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(f"../models/exp/train_models/{args.train_data}/{args.model_name}/best_model_lr_{args.lr}_batch_{args.batch_size}.pth")['model_state_dict'])
+/home/xyzhang/project/Distillation/src/evaluate.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  features = torch.load(path_1)
+
+init ALEXNET model...
+
+Extracting query features:   0%|          | 0/120 [00:00<?, ?it/s]Extracting query features:   1%|          | 1/120 [00:00<00:33,  3.58it/s]Extracting query features:  22%|██▏       | 26/120 [00:00<00:01, 86.25it/s]Extracting query features:  44%|████▍     | 53/120 [00:00<00:00, 144.60it/s]Extracting query features:  62%|██████▏   | 74/120 [00:00<00:00, 162.38it/s]Extracting query features:  80%|████████  | 96/120 [00:00<00:00, 178.47it/s]Extracting query features:  98%|█████████▊| 117/120 [00:00<00:00, 179.98it/s]Extracting query features: 100%|██████████| 120/120 [00:00<00:00, 145.66it/s]
+features torch.Size([452, 256])
+features_after torch.Size([452, 256])
+       mAP|  NDCG@100|     ANMRR|
+   0.29800|   0.15155|   0.71288|
+pr curve: 
+[0.6840766037376896, 0.5942218232907321, 0.46667534634410945, 0.3901237599110617, 0.31011279864251606, 0.2544525828040203, 0.1827709790106092, 0.1650940067740453, 0.13517226958192835, 0.11326674714313177, 0.09501518576164782]
+结果已保存到 ../output/accuracy_09.csv

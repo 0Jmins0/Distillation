@@ -1,0 +1,12 @@
+usage: evaluate.py [-h] [--model_name MODEL_NAME] [--model_num MODEL_NUM]
+                   [--lr LR] [--num_epochs NUM_EPOCHS]
+                   [--batch_size BATCH_SIZE] [--num_views NUM_VIEWS]
+                   [--test_dataset TEST_DATASET] [--train_data TRAIN_DATA]
+                   [--loss LOSS] [--rGL RGL] [--rOI ROI] [--order ORDER]
+evaluate.py: error: argument --order: expected one argument
+usage: evaluate.py [-h] [--model_name MODEL_NAME] [--model_num MODEL_NUM]
+                   [--lr LR] [--num_epochs NUM_EPOCHS]
+                   [--batch_size BATCH_SIZE] [--num_views NUM_VIEWS]
+                   [--test_dataset TEST_DATASET] [--train_data TRAIN_DATA]
+                   [--loss LOSS] [--rGL RGL] [--rOI ROI] [--order ORDER]
+evaluate.py: error: argument --order: expected one argument
